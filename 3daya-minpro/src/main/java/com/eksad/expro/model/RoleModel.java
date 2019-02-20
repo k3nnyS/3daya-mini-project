@@ -20,7 +20,7 @@ public class RoleModel {
 	@Id
 	@Column(name="id", columnDefinition = "serial")
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "t_role_seq")
-	@TableGenerator(name = "category_seq", table = "tbl_squence", pkColumnName = "seq_id", valueColumnName = "seq_value", initialValue = 0, allocationSize = 1)
+	@TableGenerator(name = "t_role_seq", table = "tbl_squence", pkColumnName = "seq_id", valueColumnName = "seq_value", initialValue = 0, allocationSize = 1)
 	private Integer id;
 	
 	@Column(name="code")
