@@ -7,11 +7,11 @@
 		
 	</excludes>
 
-	<decorator name="main" page="/main.jsp">
+	<decorator name="main" page="main.jsp">
 		<pattern>/*</pattern>
 	</decorator>
 
-	<decorator name="home" page="/home.jsp">
+	<decorator name="home" page="home.jsp">
 		<pattern>/home.html</pattern>
 	</decorator>
 
