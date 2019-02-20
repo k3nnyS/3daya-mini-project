@@ -18,26 +18,26 @@ public class TrainerController {
 	
 	@RequestMapping(value="/trainer")
 	public String index() {
-		return "trainer/index";
+		return "/trainer/index";
 	}
 	
 	@RequestMapping(value="/trainer/detail")
 	public String detail(){
-		return "trainer/detail";
+		return "/trainer/detail";
 	}
 	
-	@RequestMapping(value="trainer/create")
+	@RequestMapping(value="/trainer/create")
 	public String create(){
-		return "trainer/create";
+		return "/trainer/create";
 	}
 	
-	@RequestMapping(value="trainer/edit")
+	@RequestMapping(value="/trainer/edit")
 	public String edit(){
-		return "trainer/edit";
+		return "/trainer/edit";
 	}
 	
-	@RequestMapping(value="trainer/delete")
+	@RequestMapping(value="/trainer/delete")
 	public String delete(){
-		return "trainer/delete";
+		return "/trainer/delete";
 	}
 }

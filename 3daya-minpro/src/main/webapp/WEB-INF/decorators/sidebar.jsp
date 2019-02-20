@@ -36,11 +36,7 @@
 					<span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span>
 				</a>
 				<ul class="treeview-menu">
-					<li><a href="${contextName}/category"><i class="fa fa-circle-o"></i> Category</a></li>
-					<li><a href="${contextName}/packages"><i class="fa fa-circle-o"></i> Package</a></li>
-					<li><a href="${contextName}/supplier"><i class="fa fa-circle-o"></i> Supplier</a></li>
-					<li><a href="${contextName}/product"><i class="fa fa-circle-o"></i> Product</a></li>
-					<li><a href="${contextName}/po"><i class="fa fa-circle-o"></i> Purchase Order</a></li>
+					<li><a href="${contextName}/trainer"><i class="fa fa-circle-o"></i>Trainer</a></li>
 				</ul>
 			</li>		
 		</ul>
