@@ -16,7 +16,7 @@ public class TrainerModel {
 	@Id
 	@Column(name="id", columnDefinition="serial")
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "t_trainer_seq")
-	@TableGenerator(name = "category_seq", table = "tbl_squence", 
+	@TableGenerator(name = "t_trainer_seq", table = "tbl_squence", 
 	pkColumnName = "seq_id", valueColumnName = "seq_value", 
 	initialValue = 0, allocationSize=1)
 	private Integer id;
