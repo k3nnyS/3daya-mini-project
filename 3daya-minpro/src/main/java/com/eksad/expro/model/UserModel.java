@@ -2,29 +2,36 @@ package com.eksad.expro.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import com.eksad.expro.model.RoleModel;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="t_user")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
-
 public class UserModel {
+
 	@Id
-	@Column(name="id", columnDefinition ="serial")
-	@GeneratedValue(strategy=GenerationType.TABLE, generator="user_seq")
-	@TableGenerator(name="user_seq", table="tbl_squence", pkColumnName="seq_id", valueColumnName="seq_value", initialValue=0, allocationSize=1)
-	
+	@Column(name="id", columnDefinition="serial")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "user_seq")
+	@TableGenerator(name = "user_seq", table = "tbl_squence", 
+	pkColumnName = "seq_id", valueColumnName = "seq_value", 
+	initialValue = 0, allocationSize=1)	
 	private Integer id;
 	
 	@Column(name="username")
@@ -45,26 +52,26 @@ public class UserModel {
 	@Column(name="mobile_token")
 	private Integer mobileToken;
 	
-	@Column(name="create_by")
-	private Integer createBy;
+	@Column(name="created_by")
+	private Integer createdBy;
 	
-	@Column(name="create_on")
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy hh:mm:ss")
-	private Date createOn;
+	@Column(name="created_on")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+	private Date createdOn;
 	
 	@Column(name="modified_by")
 	private Integer modifiedBy;
 	
 	@Column(name="modified_on")
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy hh:mm:ss")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
 	private Date modifiedOn;
 	
 	@Column(name="deleted_by")
 	private Integer deletedBy;
 	
-	@Column(name="delete_on")
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy hh:mm:ss")
-	private Date deleteOn;
+	@Column(name="deleted_on")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+	private Date deletedOn;
 	
 	@Column(name="is_delete")
 	private Boolean isDelete;
@@ -125,27 +132,28 @@ public class UserModel {
 		this.mobileToken = mobileToken;
 	}
 
-	public Integer getCreateBy() {
-		return createBy;
+	public Integer getCreatedBy() {
+		return createdBy;
 	}
 
-	public void setCreateBy(Integer createBy) {
-		this.createBy = createBy;
+	public void setCreatedBy(Integer createdBy) {
+		this.createdBy = createdBy;
 	}
 
-	public Date getCreateOn() {
-		return createOn;
+	public Date getCreatedOn() {
+		return createdOn;
 	}
 
-	public void setCreateOn(String createOn) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Date createOnNew=null;
+
+	public void setCreatedOn(String createdOn) {
+		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+		Date createdOnNew = null;
 		try {
-			createOnNew=format.parse(createOn);
-		}catch(Exception e) {
-			this.createOn=null;
+			createdOnNew = format.parse(createdOn);
+		} catch (Exception e) {
+			this.createdOn = null;
 		}
-		this.createOn = createOnNew;
+		this.createdOn = createdOnNew;
 	}
 
 	public Integer getModifiedBy() {
@@ -161,12 +169,12 @@ public class UserModel {
 	}
 
 	public void setModifiedOn(String modifiedOn) {
-		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
-		Date modifiedOnNew=null;
+		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+		Date modifiedOnNew = null;
 		try {
-			modifiedOnNew=format.parse(modifiedOn);
+			modifiedOnNew = format.parse(modifiedOn);
 		} catch (Exception e) {
-			this.modifiedOn=null;
+			this.modifiedOn = null;
 		}
 		this.modifiedOn = modifiedOnNew;
 	}
@@ -179,19 +187,19 @@ public class UserModel {
 		this.deletedBy = deletedBy;
 	}
 
-	public Date getDeleteOn() {
-		return deleteOn;
+	public Date getDeletedOn() {
+		return deletedOn;
 	}
 
-	public void setDeleteOn(String deleteOn) {
-		SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd");
-		Date deleteOnNew=null;
+	public void setDeletedOn(String deletedOn) {
+		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+		Date deletedOnNew = null;
 		try {
-			deleteOnNew=format.parse(deleteOn);
+			deletedOnNew = format.parse(deletedOn);
 		} catch (Exception e) {
-			this.deleteOn=null;
+			this.deletedOn = null;
 		}
-		this.deleteOn = deleteOnNew;
+		this.deletedOn = deletedOnNew;
 	}
 
 	public Boolean getIsDelete() {
@@ -200,7 +208,5 @@ public class UserModel {
 
 	public void setIsDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
-	}
-	
-	
+	}	
 }

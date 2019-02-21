@@ -9,37 +9,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.eksad.expro.service.UserService;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserController {
-	private Log log = LogFactory.getLog(getClass());
-	
-	@Autowired
-	private UserService service;
-	
-	@RequestMapping(value="/user", method = RequestMethod.GET)
+
+	@RequestMapping(value="/user")
 	public String index(){
 		return "/user/index";
 	}
 	
-	@RequestMapping(value="/user/create", method = RequestMethod.GET)
+	@RequestMapping(value="/user/create")
 	public String create(){
 		return "/user/create";
 	}
 	
-	@RequestMapping(value="/user/edit", method = RequestMethod.GET)
+	@RequestMapping(value="/user/edit")
 	public String edit(){
 		return "/user/edit";
 	}
 	
-	@RequestMapping(value="/user/delete", method = RequestMethod.GET)
+	@RequestMapping(value="/user/delete")
 	public String delete(){
 		return "/user/delete";
 	}
 	
-	@RequestMapping(value="/user/detail", method = RequestMethod.GET)
-	public String detail(){
-		return "/user/detail";
-	}
-
 }
