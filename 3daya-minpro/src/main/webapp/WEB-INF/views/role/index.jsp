@@ -42,8 +42,8 @@
 		loadData();
 	});
 	
-	//ketika button add di click
 	$("#btn-add").click(function(){
+		var d = new Date($.now());
 		$.ajax({
 			url:'${contextName}/role/create',
 			type:'get',
@@ -55,6 +55,7 @@
 				$("#modal-data").html(result);
 				//menampilkan modal pop up
 				$("#modal-form").modal('show');
+				$('#createdOn').val(d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds());
 			}
 		});
 	});
@@ -155,8 +156,6 @@
 	
 	// method untuk delete data
 	function editData($form){
-		// memangil method getFormData dari file
-		// resources/dist/js/map-form-objet.js
 		var dataForm = getFormData($form);
 		$.ajax({
 			// url ke api/role/
@@ -206,13 +205,9 @@
 			type:'get',
 			dataType:'html',
 			success : function(result){
-				//mengganti judul modal
 				$("#modal-title").html("Delete Data role");
-				//mengisi content dengan variable result
 				$("#modal-data").html(result);
-				//menampilkan modal pop up
 				$("#modal-form").modal('show');
-				//panggil method
 				getData(vid);
 			}
 		});

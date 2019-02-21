@@ -5,6 +5,10 @@
 	<excludes>
 		<pattern>/trainer/*</pattern>
 		<pattern>/menu/*</pattern>
+
+		<pattern>/role/*</pattern>
+		
+
 	</excludes>
 
 	<decorator name="main" page="main.jsp">

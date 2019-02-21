@@ -21,11 +21,11 @@
 		</div>
 	</div>
 	
-	<input type="hidden" class="form-control" name="createdBy" value=1/>
+	<input type="hidden" class="form-control" name="createdBy" value="1"/>
 	
-	<input type="hidden" class="form-control" name="createdOn" value=fmt:formatDate value="${now}" pattern="MM.dd.yyyy" var="formatted" />
+	<input type="hidden" class="form-control" name="createdOn" id="createdOn"/>
 	
-	<input type="hidden" class="form-control" name="isDelete" value=FALSE/>
+	<input type="hidden" class="form-control" name="isDelete" value="false"/>
 	<div class="modal-footer">
 		<button type="button" onClick="addData($('#form-create'))" class="btn btn-primary pull-left">Simpan</button>
 		<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
