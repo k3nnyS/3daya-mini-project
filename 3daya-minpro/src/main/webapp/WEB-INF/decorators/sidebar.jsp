@@ -41,6 +41,7 @@
 					<li><a href="${contextName}/test"><i class="fa fa-circle-o"></i>Test</a></li>
 					<li><a href="${contextName}/role"><i class="fa fa-circle-o"></i>Role</a></li>
 					<li><a href="${contextName}/menu"><i class="fa fa-circle-o"></i>Menu</a></li>
+					<li><a href="${contextName}/category"><i class="fa fa-circle-o"></i>Category</a></li>
 				</ul>
 			</li>		
 		</ul>

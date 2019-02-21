@@ -138,6 +138,9 @@
 				$('#modal-data').find('#username').val(dataApi.username);
 				$('#modal-data').find('#roleId').val(dataApi.roleId);
 				$('#modal-data').find('#email').val(dataApi.email);
+				$('#modal-data').find('#createdBy').val(dataApi.createdBy);
+				$('#modal-data').find('#createdOn').val(dataApi.createdOn);
+				$('#modal-data').find('#isDelete').val(dataApi.isDelete);
 				console.log(dataApi);
 			}
 		});
@@ -157,7 +160,6 @@
 				//menampilkan modal pop up
 				$("#modal-form").modal('show');
 				// panggil method getData
-				getData(vid);
 				$('#modifiedOn').val(
 						d.getDate() + "-" + d.getMonth() + "-"
 								+ d.getFullYear() + " " + d.getHours()

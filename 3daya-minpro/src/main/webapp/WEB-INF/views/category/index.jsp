@@ -64,6 +64,31 @@
 		});
 	});
 
+	// method untuk add data
+	function addData($form){
+		// memangil method getFormData dari file
+		// resources/dist/js/map-form-objet.js
+		var dataForm = getFormData($form);
+		$.ajax({
+			// url ke api/trainer/
+			url:'${contextName}/api/category/',
+			type:'post',
+			// data type berupa JSON
+			dataType:'json',
+			// mengirim parameter data
+			data:JSON.stringify(dataForm),
+			// mime type 
+			contentType: 'application/json',
+			success : function(result){
+				//menutup modal
+				$("#modal-form").modal('hide');
+				// panggil method load data, untuk melihat data terbaru
+				loadData();
+			}
+		});
+		console.log(dataForm);
+	}
+
 	//method loadData
 	function loadData(){
 		$.ajax({
@@ -92,23 +117,27 @@
 			}
 		});
 	}
-
-	// method untuk add data
-	function addData($form){
-		// memangil method getFormData dari file
-		// resources/dist/js/map-form-objet.js
-		var dataForm = getFormData($form);
+	
+	function getData(dataId) {
+		// panggil API
 		$.ajax({
-			url : '${contextName}/api/category/',
-			type : 'post',
+			// url ke api/role/
+			url : '${contextName}/api/category/' + dataId,
+			type : 'get',
+			// data type berupa JSON
 			dataType : 'json',
-			data : JSON.stringify(dataForm),
-			contentType : 'application/json',
-			success : function(result){
-				$('#modal-form').modal('hide');
-				loadData();
+			success : function(dataApi) {
+				$('#modal-data').find('#id').val(dataApi.id);
+				$('#modal-data').find('#code').val(dataApi.code);
+				$('#modal-data').find('#name').val(dataApi.name);
+				$('#modal-data').find('#description').val(dataApi.description);
+				$('#modal-data').find('#createdBy').val(dataApi.createdBy);
+				$('#modal-data').find('#createdOn').val(dataApi.createdOn);
+				$('#modal-data').find('#isDelete').val(dataApi.isDelete);
+
+				console.log(dataApi);
 			}
 		});
-		console.log(dataForm);
 	}
+
 </script>
