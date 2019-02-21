@@ -5,7 +5,7 @@
 	<excludes>
 		<pattern>/trainer/*</pattern>
 		<pattern>/menu/*</pattern>
-
+		<pattern>/user/*</pattern>
 		<pattern>/role/*</pattern>
 		
 
