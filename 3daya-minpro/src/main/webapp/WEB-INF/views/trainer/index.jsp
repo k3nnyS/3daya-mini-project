@@ -46,6 +46,7 @@
 	
 	//ketika button add di click
 	$("#btn-add").click(function(){
+		var d = new Date($.now());
 		$.ajax({
 			url:'${contextName}/trainer/create',
 			type:'get',
@@ -57,9 +58,35 @@
 				$("#modal-data").html(result);
 				//menampilkan modal pop up
 				$("#modal-trainer").modal('show');
+				$('#createdOn').val(d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds());
 			}
 		});
 	});
+	
+	// method untuk add data
+	function addData($form){
+		// memangil method getFormData dari file
+		// resources/dist/js/map-form-objet.js
+		var dataForm = getFormData($form);
+		$.ajax({
+			// url ke api/trainer/
+			url:'${contextName}/api/trainer/',
+			type:'post',
+			// data type berupa JSON
+			dataType:'json',
+			// mengirim parameter data
+			data:JSON.stringify(dataForm),
+			// mime type 
+			contentType: 'application/json',
+			success : function(result){
+				//menutup modal
+				$("#modal-trainer").modal('hide');
+				// panggil method load data, untuk melihat data terbaru
+				loadData();
+			}
+		});
+		console.log(dataForm);
+	}
 
 	//method loadData
 	function loadData(){
