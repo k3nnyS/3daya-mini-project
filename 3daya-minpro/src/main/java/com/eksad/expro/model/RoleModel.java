@@ -29,7 +29,7 @@ public class RoleModel {
 	@Column(name="name")
 	private String name;
 	
-	@Column(name="descrption")
+	@Column(name="description")
 	private String description;
 	
 	@Column(name="created_by")
@@ -50,7 +50,7 @@ public class RoleModel {
 	@Column(name="deleted_on")
 	private Date deletedOn;
 	
-	@Column(name="is_delete")
+	@Column(name="is_deleted")
 	private Boolean isDelete;
 
 	public Integer getId() {
