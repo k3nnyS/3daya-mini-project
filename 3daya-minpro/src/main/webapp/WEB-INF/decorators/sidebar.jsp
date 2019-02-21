@@ -37,6 +37,7 @@
 				</a>
 				<ul class="treeview-menu">
 					<li><a href="${contextName}/trainer"><i class="fa fa-circle-o"></i>Trainer</a></li>
+					<li><a href="${contextName}/test"><i class="fa fa-circle-o"></i>Test</a></li>
 				</ul>
 			</li>		
 		</ul>
