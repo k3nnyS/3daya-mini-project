@@ -128,6 +128,10 @@
 				$('#modal-data').find('#id').val(dataApi.id);
 				$('#modal-data').find('#code').val(dataApi.code);
 				$('#modal-data').find('#name').val(dataApi.name);
+				$('#modal-data').find('#description').val(dataApi.description);
+				$('#modal-data').find('#createdBy').val(dataApi.createdBy);
+				$('#modal-data').find('#createdOn').val(dataApi.createdOn);
+				$('#modal-data').find('#isDelete').val(dataApi.isDelete);
 				
 				console.log(dataApi);
 			}
@@ -200,17 +204,10 @@
 	// ketidak btn-delete di click
 	$('#list-data').on('click','.btn-delete', function(){
 		var vid = $(this).val();
-		$.ajax({
-			url:'${contextName}/role/delete',
-			type:'get',
-			dataType:'html',
-			success : function(result){
-				$("#modal-title").html("Delete Data role");
-				$("#modal-data").html(result);
-				$("#modal-form").modal('show');
-				getData(vid);
-			}
-		});
+		if (confirm("Are you sure to delete ?")){
+			return false
+		}else
+			return false;
 	});
 	
 	// method untuk delete data
@@ -218,13 +215,9 @@
 		// memangil method getFormData dari file
 		var vid = $form.find("#id").val();
 		$.ajax({
-			// url ke api/role/
 			url:'${contextName}/api/role/'+vid,
-			// method http di controller
 			type:'delete',
-			// data type berupa JSON
 			dataType:'json',
-			// jika sukses
 			success : function(result){
 				//menutup modal
 				$("#modal-form").modal('hide');

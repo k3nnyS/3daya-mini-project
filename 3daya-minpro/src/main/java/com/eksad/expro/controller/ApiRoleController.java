@@ -49,7 +49,7 @@ public class ApiRoleController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/api/expro/{itemId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/role/{itemId}", method = RequestMethod.GET)
 	public ResponseEntity<RoleModel> getById(@PathVariable("itemId") int vId){
 		ResponseEntity<RoleModel> result = null;
 		try {
@@ -88,6 +88,7 @@ public class ApiRoleController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/api/expro/{itemId}", method = RequestMethod.DELETE)
 	public ResponseEntity<RoleModel> delApi (@PathVariable("itemId") Integer vId){
 		ResponseEntity<RoleModel> result = null;
 		try {
