@@ -9,6 +9,7 @@
 		</div>
 	</div>
 	<div class="box-body">
+		<input class="margin col-md-2" type="text" placeholder="Search by Title" required>
 		<table class="table">
 			<thead>
 				<tr>
