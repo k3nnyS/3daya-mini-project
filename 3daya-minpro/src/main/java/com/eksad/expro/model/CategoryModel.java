@@ -16,54 +16,41 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@Table(name = "t_menu")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class MenuModel {
-	
+@Table(name = "t_category")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class CategoryModel {
 	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "t_menu_seq")
-	@TableGenerator(name = "t_menu_seq", table = "tbl_squence", pkColumnName = "seq_id",
+	@Column(name = "id", columnDefinition = "serial")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "t_category_seq")
+	@TableGenerator(name = "t_category_seq", table = "tbl_squence", pkColumnName = "seq_id",
 	valueColumnName = "seq_value", initialValue = 0, allocationSize = 1)
 	private Integer id;
 	
-	@Column(name = "code")
+	@Column(name ="code")
 	private String code;
 	
-	@Column(name = "title")
-	private String title;
+	@Column(name = "name")
+	private String name;
 	
-	@Column(name = "description")
+	@Column(name ="description")
 	private String description;
-	
-	@Column(name = "image_url")
-	private String imageUrl;
-	
-	@Column(name = "menu_order")
-	private Integer menuOrder;
-	
-	@Column(name = "menu_parent")
-	private Integer menuParent;
-	
-	@Column(name = "menu_url")
-	private String menuUrl;
 	
 	@Column(name = "created_by")
 	private Integer createdBy;
 	
 	@Column(name = "created_on")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss") 
 	private Date createdOn;
 	
 	@Column(name = "modified_by")
 	private Integer modifiedBy;
 	
 	@Column(name = "modified_on")
-	@JsonFormat(shape =JsonFormat.Shape.STRING, pattern ="dd-MM-yyyy hh:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
 	private Date modifiedOn;
 	
 	@Column(name = "deleted_by")
-	private Integer deletedBy;
+	private Integer DeletedBy;
 	
 	@Column(name = "deleted_on")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
@@ -84,41 +71,17 @@ public class MenuModel {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public String getImageUrl() {
-		return imageUrl;
-	}
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-	public Integer getMenuOrder() {
-		return menuOrder;
-	}
-	public void setMenuOrder(Integer menuOrder) {
-		this.menuOrder = menuOrder;
-	}
-	public Integer getMenuParent() {
-		return menuParent;
-	}
-	public void setMenuParent(Integer menuParent) {
-		this.menuParent = menuParent;
-	}
-	public String getMenuUrl() {
-		return menuUrl;
-	}
-	public void setMenuUrl(String menuUrl) {
-		this.menuUrl = menuUrl;
 	}
 	public Integer getCreatedBy() {
 		return createdBy;
@@ -159,10 +122,10 @@ public class MenuModel {
 		this.modifiedOn = modi;
 	}
 	public Integer getDeletedBy() {
-		return deletedBy;
+		return DeletedBy;
 	}
 	public void setDeletedBy(Integer deletedBy) {
-		this.deletedBy = deletedBy;
+		DeletedBy = deletedBy;
 	}
 	public Date getDeletedOn() {
 		return deletedOn;
@@ -182,6 +145,6 @@ public class MenuModel {
 	}
 	public void setIsDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
-	}
+	}				
 	
 }
