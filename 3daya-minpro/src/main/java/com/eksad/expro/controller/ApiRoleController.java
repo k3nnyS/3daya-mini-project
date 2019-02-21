@@ -88,7 +88,7 @@ public class ApiRoleController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/api/expro/{itemId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/role/{itemId}", method = RequestMethod.DELETE)
 	public ResponseEntity<RoleModel> delApi (@PathVariable("itemId") Integer vId){
 		ResponseEntity<RoleModel> result = null;
 		try {
