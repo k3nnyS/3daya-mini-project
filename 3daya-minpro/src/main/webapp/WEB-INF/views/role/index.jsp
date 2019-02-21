@@ -1,4 +1,3 @@
-
 <%
 	request.setAttribute("contextName", request.getServletContext().getContextPath());
 %>

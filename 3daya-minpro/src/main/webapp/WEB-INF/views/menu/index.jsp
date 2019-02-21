@@ -1,7 +1,7 @@
 <% request.setAttribute("contextName", request.getServletContext().getContextPath()); %>
 <div class="box box-info">
 	<div class="box-header">
-		<h3 class="box-title">role List</h3>
+		<h3 class="box-title">MENU</h3>
 		<div class="box-tools">
 			<button type="button" id="btn-add" class="btn btn-success btn-sm">
 				<i class="fa fa-plus"></i>
@@ -13,9 +13,9 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Code</th>
-					<th>Title</th>
-					<th>Menu Parent</th>
+					<th>CODE</th>
+					<th>TITLE</th>
+					<th>MENU PARENT</th>
 					<th>#</th>
 				</tr>
 			</thead>
@@ -69,7 +69,7 @@
 	//method loadData
 	function loadData(){
 		$.ajax({
-			// url ke api/role/
+			// url ke api/menu/
 			url:'${contextName}/api/menu/',
 			type:'get',
 			// data type berupa JSON
