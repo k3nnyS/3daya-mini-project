@@ -40,12 +40,15 @@
 
 <!-- tempat menulis javascript -->
 <script>
+	//method yang pertama kali dipanggil saat page di load
 	$(function(){
+		// memanggil method loadData;
 		loadData();
 	});
 	
 	// ketika btn-add di klik
 	$("#btn-add").click(function(){
+		var d = new Date($.now());
 		$.ajax({
 			url : '${contextName}/menu/create',
 			type : 'get',
@@ -54,10 +57,16 @@
 				$('#modal-title').html("Add New Menu");
 				$('#modal-data').html(result);
 				$('#modal-form').modal('show');
+				$('#createdOn').val(
+						d.getDate() + "-" + d.getMonth() + "-"
+								+ d.getFullYear() + " " + d.getHours()
+								+ ":" + d.getMinutes() + ":"
+								+ d.getSeconds());
 			}
 		});
 	});
 	
+	//method loadData
 	function loadData(){
 		$.ajax({
 			// url ke api/role/
@@ -87,11 +96,29 @@
 		});
 	}
 	
+	// method untuk add data
+	function addData($form){
+		// memangil method getFormData dari file
+		// resources/dist/js/map-form-objet.js
+		var dataForm = getFormData($form);
+		$.ajax({
+			url : '${contextName}/api/menu/',
+			type : 'post',
+			dataType : 'json',
+			data : JSON.stringify(dataForm),
+			contentType : 'application/json',
+			success : function(result){
+				$('#modal-form').modal('hide');
+				loadData();
+			}
+		});
+		console.log(dataForm);
+	}
 	// function get data 
 	function getData(dataId){
 		// panggil API
 		$.ajax({
-			// url ke api/category/
+			// url ke api/menu/
 			url:'${contextName}/api/menu/'+dataId,
 			type:'get',
 			// data type berupa JSON
