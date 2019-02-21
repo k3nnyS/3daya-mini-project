@@ -88,6 +88,7 @@ public class ApiMenuController {
 		return result;
 	}
 	
+	@RequestMapping(value ="api/menu/{catId}", method = RequestMethod.DELETE)
 	public ResponseEntity<MenuModel> delApi(@PathVariable("catId") Integer vid){
 		ResponseEntity<MenuModel> result = null;
 		try {

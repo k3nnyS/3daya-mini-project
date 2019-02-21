@@ -29,7 +29,7 @@
 	<div class="modal-dialog">
 		<div class="box box-success">
 			<div class="box-header with-border">
-				<h3 class="box-title" id="modal-title">Form Input</h3>
+				<h3 class="box-title" id="modal-title"></h3>
 			</div>
 			<div class="box-body" id="modal-data">
 				
@@ -82,6 +82,68 @@
 					$("#list-data").append(dataRow);
 				});
 				// menampilkan data ke console => F12
+				console.log(result);
+			}
+		});
+	}
+	
+	// function get data 
+	function getData(dataId){
+		// panggil API
+		$.ajax({
+			// url ke api/category/
+			url:'${contextName}/api/menu/'+dataId,
+			type:'get',
+			// data type berupa JSON
+			dataType:'json',
+			success : function(dataApi){
+				$('#modal-data').find('#id').val(dataApi.id);
+				$('#modal-data').find('#code').val(dataApi.code);
+				$('#modal-data').find('#title').val(dataApi.title);
+				$('#modal-data').find('#menuParent').val(dataApi.menuParent);
+				
+				console.log(dataApi);
+			}
+		});
+	}
+	
+	//btn-delete di click
+	$('#list-data').on('click','.btn-delete', function(){
+		var vid = $(this).val();
+		$.ajax({
+			url:'${contextName}/menu/delete',
+			type:'get',
+			dataType:'html',
+			success : function(result){
+				//mengganti judul modal
+				$("#modal-title").html("DELETE");
+				//mengisi content dengan variable result
+				$("#modal-data").html(result);
+				//menampilkan modal pop up
+				$("#modal-form").modal('show');
+				//panggil method
+				getData(vid);
+			}
+		});
+	});
+	
+	// method untuk delete data
+	function deleteData($form){
+		// memangil method getFormData dari file
+		var vid = $form.find("#id").val();
+		$.ajax({
+			// url ke api/trainer/
+			url:'${contextName}/api/menu/'+vid,
+			// method http di controller
+			type:'delete',
+			// data type berupa JSON
+			dataType:'json',
+			// jika sukses
+			success : function(result){
+				//menutup modal
+				$("#modal-form").modal('hide');
+				// panggil method load data, untuk melihat data terbaru
+				loadData();
 				console.log(result);
 			}
 		});
