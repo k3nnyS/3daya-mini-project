@@ -14,20 +14,21 @@ import com.eksad.expro.model.TrainerModel;
 
 @Repository
 public class TrainerDaoImpl implements TrainerDao {
-
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 	
 	@Override
 	public List<TrainerModel> getList() {
 		Session session = sessionFactory.getCurrentSession();
+		// HQl => Hibernate Query language
+		// Hibernate => ORM ( Object Relation Mapping )
 		String hql = "select tr from TrainerModel tr";
 		Query query = session.createQuery(hql);
 		List<TrainerModel> result = query.getResultList();
 		return result;
 	}
 
-	@Override
 	public List<TrainerModel> search(String key) {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "select tr from TrainerModel tr where tr.name like :keySearch";
@@ -35,7 +36,7 @@ public class TrainerDaoImpl implements TrainerDao {
 		query.setParameter("keySearch", "%"+key+"%");
 		return query.getResultList();
 	}
-
+	
 	@Override
 	public TrainerModel getById(Integer id) {
 		Session session = sessionFactory.getCurrentSession();
@@ -66,5 +67,6 @@ public class TrainerDaoImpl implements TrainerDao {
 		session.delete(model);
 		
 	}
+
 	
 }

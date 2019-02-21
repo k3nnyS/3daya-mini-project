@@ -19,18 +19,11 @@ import com.eksad.expro.service.TrainerService;
 
 @Controller
 public class ApiTrainerController {
-
 	private Log log = LogFactory.getLog(getClass());
 	
 	@Autowired
 	private TrainerService service;
 	
-	@RequestMapping(value="/trainer/index")
-	public String index(Model model) {
-		List<TrainerModel> list = this.service.getList();
-		model.addAttribute("list",list);
-		return "/trainer/index";
-	}
 	
 	@RequestMapping(value="/api/trainer/", method=RequestMethod.GET)
 	public ResponseEntity<List<TrainerModel>> list(){
