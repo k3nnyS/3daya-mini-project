@@ -31,6 +31,7 @@
 <script src="${contextName}/resources/dist/js/map-form-object.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="${contextName}/resources/jquery-ui/jquery-ui.min.js"></script>
+
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <decorator:head />
 </head>

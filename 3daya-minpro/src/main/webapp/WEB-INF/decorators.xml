@@ -4,6 +4,8 @@
     <!-- Any urls that are excluded will never be decorated by Sitemesh -->
 	<excludes>
 		<pattern>/trainer/*</pattern>
+		<pattern>/test/*</pattern>
+		
 		
 	</excludes>
 
