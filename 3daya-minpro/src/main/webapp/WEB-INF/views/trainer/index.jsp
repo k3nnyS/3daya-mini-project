@@ -16,7 +16,7 @@
 			<thead>
 				<tr>
 					<th>NAME</th>
-					<th>OPSI</th>
+					<th>#</th>
 				</tr>
 			</thead>
 			<tbody id="list-data">
@@ -133,6 +133,51 @@
 				console.log(dataApi);
 			}
 		});
+	}
+	
+	//btn-edit di click
+	$('#list-data').on('click','.btn-edit', function(){
+		var vid = $(this).val();
+		$.ajax({
+			url:'${contextName}/trainer/edit',
+			type:'get',
+			dataType:'html',
+			success : function(result){
+				//mengganti judul modal
+				$("#modal-title").html("EDIT");
+				//mengisi content dengan variable result
+				$("#modal-data").html(result);
+				//menampilkan modal pop up
+				$("#modal-trainer").modal('show');
+				//panggil method
+				getData(vid);
+			}
+		});
+	});
+	
+	// method untuk edit data
+	function editData($form){
+		// memangil method getFormData dari file
+		// resources/dist/js/map-dagang-objet.js
+		var dataForm = getFormData($form);
+		$.ajax({
+			// url ke api/trainer/
+			url:'${contextName}/api/trainer/',
+			type:'put',
+			// data type berupa JSON
+			dataType:'json',
+			// mengirim parameter data
+			data:JSON.stringify(dataForm),
+			// mime type 
+			contentType: 'application/json',
+			success : function(result){
+				//menutup modal
+				$("#modal-trainer").modal('hide');
+				// panggil method load data, untuk melihat data terbaru
+				loadData();
+			}
+		});
+		console.log(dataForm);
 	}
 	
 	//btn-delete di click
