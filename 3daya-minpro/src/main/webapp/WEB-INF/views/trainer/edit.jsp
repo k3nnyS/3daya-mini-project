@@ -13,7 +13,7 @@
 	<div class="form-group">
 		<label class="control-label col-md-2">Notes</label>
 		<div class="col-md-10">
-			<input type="text" class="form-control" name="notes" id="notes"/>
+			<textarea  class="form-control" name="notes" id="notes"/>
 		</div>
 	</div>
 
@@ -21,5 +21,12 @@
 		<button type="button" class="btn btn-success pull-left" data-dismiss="modal">CANCEL</button>
 		<button type="button" class="btn btn-primary" onClick="editData($('#form-edit'))">SAVE</button>
 	</div>
+	
+	<input type="hidden" name="createdBy" id="createdBy" />
+	
+	<input type="hidden" name="createdOn" id="createdOn" />
+	
+	<input type="hidden" name="isDelete" id="isDelete" />
+	
 </form>
 <!-- Form Selesai -->
