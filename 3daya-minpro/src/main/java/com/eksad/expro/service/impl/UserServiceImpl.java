@@ -2,6 +2,7 @@ package com.eksad.expro.service.impl;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.eksad.expro.dao.UserDao;
 import com.eksad.expro.model.UserModel;
 import com.eksad.expro.service.UserService;
-
 
 @Service
 @Transactional
