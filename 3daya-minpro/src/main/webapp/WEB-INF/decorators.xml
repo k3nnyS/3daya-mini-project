@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <decorators defaultdir="/WEB-INF/decorators">
@@ -9,9 +8,8 @@
 		<pattern>/user/*</pattern>
 		<pattern>/role/*</pattern>
 		<pattern>/category/*</pattern>
+		<pattern>/testtype/*</pattern>
 		<pattern>/technology/*</pattern>
-		
-
 	</excludes>
 
 	<decorator name="main" page="main.jsp">
@@ -25,34 +23,9 @@
 	<decorator name="login" page="/login.jsp">
 		<pattern>/login.jsp</pattern>
 		<pattern>/login.html</pattern>
+<<<<<<< HEAD
 	</decorator>
 =======
-<?xml version="1.0" encoding="ISO-8859-1"?>
-
-<decorators defaultdir="/WEB-INF/decorators">
-    <!-- Any urls that are excluded will never be decorated by Sitemesh -->
-	<excludes>
-		<pattern>/trainer/*</pattern>
-		<pattern>/test/*</pattern>
-		<pattern>/menu/*</pattern>
-		<pattern>/role/*</pattern>
-		<pattern>/bootcamptesttype/*</pattern>
-		
-		
-		
-	</excludes>
-
-	<decorator name="main" page="main.jsp">
-		<pattern>/*</pattern>
 	</decorator>
-
-	<decorator name="home" page="home.jsp">
-		<pattern>/home.html</pattern>
-	</decorator>
-
-	<decorator name="login" page="/login.jsp">
-		<pattern>/login.jsp</pattern>
-		<pattern>/login.html</pattern>
-	</decorator>
->>>>>>> 8a4fd9260fc5235b10385d13e31dbd6554986ca5
+>>>>>>> ee555c0bf62bb235b47547d8d00332125e545ee8
 </decorators>

@@ -61,7 +61,7 @@ public class ApiTestTypeController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/api/testtype/", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/testtype", method = RequestMethod.POST)
 	public ResponseEntity<TestTypeModel> postInsert(@RequestBody TestTypeModel item){
 		ResponseEntity<TestTypeModel> result = null;
 		try {
@@ -74,7 +74,7 @@ public class ApiTestTypeController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/api/testtype/", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/testtype", method = RequestMethod.PUT)
 	public ResponseEntity<TestTypeModel> putUpdate(@RequestBody TestTypeModel item){
 		ResponseEntity<TestTypeModel> result = null;
 		try {

@@ -11,7 +11,7 @@
 	<div class="box-tools col-md-12">
 			<input type="text" name="search" id="search" placeholder="Search by name"/>
 			<button class="btn btn-primary btn-sm" onclick="search()">
-				<i class="fa fa-circle"></i>
+				<i class="fa fa-circle-o"></i>
 			</button>
 		</div>
 	<div class="box-body">

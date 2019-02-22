@@ -17,26 +17,26 @@ public class TestTypeController {
 	
 	@RequestMapping(value="/testtype")
 	public String index() {
-		return "/testtype/index";
+		return "testtype/index";
 	}
 	
 	@RequestMapping(value="/testtype/detail")
 	public String detail(){
-		return "/testtype/detail";
+		return "testtype/detail";
 	}
 	
 	@RequestMapping(value="/testtype/create")
 	public String create(){
-		return "/testtype/create";
+		return "testtype/create";
 	}
 	
 	@RequestMapping(value="/testtype/edit")
 	public String edit(){
-		return "/testtype/edit";
+		return "testtype/edit";
 	}
 	
 	@RequestMapping(value="/testtype/delete")
 	public String delete(){
-		return "/testtype/delete";
+		return "testtype/delete";
 	}
 }

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 @Entity
 @Table(name="t_test_type")
@@ -35,6 +37,7 @@ public class TestTypeModel {
 	private Integer createdBy;
 	
 	@Column(name="created_on")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
 	private Timestamp createdOn;
 	
 	@Column(name="modified_by")
