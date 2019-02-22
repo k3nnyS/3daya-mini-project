@@ -12,5 +12,5 @@ public interface TrainerDao {
 	public void insert(TrainerModel model);
 	public void update(TrainerModel model);
 	public void delete(TrainerModel model);
-	
+
 }

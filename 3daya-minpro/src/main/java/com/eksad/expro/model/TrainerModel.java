@@ -1,6 +1,6 @@
 package com.eksad.expro.model;
 
-import java.security.Timestamp;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,9 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name="t_trainer")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class TrainerModel {
+	
+
 	@Id
 	@Column(name="id", columnDefinition="serial")
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "t_trainer_seq")
@@ -31,19 +38,22 @@ public class TrainerModel {
 	private Integer createdBy;
 	
 	@Column(name="created_on")
-	private Timestamp createdOn;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+	private Date createdOn;
 	
 	@Column(name="modified_by")
 	private Integer modifiedBy;
 	
 	@Column(name="modified_on")
-	private Timestamp modifiedOn;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+	private Date modifiedOn;
 	
 	@Column(name="deleted_by")
 	private Integer deletedBy;
 	
 	@Column(name="deleted_on")
-	private Timestamp deletedOn;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+	private Date deletedOn;
 	
 	@Column(name="is_delete")
 	private Boolean isDelete;
@@ -80,11 +90,11 @@ public class TrainerModel {
 		this.createdBy = createdBy;
 	}
 
-	public Timestamp getCreatedOn() {
+	public Date getCreatedOn() {
 		return createdOn;
 	}
 
-	public void setCreatedOn(Timestamp createdOn) {
+	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
 	}
 
@@ -96,11 +106,11 @@ public class TrainerModel {
 		this.modifiedBy = modifiedBy;
 	}
 
-	public Timestamp getModifiedOn() {
+	public Date getModifiedOn() {
 		return modifiedOn;
 	}
 
-	public void setModifiedOn(Timestamp modifiedOn) {
+	public void setModifiedOn(Date modifiedOn) {
 		this.modifiedOn = modifiedOn;
 	}
 
@@ -112,11 +122,11 @@ public class TrainerModel {
 		this.deletedBy = deletedBy;
 	}
 
-	public Timestamp getDeletedOn() {
+	public Date getDeletedOn() {
 		return deletedOn;
 	}
 
-	public void setDeletedOn(Timestamp deletedOn) {
+	public void setDeletedOn(Date deletedOn) {
 		this.deletedOn = deletedOn;
 	}
 
@@ -128,4 +138,6 @@ public class TrainerModel {
 		this.isDelete = isDelete;
 	}
 	
+	
+
 }

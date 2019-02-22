@@ -2,9 +2,10 @@ package com.eksad.expro.dao.impl;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,16 +13,17 @@ import com.eksad.expro.dao.UserDao;
 import com.eksad.expro.model.UserModel;
 
 @Repository
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl implements UserDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	
 	@Override
-	public List<UserModel> getList(){
-		Session session=sessionFactory.getCurrentSession();
-		String hql="select jt from UserModel jt order by jt. username";
+	public List<UserModel> getList() {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "select jt from UserModel jt order by jt.username";
 		Query query = session.createQuery(hql);
-		List<UserModel> result=query.getResultList();
+		List<UserModel> result = query.getResultList();
 		return result;
 	}
 
@@ -47,7 +49,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public void insert(UserModel model) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save(model);	
+		session.save(model);
 	}
 
 	@Override
