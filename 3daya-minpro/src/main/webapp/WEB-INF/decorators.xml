@@ -4,15 +4,15 @@
     <!-- Any urls that are excluded will never be decorated by Sitemesh -->
 	<excludes>
 		<pattern>/trainer/*</pattern>
-<<<<<<< HEAD
+
 		<pattern>/test/*</pattern>
 		
-=======
+
 		<pattern>/menu/*</pattern>
 		<pattern>/user/*</pattern>
 		<pattern>/role/*</pattern>
 		<pattern>/category/*</pattern>
->>>>>>> 54a5661825426c022f7a161ac22b9bbdbcc83e90
+
 		
 
 	</excludes>
