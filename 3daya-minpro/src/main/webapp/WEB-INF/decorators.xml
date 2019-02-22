@@ -9,8 +9,7 @@
 		<pattern>/role/*</pattern>
 		<pattern>/category/*</pattern>
 		<pattern>/testtype/*</pattern>
-		
-
+		<pattern>/technology/*</pattern>
 	</excludes>
 
 	<decorator name="main" page="main.jsp">
