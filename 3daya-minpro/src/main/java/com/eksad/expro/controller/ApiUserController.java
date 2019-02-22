@@ -39,7 +39,7 @@ public class ApiUserController {
 	public ResponseEntity<List<UserModel>> search(@PathVariable("katakunci") String cari){
 		ResponseEntity<List<UserModel>> result = null;
 		try {
-			List<UserModel> list = this.service.search(cari);
+			List<UserModel> list = this.service.search(cari); 
 			result = new ResponseEntity<List<UserModel>>(list,HttpStatus.OK);
 		} catch (Exception err) {
 			log.debug(err.getMessage(),err);

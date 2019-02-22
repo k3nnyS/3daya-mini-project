@@ -1,5 +1,7 @@
 <% request.setAttribute("contextName", request.getServletContext().getContextPath()); %>
-<form id="form-create" class="form-horizontal">
+<form id="form-edit" class="form-horizontal">
+<input type="hidden" name="id" id="id" />
+
 	<div class="form-group">
 		<div class="col-md-10">
 			<input type="text" class="form-control" name="name" placeholder="Name"/>
@@ -14,9 +16,9 @@
 		</div>
 	</div>
 	
-	<div class="form-group ">
+	<div class="form-group">
 		<div class="col-md-10">
-			<input type="text" class="form-control" name="notes" placeholder="Notes"/>
+			<input type="text" class="form-control" name="notes" id="notes" placeholder="Notes" />
 		</div>
 	</div>
 	
@@ -32,7 +34,7 @@
 	
 	
 	<div class="modal-footer">
-		<button type="button" onClick="addData($('#form-create'))" class="btn btn-primary">SAVE</button>
+		<button type="button" onClick="editData($('#form-edit'))" class="btn btn-primary">SAVE</button>
 		<button type="button" class="btn btn-success" data-dismiss="modal">CANCEL</button>
 	</div>
 

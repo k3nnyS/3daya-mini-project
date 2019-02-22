@@ -1,6 +1,6 @@
 package com.eksad.expro.model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,45 +10,44 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@Table(name="t_role")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class RoleModel {
+@Table(name="t_test_type")
+public class TestTypeModel {
 	@Id
-	@Column(name="id", columnDefinition = "serial")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "t_role_seq")
-	@TableGenerator(name = "t_role_seq", table = "tbl_squence", pkColumnName = "seq_id", valueColumnName = "seq_value", initialValue = 0, allocationSize = 1)
+	@Column(name="id", columnDefinition="serial")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "t_test_type_seq")
+	@TableGenerator(name = "t_test_type_seq", table = "tbl_squence",
+	pkColumnName = "seq_id", valueColumnName = "seq_value",
+	initialValue = 0, allocationSize=1)
 	private Integer id;
-	
-	@Column(name="code")
-	private String code;
 	
 	@Column(name="name")
 	private String name;
 	
-	@Column(name="descrption")
-	private String description;
+	@Column(name="notes")
+	private String notes;
+	
+	@Column(name="type_of_answer")
+	private Integer typeOfAnswer;
 	
 	@Column(name="created_by")
 	private Integer createdBy;
 	
 	@Column(name="created_on")
-	private Date createdOn;
+	private Timestamp createdOn;
 	
 	@Column(name="modified_by")
 	private Integer modifiedBy;
 	
 	@Column(name="modified_on")
-	private Date modifiedOn;
+	private Timestamp modifiedOn;
 	
 	@Column(name="deleted_by")
 	private Integer deletedBy;
 	
 	@Column(name="deleted_on")
-	private Date deletedOn;
+	private Timestamp deletedOn;
 	
 	@Column(name="is_delete")
 	private Boolean isDelete;
@@ -61,14 +60,6 @@ public class RoleModel {
 		this.id = id;
 	}
 
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -77,12 +68,20 @@ public class RoleModel {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getNotes() {
+		return notes;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+	public Integer getTypeOfAnswer() {
+		return typeOfAnswer;
+	}
+
+	public void setTypeOfAnswer(Integer typeOfAnswer) {
+		this.typeOfAnswer = typeOfAnswer;
 	}
 
 	public Integer getCreatedBy() {
@@ -93,11 +92,11 @@ public class RoleModel {
 		this.createdBy = createdBy;
 	}
 
-	public Date getCreatedOn() {
+	public Timestamp getCreatedOn() {
 		return createdOn;
 	}
 
-	public void setCreatedOn(Date createdOn) {
+	public void setCreatedOn(Timestamp createdOn) {
 		this.createdOn = createdOn;
 	}
 
@@ -109,11 +108,11 @@ public class RoleModel {
 		this.modifiedBy = modifiedBy;
 	}
 
-	public Date getModifiedOn() {
+	public Timestamp getModifiedOn() {
 		return modifiedOn;
 	}
 
-	public void setModifiedOn(Date modifiedOn) {
+	public void setModifiedOn(Timestamp modifiedOn) {
 		this.modifiedOn = modifiedOn;
 	}
 
@@ -125,11 +124,11 @@ public class RoleModel {
 		this.deletedBy = deletedBy;
 	}
 
-	public Date getDeletedOn() {
+	public Timestamp getDeletedOn() {
 		return deletedOn;
 	}
 
-	public void setDeletedOn(Date deletedOn) {
+	public void setDeletedOn(Timestamp deletedOn) {
 		this.deletedOn = deletedOn;
 	}
 
@@ -142,4 +141,7 @@ public class RoleModel {
 	}
 	
 	
+	
+	
+
 }
