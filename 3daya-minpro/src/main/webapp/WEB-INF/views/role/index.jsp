@@ -82,23 +82,25 @@
 			type: 'get',
 			dataType: 'json',
 			success: function(result){
-				$('#list-data').empty();
+				$("#list-data").empty();
+				// looping data dengan jQuery
 				$.each(result, function(index, item){
-					var dataRow ='<tr>'+
+				var dataRow ='<tr>'+
 					'<td>'+ item.code+'</td>'+
 					'<td>'+ item.name+'</td>'+
 					'<td class="col-md-1">'+
-					'<div class="dropdown">'+
+						'<div class="dropdown">'+
 					'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
-				   		'<ul class="dropdown-menu">'+
-				    		' <li><a class="btn-edit">Edit</a></li>'+
-				    		'<li><a class="btn-delete">Delete</a></li>'+
-				    	'</ul>'+'</div>'+
+				   	 '<ul class="dropdown-menu">'+
+				   	'<li id="btn-edit" value="'+item.id+'"><a>Edit</a></li>'+
+			    	'<li id="btn-delete" value="'+item.id+'"><a>Delete</a></li>'+
+				    '</ul>'+
+				    '</div>'+
 					'</td>'+
 					'</tr>';
 					$("#list-data").append(dataRow);
-				});
-				console.log(dataRow);
+					});
+				console.log(result);
 			}
 		});
 	}
