@@ -45,6 +45,7 @@ $(function(){
 
 //ketika button add di click
 $("#btn-add").click(function(){
+	var d = new Date($.now());
 	$.ajax({
 		url:'${contextName}/testtype/create',
 		type:'get',
@@ -56,6 +57,10 @@ $("#btn-add").click(function(){
 			$("#modal-data").html(result);
 			//menampilkan modal pop up
 			$("#modal-form").modal('show');
+			$('#createdOn').val(d.getDate() + "-" + d.getMonth() + "-"
+					+ d.getFullYear() + " " + d.getHours()
+					+ ":" + d.getMinutes() + ":"
+					+ d.getSeconds())
 		}
 	});
 });
