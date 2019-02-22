@@ -1,7 +1,7 @@
 <% request.setAttribute("contextName", request.getServletContext().getContextPath()); %>
 <div class="box box-info">
 	<div class="box-header">
-		<h3 class="box-title">MENU</h3>
+		<h3 class="box-title">CATEGORY</h3>
 		<div class="box-tools">
 			<button type="button" id="btn-add" class="btn btn-success btn-sm">
 				<i class="fa fa-plus"></i>
@@ -14,8 +14,7 @@
 			<thead>
 				<tr>
 					<th>CODE</th>
-					<th>TITLE</th>
-					<th>MENU PARENT</th>
+					<th>NAME</th>
 					<th>#</th>
 				</tr>
 			</thead>
@@ -38,23 +37,22 @@
 	</div>
 </div>
 
-<!-- tempat menulis javascript -->
 <script>
 	//method yang pertama kali dipanggil saat page di load
 	$(function(){
 		// memanggil method loadData;
 		loadData();
 	});
-	
+
 	// ketika btn-add di klik
 	$("#btn-add").click(function(){
 		var d = new Date($.now());
 		$.ajax({
-			url : '${contextName}/menu/create',
+			url : '${contextName}/category/create',
 			type : 'get',
 			dataType : 'html',
 			success : function(result){
-				$('#modal-title').html("Add New Menu");
+				$('#modal-title').html('Add New Category');
 				$('#modal-data').html(result);
 				$('#modal-form').modal('show');
 				$('#createdOn').val(
@@ -65,12 +63,37 @@
 			}
 		});
 	});
-	
+
+	// method untuk add data
+	function addData($form){
+		// memangil method getFormData dari file
+		// resources/dist/js/map-form-objet.js
+		var dataForm = getFormData($form);
+		$.ajax({
+			// url ke api/trainer/
+			url:'${contextName}/api/category/',
+			type:'post',
+			// data type berupa JSON
+			dataType:'json',
+			// mengirim parameter data
+			data:JSON.stringify(dataForm),
+			// mime type 
+			contentType: 'application/json',
+			success : function(result){
+				//menutup modal
+				$("#modal-form").modal('hide');
+				// panggil method load data, untuk melihat data terbaru
+				loadData();
+			}
+		});
+		console.log(dataForm);
+	}
+
 	//method loadData
 	function loadData(){
 		$.ajax({
-			// url ke api/menu/
-			url:'${contextName}/api/menu/',
+			// url ke api/category/
+			url:'${contextName}/api/category/',
 			type:'get',
 			// data type berupa JSON
 			dataType:'json',
@@ -81,8 +104,7 @@
 				$.each(result, function(index, item){
 					var dataRow ='<tr>'+
 						'<td>'+ item.code +'</td>'+
-						'<td>'+ item.title+'</td>'+
-						'<td>'+ item.menuParent+'</td>'+
+						'<td>'+ item.name +'</td>'+
 						'<td class="col-md-1">'+
 							'<button type="button" class="btn btn-edit btn-warning btn-xs" value="'+ item.id +'"><i class="fa fa-edit"></i></button> '+
 							'<button type="button" class="btn btn-delete btn-danger btn-xs" value="'+ item.id +'"><i class="fa fa-trash"></i></button> '+
@@ -96,83 +118,26 @@
 		});
 	}
 	
-	// method untuk add data
-	function addData($form){
-		// memangil method getFormData dari file
-		// resources/dist/js/map-form-objet.js
-		var dataForm = getFormData($form);
-		$.ajax({
-			url : '${contextName}/api/menu/',
-			type : 'post',
-			dataType : 'json',
-			data : JSON.stringify(dataForm),
-			contentType : 'application/json',
-			success : function(result){
-				$('#modal-form').modal('hide');
-				loadData();
-			}
-		});
-		console.log(dataForm);
-	}
-	// function get data 
-	function getData(dataId){
+	function getData(dataId) {
 		// panggil API
 		$.ajax({
-			// url ke api/menu/
-			url:'${contextName}/api/menu/'+dataId,
-			type:'get',
+			// url ke api/role/
+			url : '${contextName}/api/category/' + dataId,
+			type : 'get',
 			// data type berupa JSON
-			dataType:'json',
-			success : function(dataApi){
+			dataType : 'json',
+			success : function(dataApi) {
 				$('#modal-data').find('#id').val(dataApi.id);
 				$('#modal-data').find('#code').val(dataApi.code);
-				$('#modal-data').find('#title').val(dataApi.title);
-				$('#modal-data').find('#menuParent').val(dataApi.menuParent);
-				
+				$('#modal-data').find('#name').val(dataApi.name);
+				$('#modal-data').find('#description').val(dataApi.description);
+				$('#modal-data').find('#createdBy').val(dataApi.createdBy);
+				$('#modal-data').find('#createdOn').val(dataApi.createdOn);
+				$('#modal-data').find('#isDelete').val(dataApi.isDelete);
+
 				console.log(dataApi);
 			}
 		});
 	}
-	
-	//btn-delete di click
-	$('#list-data').on('click','.btn-delete', function(){
-		var vid = $(this).val();
-		$.ajax({
-			url:'${contextName}/menu/delete',
-			type:'get',
-			dataType:'html',
-			success : function(result){
-				//mengganti judul modal
-				$("#modal-title").html("DELETE");
-				//mengisi content dengan variable result
-				$("#modal-data").html(result);
-				//menampilkan modal pop up
-				$("#modal-form").modal('show');
-				//panggil method
-				getData(vid);
-			}
-		});
-	});
-	
-	// method untuk delete data
-	function deleteData($form){
-		// memangil method getFormData dari file
-		var vid = $form.find("#id").val();
-		$.ajax({
-			// url ke api/trainer/
-			url:'${contextName}/api/menu/'+vid,
-			// method http di controller
-			type:'delete',
-			// data type berupa JSON
-			dataType:'json',
-			// jika sukses
-			success : function(result){
-				//menutup modal
-				$("#modal-form").modal('hide');
-				// panggil method load data, untuk melihat data terbaru
-				loadData();
-				console.log(result);
-			}
-		});
-	}
+
 </script>

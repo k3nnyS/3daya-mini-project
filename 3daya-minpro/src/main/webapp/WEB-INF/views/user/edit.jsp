@@ -5,51 +5,74 @@
 
 	<!-- Role Id -->
 	<div class="form-group">
-		<div class="col-md-10">
-			<select name="po[roleId]" id="roleId" class="form-control">
-				<option value="1">Choose Role</option>
+		<label class="control-label col-md-3">Role</label>
+		<div class="col-md-7">
+			<select name="roleId" id="roleId" class="form-control">
+				<option value="">=Select Role=</option>
 			</select>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<div class="col-md-8">
+		<label class="control-label col-md-3">Email</label>
+		<div class="col-md-7">
 			<input type="text" class="form-control" name="email" id="email" />
 		</div>
 	</div>
 
 	<div class="form-group">
-		<div class="col-md-8">
+		<label class="control-label col-md-3">UserName</label>
+		<div class="col-md-7">
 			<input type="text" class="form-control" name="username" id="username" />
 		</div>
 	</div>
 
 	<div class="form-group">
-		<div class="col-md-8">
-			<input type="text" class="form-control" name="password" id="password"/>
+		<label class="control-label col-md-3">Password</label>
+		<div class="col-md-7">
+			<input type="text" class="form-control" name="password" id="password" />
 		</div>
 	</div>
 
 	<div class="form-group">
-		<div class="col-md-8"> Mobile Flag
-			<label class= "radio-inline"> <input type="radio" name="mobileFlag"
-				value="Pria">True
-			</label> <label class="radio-inline"> <input type="radio" name="mobileFlag"
-				value="Wanita">False
+		<label class="control-label col-md-3">New Password</label>
+		<div class="col-md-7">
+			<input type="text" class="form-control" name="password" id="password" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-md-3">Mobile Flag</label>
+		<div class="col-md-7">
+			<label class="radio-inline"> <input type="radio"
+				name="mobileFlag" value="">True
+			</label> <label class="radio-inline"> <input type="radio"
+				name="mobileFlag" value="">False
 			</label>
 		</div>
 	</div>
-	
+
 	<div class="form-group">
-		<div class="col-md-8">
-			<input type="text" class="form-control" name="mobileToken" id="mobileToken" placeholder="Mobile Token"/>
+		<label class="control-label col-md-3">Mobile Token</label>
+		<div class="col-md-7">
+			<input type="text" class="form-control" name="mobileToken"
+				id="mobileToken" placeholder="input Mobile Token" />
 		</div>
 	</div>
+
 
 	<div class="modal-footer">
 		<button type="button" class="btn btn-success pull-left"
 			onClick="editData($('#form-edit'))">Update</button>
 		<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
 	</div>
+
+	<input type="hidden" name="modifedBy" id="modifedBy" /> <input
+		type="hidden" name="modifedOn" id="modifedOn" /> <input type="hidden"
+		name="createdBy" id="createdBy" /> <input type="hidden"
+		name="createdOn" id="createdOn" /> <input type="hidden"
+		name="isDelete" id="isDelete" />
+
+
 </form>
 <!-- Form Selesai -->

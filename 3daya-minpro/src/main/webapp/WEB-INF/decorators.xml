@@ -7,6 +7,7 @@
 		<pattern>/menu/*</pattern>
 		<pattern>/user/*</pattern>
 		<pattern>/role/*</pattern>
+		<pattern>/category/*</pattern>
 		
 
 	</excludes>

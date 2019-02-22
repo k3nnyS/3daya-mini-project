@@ -43,7 +43,7 @@ public class ApiMenuController {
 			List<MenuModel> list = this.service.search(cari);
 			result = new ResponseEntity<List<MenuModel>>(list, HttpStatus.OK);
 		} catch (Exception e) {
-			log.debug(e.getMessage(),e);
+			log.debug(e.getMessage(), e);
 			result = new ResponseEntity<List<MenuModel>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return result;

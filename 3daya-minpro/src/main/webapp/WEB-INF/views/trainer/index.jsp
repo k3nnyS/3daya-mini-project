@@ -129,6 +129,9 @@
 				$('#modal-data').find('#id').val(dataApi.id);
 				$('#modal-data').find('#name').val(dataApi.name);
 				$('#modal-data').find('#notes').val(dataApi.notes);
+				$('#modal-data').find('#createdBy').val(dataApi.createdBy);
+				$('#modal-data').find('#createdOn').val(dataApi.createdOn);
+				$('#modal-data').find('#isDelete').val(dataApi.isDelete);
 				
 				console.log(dataApi);
 			}

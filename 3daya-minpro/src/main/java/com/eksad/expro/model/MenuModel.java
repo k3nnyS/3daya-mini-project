@@ -129,15 +129,8 @@ public class MenuModel {
 	public Date getCreatedOn() {
 		return createdOn;
 	}
-	public void setCreatedOn(String createdOn) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Date crea = null;
-		try {
-			crea = format.parse(createdOn);
-		} catch (Exception e) {
-			crea = null;
-		}
-		this.createdOn = crea;
+	public void setCreatedOn(Date createdOn) {
+		this.createdOn = createdOn;
 	}
 	public Integer getModifiedBy() {
 		return modifiedBy;
@@ -148,15 +141,8 @@ public class MenuModel {
 	public Date getModifiedOn() {
 		return modifiedOn;
 	}
-	public void setModifiedOn(String modifiedOn) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Date modi = null;
-		try {
-			modi = format.parse(modifiedOn);
-		} catch (Exception e) {
-			modi = null;
-		}
-		this.modifiedOn = modi;
+	public void setModifiedOn(Date modifiedOn) {
+		this.modifiedOn = modifiedOn;
 	}
 	public Integer getDeletedBy() {
 		return deletedBy;
@@ -167,15 +153,8 @@ public class MenuModel {
 	public Date getDeletedOn() {
 		return deletedOn;
 	}
-	public void setDeletedOn(String deletedOn) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Date dele = null;
-		try {
-			dele = format.parse(deletedOn);
-		} catch (Exception e) {
-			dele = null;
-		}
-		this.deletedOn = dele;
+	public void setDeletedOn(Date deletedOn) {
+		this.deletedOn = deletedOn;
 	}
 	public Boolean getIsDelete() {
 		return isDelete;
