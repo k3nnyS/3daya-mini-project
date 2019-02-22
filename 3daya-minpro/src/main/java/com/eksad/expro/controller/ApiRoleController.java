@@ -36,7 +36,7 @@ public class ApiRoleController {
 		return result;
 	}
 	
-	@RequestMapping(value="api/role/search/{keyword}", method=RequestMethod.GET)
+	@RequestMapping(value="/api/role/search/{keyword}", method=RequestMethod.GET)
 	public ResponseEntity<List<RoleModel>> search(@PathVariable("keyword") String cari){
 		ResponseEntity<List<RoleModel>> result = null;
 		try {
