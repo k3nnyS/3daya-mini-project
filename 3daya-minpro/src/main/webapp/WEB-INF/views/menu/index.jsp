@@ -26,7 +26,7 @@
 </div>
 
 <div class="modal" id="modal-form">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-lg">
 		<div class="box box-success">
 			<div class="box-header with-border">
 				<h3 class="box-title" id="modal-title"></h3>
