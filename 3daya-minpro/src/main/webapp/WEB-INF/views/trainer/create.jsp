@@ -24,6 +24,5 @@
 		<button type="button" class="btn btn-basic" style = "position:relative;right:160px;top:2px;" data-dismiss="modal">CANCEL</button>
 		<button type="button" onClick="addData($('#form-create'))" class="btn btn-basic" style = "position:relative;right:35px;top:2px;">SAVE</button>
 	</div>
-
 </form>
 <!-- Form Selesai -->
