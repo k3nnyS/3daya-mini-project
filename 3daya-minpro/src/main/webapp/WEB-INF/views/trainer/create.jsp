@@ -3,7 +3,7 @@
 	<div class="form-group">
 		<label class="control-label col-md-2">Name</label>
 		<div class="col-md-10">
-			<input type="text" class="form-control" name="code" />
+			<input type="text" class="form-control" name="name" />
 		</div>
 	</div>
 

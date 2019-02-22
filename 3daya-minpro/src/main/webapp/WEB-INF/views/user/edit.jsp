@@ -59,7 +59,17 @@
 				id="mobileToken" placeholder="input Mobile Token" />
 		</div>
 	</div>
-
+	
+	<input type="hidden" class="form-control" name="createdBy" value="1"/>
+	
+	<input type="hidden" class="form-control" name="createdOn" id="createdOn"/>
+	
+	<input type="hidden" class="form-control" name="isDelete" value="false"/>
+	
+	<input type="hidden" class="form-control" name="deletedBy" value="mgaulia"/>
+	
+	<input type="hidden" class="form-control" name="deletedOn" value="deletedOn"/>
+	
 
 	<div class="modal-footer">
 		<button type="button" class="btn btn-success pull-left"
@@ -67,11 +77,11 @@
 		<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
 	</div>
 
-	<input type="hidden" name="modifedBy" id="modifedBy" /> <input
-		type="hidden" name="modifedOn" id="modifedOn" /> <input type="hidden"
-		name="createdBy" id="createdBy" /> <input type="hidden"
-		name="createdOn" id="createdOn" /> <input type="hidden"
-		name="isDelete" id="isDelete" />
+	<input type="hidden" name="modifedBy" id="modifedBy" />
+	<input type="hidden" name="modifedOn" id="modifedOn" />
+	<input type="hidden" name="createdBy" id="createdBy" />
+	<input type="hidden" name="createdOn" id="createdOn" />
+	<input type="hidden" name="isDelete" id="isDelete" />
 
 
 </form>

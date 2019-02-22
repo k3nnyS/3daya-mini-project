@@ -1,16 +1,26 @@
+
 <%
 	request.setAttribute("contextName", request.getServletContext().getContextPath());
 %>
 <div class="box box-info">
 	<div class="box-header">
-		<h3 class="box-title">role List</h3>
-		<div class="box-tools">
-			<button type="button" id="btn-add" class="btn btn-success btn-sm">
-				<i class="fa fa-plus"></i>
-			</button>
-		</div>
+		<h3 class="box-title">Role List</h3>
+		<!--  -->
 	</div>
 	<div class="box-body">
+		<div class="row">
+			<div class="box-tools col-md-4">
+					<span class="input-group-btn">
+					<input type="text" class="form-control"id="search-box" width="50px" />					
+						<button class="btn btn-info" onclick="search()">MyButton</button>
+					</span>
+			</div>
+			<div class="col-md-4">
+					<button type="button" id="btn-add" class="btn btn-success btn-sm pull-right">
+						<i class="fa fa-plus"></i>
+					</button>
+			</div>
+		</div>
 		<table class="table">
 			<thead>
 				<tr>
@@ -64,12 +74,41 @@
 					}
 				});
 			});
+	
+	function search(){
+		var item = $('#search-box').val();
+		$.ajax({
+			url: '${contextName}/api/role/search/' + item,
+			type: 'get',
+			dataType: 'json',
+			success: function(result){
+				$("#list-data").empty();
+				// looping data dengan jQuery
+				$.each(result, function(index, item){
+				var dataRow ='<tr>'+
+					'<td>'+ item.code+'</td>'+
+					'<td>'+ item.name+'</td>'+
+					'<td class="col-md-1">'+
+						'<div class="dropdown">'+
+					'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
+				   	 '<ul class="dropdown-menu">'+
+				   	'<li id="btn-edit" value="'+item.id+'"><a>Edit</a></li>'+
+			    	'<li id="btn-delete" value="'+item.id+'"><a>Delete</a></li>'+
+				    '</ul>'+
+				    '</div>'+
+					'</td>'+
+					'</tr>';
+					$("#list-data").append(dataRow);
+					});
+				console.log(result);
+			}
+		});
+	}
 
 	//method loadData
 	function loadData() {
 		$
 				.ajax({
-					// url ke api/role/
 					url : '${contextName}/api/role/list',
 					type : 'get',
 					// data type berupa JSON
@@ -78,25 +117,22 @@
 						//kosong data di table
 						$("#list-data").empty();
 						// looping data dengan jQuery
-						$
-								.each(
-										result,
-										function(index, item) {
-											var dataRow = '<tr>'
-													+ '<td>'
-													+ item.code
-													+ '</td>'
-													+ '<td>'
-													+ item.name
-													+ '</td>'
-													+ '<td class="col-md-1">'
-													+ '<button type="button" class="btn btn-edit btn-warning btn-xs" value="'+ item.id +'"><i class="fa fa-edit"></i></button> '
-													+ '<button type="button" class="btn btn-detail btn-success btn-xs" value="'+ item.id +'"><i class="fa fa-eye"></i></button> '
-													+ '<button type="button" class="btn btn-delete btn-danger btn-xs" value="'+ item.id +'"><i class="fa fa-trash"></i></button> '
-													+ '</td>' + '</tr>';
-											$("#list-data").append(dataRow);
-										});
-						// menampilkan data ke console => F12
+						$.each(result, function(index, item){
+					var dataRow ='<tr>'+
+					'<td>'+ item.code+'</td>'+
+					'<td>'+ item.name+'</td>'+
+					'<td class="col-md-1">'+
+					'<div class="dropdown">'+
+					'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
+				    '<ul class="dropdown-menu">'+
+				    	'<li id="btn-edit" value="'+item.id+'"><a>Edit</a></li>'+
+				    	'<li id="btn-delete" value="'+item.id+'"><a>Delete</a></li>'+
+				    '</ul>'+
+				    '</div>'+
+					'</td>'+
+					'</tr>';
+					$("#list-data").append(dataRow);
+				});
 						console.log(result);
 					}
 				});
@@ -151,7 +187,7 @@
 	}
 
 	// ketidak btn-edit di click
-	$('#list-data').on('click', '.btn-edit', function() {
+	$('#list-data').on('click', '#btn-edit', function() {
 		var vid = $(this).val();
 		$.ajax({
 			url : '${contextName}/role/edit',
@@ -193,28 +229,8 @@
 		console.log(dataForm);
 	}
 
-	// ketidak btn-detail di click
-	$('#list-data').on('click', '.btn-detail', function() {
-		var vid = $(this).val();
-		$.ajax({
-			url : '${contextName}/role/detail',
-			type : 'get',
-			dataType : 'html',
-			success : function(result) {
-				//mengganti judul modal
-				$("#modal-title").html("Detail Data role");
-				//mengisi content dengan variable result
-				$("#modal-data").html(result);
-				//menampilkan modal pop up
-				$("#modal-form").modal('show');
-				//panggil method
-				getData(vid);
-			}
-		});
-	});
-
 	// ketika btn-delete di click
-	$('#list-data').on('click', '.btn-delete', function() {
+	$('#list-data').on('click', '#btn-delete', function() {
 		var vid = $(this).val();
 		$.ajax({
 			url : '${contextName}/role/delete',
