@@ -8,6 +8,7 @@
 		<pattern>/user/*</pattern>
 		<pattern>/role/*</pattern>
 		<pattern>/category/*</pattern>
+		<pattern>/technology/*</pattern>
 		
 
 	</excludes>
