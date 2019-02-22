@@ -8,8 +8,13 @@
 			</button>
 		</div>
 	</div>
-	<div class="box-body">
-		<input class="margin col-md-2" type="text" placeholder="Search by Title" required>
+	<div class="box-body col-md-12">
+		<input type="text" name = "search" id = "search" placeholder="Search by Title" required>
+		<button class="btn btn-primary btn-sm" onclick="search()">
+			<i class = "fa fa-circle"></i>
+		</button>
+	</div>
+		<div class = "box-body">
 		<table class="table">
 			<thead>
 				<tr>
@@ -79,6 +84,25 @@
 		});
 	});
 	
+	// method untuk add data
+	function addData($form){
+		// memangil method getFormData dari file
+		// resources/dist/js/map-form-objet.js
+		var dataForm = getFormData($form);
+		$.ajax({
+			url : '${contextName}/api/menu/',
+			type : 'post',
+			dataType : 'json',
+			data : JSON.stringify(dataForm),
+			contentType : 'application/json',
+			success : function(result){
+				$('#modal-form').modal('hide');
+				loadData();
+			}
+		});
+		console.log(dataForm);
+	}
+	
 	//method loadData
 	function loadData(){
 		$.ajax({
@@ -98,11 +122,11 @@
 						'<td>'+ item.menuParent+'</td>'+
 						'<td class = "col-md-1">'+
 						'<div class = "dropdown">'+
-						'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
-						'<ul class = "dropdown-menu">'+
-							'<li id = "btn-edit" value = "'+item.id+'"><a>Edit</a></li>'+
-							'<li id = "btn-delete" value = "'+item.id+'"><a>Delete</a></li>'+
-						'</ul>' +
+							'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
+							'<ul class = "dropdown-menu">'+
+								'<li id = "btn-edit" value = "'+item.id+'"><a>Edit</a></li>'+
+								'<li id = "btn-delete" value = "'+item.id+'"><a>Delete</a></li>'+
+							'</ul>' +
 						'</div>' +
 						'</td>' +
 						'</tr>';
@@ -114,25 +138,7 @@
 		});
 	}
 	
-	// method untuk add data
-	function addData($form){
-		// memangil method getFormData dari file
-		// resources/dist/js/map-form-objet.js
-		var dataForm = getFormData($form);
-		$.ajax({
-			url : '${contextName}/api/menu/',
-			type : 'post',
-			dataType : 'json',
-			data : JSON.stringify(dataForm),
-			contentType : 'application/json',
-			success : function(result){
-				$('#modal-form').modal('hide');
-				loadData();
-			}
-		});
-		console.log(dataForm);
-	}
-	// function edit data 
+	// function memanggil untuk editData 
 	function edData(dataId){
 		// panggil API
 		$.ajax({
@@ -161,6 +167,39 @@
 				console.log(dataApi);
 			}
 		});
+	}
+	
+	// function search
+	function search(){
+			var item = $('#search').val();
+			$.ajax({
+				url : '${contextName}/api/menu/search/'+item,
+				type : 'get',
+				dataType : 'json',
+				success : function(result){
+					$('#list-data').empty();
+					// buat munculin button untuk edit dan delete
+					$.each(result, function(index, item){
+					var dataRow ='<tr>'+
+						'<td>'+ item.code +'</td>'+
+						'<td>'+ item.title+'</td>'+
+						'<td>'+ item.menuParent+'</td>'+
+						'<td class = "col-md-1">'+
+						'<div class = "dropdown">'+
+							'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
+							'<ul class = "dropdown-menu">'+
+								'<li id = "btn-edit" value = "'+item.id+'"><a>Edit</a></li>'+
+								'<li id = "btn-delete" value = "'+item.id+'"><a>Delete</a></li>'+
+							'</ul>' +
+						'</div>' +
+						'</td>' +
+					'</tr>';
+				$("#list-data").append(dataRow);
+			});
+			// menampilkan data ke console => F12
+			console.log(result);
+				}
+			});
 	}
 	
 	//btn-edit di click
