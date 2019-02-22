@@ -8,7 +8,7 @@
 		<div class="box-tools col-md-12">
 			<input type="input" name="search" id="search"/>
 			<button type="button" class="btn btn-primary btn-sm" id="btn-search">
-				<i class="fa fa-search"></i>Search
+				<i class="o"></i>Search
 			</button>
 		</div>
 		

@@ -88,7 +88,76 @@
 		});
 		console.log(dataForm);
 	}
+	
+	// ketika btn-edit di click
+	$('#list-data').on('click', '.btn-edit', function() {
+		var vid = $(this).val();
+		$.ajax({
+			url : '${contextName}/role/edit',
+			type : 'get',
+			dataType : 'html',
+			success : function(result) {
+				//mengganti judul modal
+				$("#modal-title").html("Edit Data Category");
+				//mengisi content dengan variable result
+				$("#modal-data").html(result);
+				//menampilkan modal pop up
+				$("#modal-form").modal('show');
+				// panggil method getData
+				getData(vid);
+			}
+		});
+	});
 
+	
+	//method untuk edit data
+	function editData($form){
+		var dataForm=getFormData($form);
+		$.ajax({
+			//url ke api/category/
+			url: '${contextName}/api/category/',
+			type: 'put',
+			dataType: 'json',
+			data: JSON.stringify(dataForm),
+			contentType:'application/json',
+			success: function(result){
+				$("#modal-form").modal('hide');
+				loadData();
+			}
+		});
+		console.log(dataForm);
+	}
+	
+	//ketika btn delete diklik
+	$('#list-data').on('click','.btn-delete', function() {
+		var vid=$(this).val();
+		$.ajax({
+			url:'${contextName}/category/delete',
+			type: 'get',
+			dataType: 'html',
+			success: function(result){
+				$('#modal-title').html("DELETE");
+				$('#modal-data').html(result);
+				$('#modal-form').modal('show');
+				getData(vid);
+			}
+		});
+	});
+	
+	function deleteData($form){
+		var vid=$form.find("#id").val();
+		$.ajax({
+			url: '${contextName}/api/category/'+vid,
+			type: 'delete',
+			dataType: 'json',
+			success: function(result){
+				$("#modal-form").modal('hide');
+				loadData();
+				console.log(result);
+			}
+		});
+	}
+	
 	//method loadData
 	function loadData(){
 		$.ajax({
