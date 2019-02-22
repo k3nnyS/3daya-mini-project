@@ -40,6 +40,8 @@
 					<li><a href="${contextName}/trainer"><i class="fa fa-circle-o"></i>Trainer</a></li>
 					<li><a href="${contextName}/technology"><i class="fa fa-circle-o"></i>Technology</a></li>
 					<li><a href="${contextName}/test"><i class="fa fa-circle-o"></i>Test</a></li>
+					<li><a href="${contextName}/bootcamptesttype"><i class="fa fa-circle-o"></i>Bootcamp Test Type</a></li>
+					<li><a href="${contextName}/testtype"><i class="fa fa-circle-o"></i>Test Type</a></li>
 					<li><a href="${contextName}/role"><i class="fa fa-circle-o"></i>Role</a></li>
 					<li><a href="${contextName}/menu"><i class="fa fa-circle-o"></i>Menu</a></li>
 					<li><a href="${contextName}/category"><i class="fa fa-circle-o"></i>Category</a></li>
