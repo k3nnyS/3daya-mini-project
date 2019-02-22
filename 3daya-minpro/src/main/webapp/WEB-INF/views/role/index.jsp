@@ -1,14 +1,21 @@
-
 <%
 	request.setAttribute("contextName", request.getServletContext().getContextPath());
 %>
 <div class="box box-info">
 	<div class="box-header">
-		<h3 class="box-title">role List</h3>
+		<h3 class="box-title">Role List</h3>
 		<div class="box-tools">
-			<button type="button" id="btn-add" class="btn btn-success btn-sm">
-				<i class="fa fa-plus"></i>
-			</button>
+			<div class="input-group col-sm-2">
+				<input class="form-control"> <span class="input-group-btn">
+					<button class="btn btn-info">MyButton</button>
+				</span>
+				<div class="col-md-4">
+					<button type="button" id="btn-add" class="btn btn-success btn-sm pull-right">
+						<i class="fa fa-plus"></i>
+					</button>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 	<div class="box-body">
