@@ -1,5 +1,4 @@
 package com.eksad.expro.model;
-
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
@@ -14,22 +13,18 @@ import javax.persistence.TableGenerator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name="t_test")
-public class TestModel {
-
+@Table(name="t_bootcamp_test_type")
+public class BootcampTestTypeModel {
 	@Id
 	@Column(name="id", columnDefinition="serial")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "t_test_seq")
-	@TableGenerator(name = "t_test_seq", table = "tbl_squence", 
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "t_bootcamp_test_type_seq")
+	@TableGenerator(name = "t_bootcamp_test_type_seq", table = "tbl_squence", 
 	pkColumnName = "seq_id", valueColumnName = "seq_value", 
 	initialValue = 0, allocationSize=1)
 	private Integer id;
 	
 	@Column(name="name")
 	private String name;
-	
-	@Column(name="is_bootcamp_test")
-	private Boolean isBootcampTest;
 	
 	@Column(name="notes")
 	private String notes;
@@ -72,14 +67,6 @@ public class TestModel {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Boolean getIsBootcampTest() {
-		return isBootcampTest;
-	}
-
-	public void setIsBootcampTest(Boolean isBootcampTest) {
-		this.isBootcampTest = isBootcampTest;
 	}
 
 	public String getNotes() {
@@ -158,6 +145,7 @@ public class TestModel {
 		}
 		this.deletedOn = deletedOnNew;
 	}
+
 	public Boolean getIsDelete() {
 		return isDelete;
 	}
