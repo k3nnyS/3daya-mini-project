@@ -1,7 +1,7 @@
 <% request.setAttribute("contextName", request.getServletContext().getContextPath()); %>
 <div class="box box-info">
 	<div class="box-header">
-		<h3 class="box-title">TECHNOLOGY</h3>
+		<h3 class="box-title">BOOTCAMP TYPE</h3>
 		<div class="box-tools">
 			<button type="button" id="btn-add" class="btn btn-primary btn-sm">
 				<i class="fa fa-plus"></i>
@@ -29,26 +29,13 @@
 	</div>
 </div>
 
-<div class="modal" id="modal-technology">
+<div class="modal" id="modal-bt">
 	<div class="modal-dialog">
 		<div class="box box-success">
 			<div class="box-header with-border">
 				<h3 class="box-title" id="modal-title">Form Input</h3>
 			</div>
 			<div class="box-body" id="modal-data">
-				
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="modal" id="modal-tech">
-	<div class="modal-dialog modal-sm">
-		<div class="box box-success">
-			<div class="box-header with-border">
-				<h3 class="box-title" id="modal-title">Form Input</h3>
-			</div>
-			<div class="box-body" id="modal-data1">
 				
 			</div>
 		</div>
@@ -61,31 +48,24 @@
 		loadData();
 	});
 	
-	//ketika button add di click maka muncul pop up form add
-	//ajax di dalem jquery
+	//ketika button add di click
 	$("#btn-add").click(function(){
 		var d = new Date($.now());
 		$.ajax({
-			url:'${contextName}/technology/create',
+			url:'${contextName}/bootcamptype/create',
 			type:'get',
 			dataType:'html',
 			success : function(result){
 				//mengganti judul modal
-				$("#modal-title").html("TECHNOLOGY");
+				$("#modal-title").html("BOOTCAMP TYPE");
 				//mengisi content dengan variable result
 				$("#modal-data").html(result);
 				//menampilkan modal pop up
-				$("#modal-technology").modal('show');
+				$("#modal-bt").modal('show');
 				$('#createdOn').val(d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds());
 			}
 		});
 	});
-	
-	// menambahkan fungsi pop up technology
-	function AddTrainer($form){
-		$("#modal-tech").modal('show');
-
-	}
 	
 	// method untuk add data
 	function addData($form){
@@ -93,8 +73,8 @@
 		// resources/dist/js/map-form-objet.js
 		var dataForm = getFormData($form);
 		$.ajax({
-			// url ke api/technology/
-			url:'${contextName}/api/technology/',
+			// url ke api/bootcamptype/
+			url:'${contextName}/api/bootcamptype/',
 			type:'post',
 			// data type berupa JSON
 			dataType:'json',
@@ -104,21 +84,19 @@
 			contentType: 'application/json',
 			success : function(result){
 				//menutup modal
-				$("#modal-technology").modal('hide');
+				$("#modal-bt").modal('hide');
 				// panggil method load data, untuk melihat data terbaru
 				loadData();
 			}
 		});
 		console.log(dataForm);
 	}
-	
-	
 
 	//method loadData
 	function loadData(){
 		$.ajax({
-			// url ke api/category/
-			url:'${contextName}/api/technology/',
+			// url ke api/bootcamptype/
+			url:'${contextName}/api/bootcamptype/',
 			type:'get',
 			// data type berupa JSON
 			dataType:'json',
@@ -152,16 +130,16 @@
 	function getData(dataId){
 		// panggil API
 		$.ajax({
-			// url ke api/category/
-			url:'${contextName}/api/technology/'+dataId,
+			// url ke api/bootcamptype/
+			url:'${contextName}/api/bootcamptype/'+dataId,
 			type:'get',
 			// data type berupa JSON
 			dataType:'json',
 			success : function(dataApi){
 				$('#modal-data').find('#id').val(dataApi.id);
 				$('#modal-data').find('#name').val(dataApi.name);
-				$('#modal-data').find('#createdBy').val(dataApi.createdBy);
 				$('#modal-data').find('#notes').val(dataApi.notes);
+				$('#modal-data').find('#createdBy').val(dataApi.createdBy);
 				$('#modal-data').find('#createdOn').val(dataApi.createdOn);
 				$('#modal-data').find('#isDelete').val(dataApi.isDelete);
 				
@@ -173,7 +151,7 @@
 	function search(){
 		var item = $('#search').val();
 		$.ajax({
-			url: '${contextName}/api/technology/search/' + item,
+			url: '${contextName}/api/bootcamptype/search/' + item,
 			type: 'get',
 			dataType: 'json',
 			success: function(result){
@@ -200,23 +178,20 @@
 		});
 	}
 	
-	
-	
-	
 	//btn-edit di click
 	$('#list-data').on('click','#btn-edit', function(){
 		var vid = $(this).val();
 		$.ajax({
-			url:'${contextName}/technology/edit',
+			url:'${contextName}/bootcamptype/edit',
 			type:'get',
 			dataType:'html',
 			success : function(result){
 				//mengganti judul modal
-				$("#modal-title").html("EDIT");
+				$("#modal-title").html("BOOTCAMP TYPE");
 				//mengisi content dengan variable result
 				$("#modal-data").html(result);
 				//menampilkan modal pop up
-				$("#modal-technology").modal('show');
+				$("#modal-bt").modal('show');
 				//panggil method
 				getData(vid);
 			}
@@ -229,8 +204,8 @@
 		// resources/dist/js/map-dagang-objet.js
 		var dataForm = getFormData($form);
 		$.ajax({
-			// url ke api/technology/
-			url:'${contextName}/api/technology/',
+			// url ke api/bootcamptype/
+			url:'${contextName}/api/bootcamptype/',
 			type:'put',
 			// data type berupa JSON
 			dataType:'json',
@@ -240,7 +215,7 @@
 			contentType: 'application/json',
 			success : function(result){
 				//menutup modal
-				$("#modal-technology").modal('hide');
+				$("#modal-bt").modal('hide');
 				// panggil method load data, untuk melihat data terbaru
 				loadData();
 			}
@@ -252,7 +227,7 @@
 	$('#list-data').on('click','#btn-delete', function(){
 		var vid = $(this).val();
 		$.ajax({
-			url:'${contextName}/technology/delete',
+			url:'${contextName}/bootcamptype/delete',
 			type:'get',
 			dataType:'html',
 			success : function(result){
@@ -261,7 +236,7 @@
 				//mengisi content dengan variable result
 				$("#modal-data").html(result);
 				//menampilkan modal pop up
-				$("#modal-technology").modal('show');
+				$("#modal-bt").modal('show');
 				//panggil method
 				getData(vid);
 			}
@@ -273,8 +248,8 @@
 		// memangil method getFormData dari file
 		var vid = $form.find("#id").val();
 		$.ajax({
-			// url ke api/technology/
-			url:'${contextName}/api/technology/'+vid,
+			// url ke api/bootcamptype/
+			url:'${contextName}/api/bootcamptype/'+vid,
 			// method http di controller
 			type:'delete',
 			// data type berupa JSON
@@ -282,7 +257,7 @@
 			// jika sukses
 			success : function(result){
 				//menutup modal
-				$("#modal-technology").modal('hide');
+				$("#modal-bt").modal('hide');
 				// panggil method load data, untuk melihat data terbaru
 				loadData();
 				console.log(result);

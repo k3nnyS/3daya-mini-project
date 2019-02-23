@@ -10,8 +10,12 @@
 		<pattern>/category/*</pattern>
 		<pattern>/testtype/*</pattern>
 		<pattern>/technology/*</pattern>
+<<<<<<< HEAD
 		<pattern>/testimony/*</pattern>
 		
+=======
+		<pattern>/bootcamptype/*</pattern>
+>>>>>>> e80a89a18a4c2f7a104724f49b32f01b43fde82d
 	</excludes>
 
 	<decorator name="main" page="main.jsp">
@@ -25,6 +29,5 @@
 	<decorator name="login" page="/login.jsp">
 		<pattern>/login.jsp</pattern>
 		<pattern>/login.html</pattern>
-</decorator>
+	</decorator>
 </decorators>
-

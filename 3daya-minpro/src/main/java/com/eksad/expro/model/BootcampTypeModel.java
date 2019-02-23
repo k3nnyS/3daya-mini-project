@@ -16,15 +16,14 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@Table(name="t_technology")
+@Table(name="t_bootcamp_type")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class TechnologyModel {
-	
+public class BootcampTypeModel {
 
 	@Id
 	@Column(name="id", columnDefinition="serial")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "t_technology_seq")
-	@TableGenerator(name = "t_technology_seq", table = "tbl_squence", 
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "t_bootcamp_type_seq")
+	@TableGenerator(name = "t_bootcamp_type_seq", table = "tbl_squence", 
 	pkColumnName = "seq_id", valueColumnName = "seq_value", 
 	initialValue = 0, allocationSize=1)
 	private Integer id;
@@ -160,6 +159,4 @@ public class TechnologyModel {
 		this.isDelete = isDelete;
 	}
 	
-	
-
 }

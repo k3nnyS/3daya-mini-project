@@ -184,7 +184,7 @@
 			dataType:'html',
 			success : function(result){
 				//mengganti judul modal
-				$("#modal-title").html("EDIT");
+				$("#modal-title").html("TRAINER");
 				//mengisi content dengan variable result
 				$("#modal-data").html(result);
 				//menampilkan modal pop up
