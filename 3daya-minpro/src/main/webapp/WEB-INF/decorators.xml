@@ -8,8 +8,9 @@
 		<pattern>/user/*</pattern>
 		<pattern>/role/*</pattern>
 		<pattern>/category/*</pattern>
-		
-
+		<pattern>/testtype/*</pattern>
+		<pattern>/technology/*</pattern>
+		<pattern>/bootcamptype/*</pattern>
 	</excludes>
 
 	<decorator name="main" page="main.jsp">

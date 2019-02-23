@@ -14,9 +14,9 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-2">Description</label>
-					<div class="col-md-10">
-						<textarea cols="24" rows="5" class="from-control"
+					<label class="control-label col-md-3">Description</label>
+					<div class="col-md-9">
+						<textarea cols="35" rows="5" class="from-control"
 							name="description" />
 					</div>
 				</div>

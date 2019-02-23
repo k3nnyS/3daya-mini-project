@@ -36,6 +36,24 @@
 			</table>
 		</div>
 	</div>
+<<<<<<< HEAD
+=======
+	<div class="box-body">
+		<input class="margin col-md-2" type="text" placeholder="Search by Name/Code" required>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>CODE</th>
+					<th>NAME</th>
+					<th>#</th>
+				</tr>
+			</thead>
+			<tbody id="list-data">
+			</tbody>
+		</table>		
+	</div>
+</div>
+>>>>>>> e80a89a18a4c2f7a104724f49b32f01b43fde82d
 
 	<div class="modal" id="modal-form">
 		<div class="modal-dialog">

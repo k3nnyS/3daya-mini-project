@@ -31,6 +31,8 @@
 <script src="${contextName}/resources/dist/js/map-form-object.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="${contextName}/resources/jquery-ui/jquery-ui.min.js"></script>
+
+
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <decorator:head />
 </head>
@@ -45,7 +47,7 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 			<h1>
-				Dashboard <small>Control panel</small>
+				XBC <small>Mini Project</small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
