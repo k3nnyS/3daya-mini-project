@@ -40,7 +40,7 @@ public class TechnologyDaoImpl implements TechnologyDao {
 	@Override
 	public TechnologyModel getById(Integer id) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select tcr from TechnologyModel tc where tc.id=:id";
+		String hql = "select tc from TechnologyModel tc where tc.id=:id";
 		Query query = session.createQuery(hql);
 		query.setParameter("id", id);
 		TechnologyModel result = (TechnologyModel) query.getSingleResult();

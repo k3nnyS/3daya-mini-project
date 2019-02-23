@@ -16,14 +16,15 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="t_technology")
-@JsonIdentityInfo(generator =  ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class TechnologyModel {
 	
+
 	@Id
 	@Column(name="id", columnDefinition="serial")
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "t_technology_seq")
-	@TableGenerator(name = "t_technology_seq", table = "tbl_squence",
-	pkColumnName = "seq_id", valueColumnName = "seq_value",
+	@TableGenerator(name = "t_technology_seq", table = "tbl_squence", 
+	pkColumnName = "seq_id", valueColumnName = "seq_value", 
 	initialValue = 0, allocationSize=1)
 	private Integer id;
 	
@@ -37,7 +38,7 @@ public class TechnologyModel {
 	private Integer createdBy;
 	
 	@Column(name="created_on")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM=yyyy hh:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
 	private Date createdOn;
 	
 	@Column(name="modified_by")
@@ -138,4 +139,5 @@ public class TechnologyModel {
 	}
 	
 	
+
 }
