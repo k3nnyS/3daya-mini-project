@@ -23,11 +23,5 @@
 	<decorator name="login" page="/login.jsp">
 		<pattern>/login.jsp</pattern>
 		<pattern>/login.html</pattern>
-<<<<<<< HEAD
 	</decorator>
 </decorators>
-=======
-</decorator>
-</decorators>
-
->>>>>>> 53ee63110945c70d3732f38965911f98c3d8ad97
