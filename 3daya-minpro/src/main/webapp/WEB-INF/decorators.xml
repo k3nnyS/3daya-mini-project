@@ -10,6 +10,8 @@
 		<pattern>/category/*</pattern>
 		<pattern>/testtype/*</pattern>
 		<pattern>/technology/*</pattern>
+		<pattern>/testimony/*</pattern>
+		
 	</excludes>
 
 	<decorator name="main" page="main.jsp">

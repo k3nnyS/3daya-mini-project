@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.eksad.expro.model.TestimonyModel;
+import com.eksad.expro.model.TestimonyModel;
 import com.eksad.expro.service.TestimonyService;
 
 @Controller
@@ -24,7 +25,7 @@ public class ApiTestimonyController {
 	@Autowired
 	private TestimonyService service;
 	
-	@RequestMapping(value = "api/testimony", method = RequestMethod.GET)
+	@RequestMapping(value = "api/testimony/", method = RequestMethod.GET)
 	public ResponseEntity<List<TestimonyModel>> list(){
 		ResponseEntity<List<TestimonyModel>> result = null;
 		try {
