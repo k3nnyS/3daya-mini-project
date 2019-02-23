@@ -11,7 +11,7 @@
 	<div class="box-body col-md-12">
 		<input type="text" name = "search" id = "search" placeholder="Search by Title" required>
 		<button class="btn btn-primary btn-sm" onclick="search()">
-			<i class = "fa fa-circle"></i>
+			<i class = "fa fa-circle-o"></i>
 		</button>
 	</div>
 		<div class = "box-body">
@@ -178,7 +178,7 @@
 				dataType : 'json',
 				success : function(result){
 					$('#list-data').empty();
-					// buat munculin button untuk edit dan delete
+					// buat munculin dropdown untuk edit dan delete
 					$.each(result, function(index, item){
 					var dataRow ='<tr>'+
 						'<td>'+ item.code +'</td>'+

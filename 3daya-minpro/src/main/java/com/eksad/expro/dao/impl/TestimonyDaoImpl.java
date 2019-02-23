@@ -42,7 +42,7 @@ public class TestimonyDaoImpl implements TestimonyDao {
 		Query query = session.createQuery(hql);
 		query.setParameter("id", id);
 		TestimonyModel result = (TestimonyModel)query.getSingleResult();
-		return null;
+		return result;
 	}
 
 	@Override

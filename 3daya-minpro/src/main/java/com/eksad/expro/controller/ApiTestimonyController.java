@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.eksad.expro.model.TestimonyModel;
 import com.eksad.expro.model.TestimonyModel;
+import com.eksad.expro.model.TestimonyModel;
 import com.eksad.expro.service.TestimonyService;
 
 @Controller
@@ -89,12 +90,12 @@ public class ApiTestimonyController {
 		return result;
 	}
 	
-	
-	public ResponseEntity<TestimonyModel> delApi(@PathVariable("testimonyId") Integer vId){
+	@RequestMapping(value ="api/testimony/{testimonyId}", method = RequestMethod.DELETE)
+	public ResponseEntity<TestimonyModel> delApi(@PathVariable("testimonyId") Integer vid){
 		ResponseEntity<TestimonyModel> result = null;
 		try {
-			TestimonyModel item = this.service.getById(vId);
-			if (item != null) {
+			TestimonyModel item = this.service.getById(vid);
+			if(item != null) {
 				this.service.delete(item);
 				result = new ResponseEntity<TestimonyModel>(item, HttpStatus.ACCEPTED);
 			} else {
