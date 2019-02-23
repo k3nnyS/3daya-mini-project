@@ -1,7 +1,7 @@
 <% request.setAttribute("contextName", request.getServletContext().getContextPath()); %>
 <div class="box box-info">
 	<div class="box-header">
-		<h3 class="box-title">TRAINER</h3>
+		<h3 class="box-title">BOOTCAMP TYPE</h3>
 		<div class="box-tools">
 			<button type="button" id="btn-add" class="btn btn-primary btn-sm">
 				<i class="fa fa-plus"></i>
@@ -19,6 +19,7 @@
 			<thead>
 				<tr>
 					<th>NAME</th>
+					<th>CREATED BY</th>
 					<th>#</th>
 				</tr>
 			</thead>
@@ -28,7 +29,7 @@
 	</div>
 </div>
 
-<div class="modal" id="modal-trainer">
+<div class="modal" id="modal-bt">
 	<div class="modal-dialog">
 		<div class="box box-success">
 			<div class="box-header with-border">
@@ -51,16 +52,16 @@
 	$("#btn-add").click(function(){
 		var d = new Date($.now());
 		$.ajax({
-			url:'${contextName}/trainer/create',
+			url:'${contextName}/bootcamptype/create',
 			type:'get',
 			dataType:'html',
 			success : function(result){
 				//mengganti judul modal
-				$("#modal-title").html("TRAINER");
+				$("#modal-title").html("BOOTCAMP TYPE");
 				//mengisi content dengan variable result
 				$("#modal-data").html(result);
 				//menampilkan modal pop up
-				$("#modal-trainer").modal('show');
+				$("#modal-bt").modal('show');
 				$('#createdOn').val(d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds());
 			}
 		});
@@ -72,8 +73,8 @@
 		// resources/dist/js/map-form-objet.js
 		var dataForm = getFormData($form);
 		$.ajax({
-			// url ke api/trainer/
-			url:'${contextName}/api/trainer/',
+			// url ke api/bootcamptype/
+			url:'${contextName}/api/bootcamptype/',
 			type:'post',
 			// data type berupa JSON
 			dataType:'json',
@@ -83,7 +84,7 @@
 			contentType: 'application/json',
 			success : function(result){
 				//menutup modal
-				$("#modal-trainer").modal('hide');
+				$("#modal-bt").modal('hide');
 				// panggil method load data, untuk melihat data terbaru
 				loadData();
 			}
@@ -94,8 +95,8 @@
 	//method loadData
 	function loadData(){
 		$.ajax({
-			// url ke api/category/
-			url:'${contextName}/api/trainer/',
+			// url ke api/bootcamptype/
+			url:'${contextName}/api/bootcamptype/',
 			type:'get',
 			// data type berupa JSON
 			dataType:'json',
@@ -106,6 +107,7 @@
 				$.each(result, function(index, item){
 					var dataRow ='<tr>'+
 						'<td>'+ item.name+'</td>'+
+						'<td>'+ item.createdBy+'</td>'+
 						'<td class="col-md-1">'+
 						'<div class="dropdown">'+
 						'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
@@ -128,8 +130,8 @@
 	function getData(dataId){
 		// panggil API
 		$.ajax({
-			// url ke api/category/
-			url:'${contextName}/api/trainer/'+dataId,
+			// url ke api/bootcamptype/
+			url:'${contextName}/api/bootcamptype/'+dataId,
 			type:'get',
 			// data type berupa JSON
 			dataType:'json',
@@ -149,7 +151,7 @@
 	function search(){
 		var item = $('#search').val();
 		$.ajax({
-			url: '${contextName}/api/trainer/search/' + item,
+			url: '${contextName}/api/bootcamptype/search/' + item,
 			type: 'get',
 			dataType: 'json',
 			success: function(result){
@@ -158,6 +160,7 @@
 				$.each(result, function(index, item){
 				var dataRow ='<tr>'+
 					'<td>'+ item.name+'</td>'+
+					'<td>'+ item.createdBy+'</td>'+
 					'<td class="col-md-1">'+
 						'<div class="dropdown">'+
 					'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
@@ -179,16 +182,16 @@
 	$('#list-data').on('click','#btn-edit', function(){
 		var vid = $(this).val();
 		$.ajax({
-			url:'${contextName}/trainer/edit',
+			url:'${contextName}/bootcamptype/edit',
 			type:'get',
 			dataType:'html',
 			success : function(result){
 				//mengganti judul modal
-				$("#modal-title").html("TRAINER");
+				$("#modal-title").html("BOOTCAMP TYPE");
 				//mengisi content dengan variable result
 				$("#modal-data").html(result);
 				//menampilkan modal pop up
-				$("#modal-trainer").modal('show');
+				$("#modal-bt").modal('show');
 				//panggil method
 				getData(vid);
 			}
@@ -201,8 +204,8 @@
 		// resources/dist/js/map-dagang-objet.js
 		var dataForm = getFormData($form);
 		$.ajax({
-			// url ke api/trainer/
-			url:'${contextName}/api/trainer/',
+			// url ke api/bootcamptype/
+			url:'${contextName}/api/bootcamptype/',
 			type:'put',
 			// data type berupa JSON
 			dataType:'json',
@@ -212,7 +215,7 @@
 			contentType: 'application/json',
 			success : function(result){
 				//menutup modal
-				$("#modal-trainer").modal('hide');
+				$("#modal-bt").modal('hide');
 				// panggil method load data, untuk melihat data terbaru
 				loadData();
 			}
@@ -224,7 +227,7 @@
 	$('#list-data').on('click','#btn-delete', function(){
 		var vid = $(this).val();
 		$.ajax({
-			url:'${contextName}/trainer/delete',
+			url:'${contextName}/bootcamptype/delete',
 			type:'get',
 			dataType:'html',
 			success : function(result){
@@ -233,7 +236,7 @@
 				//mengisi content dengan variable result
 				$("#modal-data").html(result);
 				//menampilkan modal pop up
-				$("#modal-trainer").modal('show');
+				$("#modal-bt").modal('show');
 				//panggil method
 				getData(vid);
 			}
@@ -245,8 +248,8 @@
 		// memangil method getFormData dari file
 		var vid = $form.find("#id").val();
 		$.ajax({
-			// url ke api/trainer/
-			url:'${contextName}/api/trainer/'+vid,
+			// url ke api/bootcamptype/
+			url:'${contextName}/api/bootcamptype/'+vid,
 			// method http di controller
 			type:'delete',
 			// data type berupa JSON
@@ -254,7 +257,7 @@
 			// jika sukses
 			success : function(result){
 				//menutup modal
-				$("#modal-trainer").modal('hide');
+				$("#modal-bt").modal('hide');
 				// panggil method load data, untuk melihat data terbaru
 				loadData();
 				console.log(result);
