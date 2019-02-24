@@ -6,11 +6,12 @@
 	</center>
 	
 	<input type="hidden" name="id" id="id" />
-	<input type="hidden" name="name" id="code" />
-	<input type="hidden" name="notes" id="title" />
-	<input type="hidden" name="notes" id="menuParent" />
-	
-	
+	<input type="hidden" name="code" id="code" />
+	<input type="hidden" name="title" id="title" />
+	<input type="hidden" name=imageUrl id="imageUrl"/>
+	<input type="hidden" name="menuOrder" id="menuOrder"/>
+	<input type="hidden" name="menuParent" id="menuParent" />
+	<input type="hidden" name="menuUrl" id="menuUrl"/>
 	
 	<div class="modal-footer">
 		<button type="button" class="btn btn-danger pull-left" data-dismiss="modal">No</button>

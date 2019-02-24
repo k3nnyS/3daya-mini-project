@@ -20,7 +20,7 @@ public class TestimonyDaoImpl implements TestimonyDao {
 	@Override
 	public List<TestimonyModel> getList() {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select tm from TestimonyModel tm oder by id";
+		String hql = "select tm from TestimonyModel tm order by id";
 		Query query = session.createQuery(hql);
 		List<TestimonyModel> result = query.getResultList();
 		return result;
@@ -42,7 +42,7 @@ public class TestimonyDaoImpl implements TestimonyDao {
 		Query query = session.createQuery(hql);
 		query.setParameter("id", id);
 		TestimonyModel result = (TestimonyModel)query.getSingleResult();
-		return null;
+		return result;
 	}
 
 	@Override

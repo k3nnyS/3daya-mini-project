@@ -16,12 +16,12 @@ public class TestimonyController {
 		return "testimony/create";
 	}
 	
-	@RequestMapping(value = "testimony/edit")
+	@RequestMapping(value = "/testimony/edit")
 	public String edit() {
 		return "testimony/edit";
 	}
 
-	@RequestMapping(value = "testimony/delete")
+	@RequestMapping(value = "/testimony/delete")
 	public String delete() {
 		return "testimony/delete";
 	}
