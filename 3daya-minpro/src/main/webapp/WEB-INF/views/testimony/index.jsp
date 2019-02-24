@@ -175,7 +175,7 @@
 				$('#modal-data').find('#modifiedOn').val(dataApi.modifiedOn);
 				$('#modal-data').find('#deletedBy').val(dataApi.deletedBy);
 				$('#modal-data').find('#deletedOn').val(dataApi.deletedOn);
-				$('#modal-data').find('isDelete').val(dataApi.isDelete);
+				$('#modal-data').find('#isDelete').val(dataApi.isDelete);
 				
 				console.log(dataApi);
 			}
@@ -190,7 +190,7 @@
 			type : 'get',
 			dataType : 'html',
 			success : function(result){
-				$('#modal-title').html("DELETE");
+				$('#modal-title').html("TESTIMONY");
 				$('#modal-data').html(result);
 				$('#modal-form').modal('show');
 				getData(vid);
@@ -211,6 +211,42 @@
 				console.log(result);
 			}
 		});
+	}
+	
+	// ketika btn-delete di klik
+	$('#list-data').on('click', '#btn-edit', function(){
+		var vid = $(this).val();
+		$.ajax({
+			url : '${contextName}/testimony/edit',
+			type : 'get',
+			dataType : 'html',
+			success : function(result){
+				$('#modal-title').html("TESTIMONY");
+				$('#modal-data').html(result);
+				$('#modal-form').modal('show');
+				getData(vid);
+			}
+		});
+	});
+	
+	// method untuk edit data
+	function editData($form){
+		// memangil method getFormData dari file
+		// resources/dist/js/map-dagang-objet.js
+		var dataForm = getFormData($form);
+		$.ajax({
+			url:'${contextName}/api/testimony/',
+			type:'put',
+			dataType:'json',
+			data:JSON.stringify(dataForm),
+			contentType: 'application/json',
+			success : function(result){
+				$("#modal-form").modal('hide');
+				// panggil method load data, untuk melihat data terbaru
+				loadData();
+			}
+		});
+		console.log(dataForm);
 	}
 </script>
 

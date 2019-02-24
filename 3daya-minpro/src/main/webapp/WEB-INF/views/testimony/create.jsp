@@ -1,12 +1,13 @@
 <!-- form mulai -->
 <form id="form-create" class="form-horizontal">
+	<!-- Title -->
 	<div class="form-group">
 		<label class="control-label col-md-1"></label>
 		<div class="col-md-10">
 			<input type="text" class="form-control" name="title" placeholder="Title"/>
 		</div>
 	</div>
-
+	<!-- Content -->
 	<div class="form-group">
 		<label class="control-label col-md-1"></label>
 		<div class="col-md-10">
