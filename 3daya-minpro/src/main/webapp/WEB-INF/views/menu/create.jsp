@@ -8,43 +8,42 @@
 				<input type="hidden" class="form-control" name="createdOn" id="createdOn"/>
 				<input type="hidden" class="form-control" name="isDelete" value="false"/>
 				<div class="form-group">
-					<label class="control-label col-md-2">Title</label>
+					<label class="control-label col-md-1"></label>
 					<div class="col-md-10">
-						<input type="text" class="form-control" name="title" />
+						<input type="text" class="form-control" name="title" placeholder="Title"/>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-3">Description</label>
-					<div class="col-md-9">
-						<textarea cols="35" rows="5" class="from-control"
-							name="description" />
+					<label class="control-label col-md-1"></label>
+					<div class="col-md-10">
+						<textarea   rows ="6" class="form-control" name="description" placeholder="Description" style="resize:none"/>
 					</div>
 				</div>
 			</div>
 
 			<div class="col-md-6">
 				<div class="form-group">
-					<label class="control-label col-md-2">Image URL</label>
+					<label class="control-label col-md-1"></label>
 					<div class="col-md-10">
-						<input type="text" class="form-control" name="imageUrl" />
+						<input type="text" class="form-control" name="imageUrl" placeholder="Image URL"/>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-2">Menu Order</label>
+					<label class="control-label col-md-1"></label>
 					<div class="col-md-10">
-						<input type="text" class="form-control" name="menuOrder" />
+						<input type="text" class="form-control" name="menuOrder" placeholder="Menu Order"/>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-2">Menu Parent</label>
+					<label class="control-label col-md-1"></label>
 					<div class="col-md-10">
-						<input type="text" class=" form-control" name="menuParent" />
+						<input type="text" class=" form-control" name="menuParent" placeholder="Menu Parent"/>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-2">Menu URL</label>
+					<label class="control-label col-md-1"></label>
 					<div class="col-md-10">
-						<input type="text" class="form-control" name="menuUrl" />
+						<input type="text" class="form-control" name="menuUrl" placeholder="Menu URL"/>
 					</div>
 				</div>
 			</div>

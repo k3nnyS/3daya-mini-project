@@ -34,7 +34,7 @@ public class TestimonyModel {
 	
 	@Column(name = "created_on")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-	private Date cretedOn;
+	private Date createdOn;
 	
 	@Column(name = "modified_by")
 	private Integer modifiedBy;
@@ -77,11 +77,11 @@ public class TestimonyModel {
 	public void setCreatedBy(Integer createdBy) {
 		this.createdBy = createdBy;
 	}
-	public Date getCretedOn() {
-		return cretedOn;
+	public Date getCreatedOn() {
+		return createdOn;
 	}
-	public void setCretedOn(Date cretedOn) {
-		this.cretedOn = cretedOn;
+	public void setCreatedOn(Date createdOn) {
+		this.createdOn = createdOn;
 	}
 	public Integer getModifiedBy() {
 		return modifiedBy;

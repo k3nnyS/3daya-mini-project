@@ -33,7 +33,7 @@ public class TestimonyServiceImpl implements TestimonyService {
 
 	@Override
 	public void insert(TestimonyModel model) {
-		this.dao.update(model);
+		this.dao.insert(model);
 
 	}
 
