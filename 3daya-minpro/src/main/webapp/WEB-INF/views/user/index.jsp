@@ -7,11 +7,11 @@
 		<h3 class="box-title">USER</h3>
 	</div>
 	
-	<div class="box-header">
-			<input class="margin col-md-3" type="text" id="search-box"
-				placeholder="Search by code/name" required>
+	<div class="box-header col-md-12">
+			<input type="text" name="search" id="search"
+				placeholder="Search by username/email" />
 			<button class="margin col-md-0.5 btn btn-warning btn-xm"
-				type="button" onClick="search()">
+				onClick="search()">
 				<i class="fa fa-circle-o"></i>
 			</button>
 			<div class="box-tools col-md-1">
@@ -155,10 +155,17 @@
 			success : function(dataApi) {
 				$('#modal-data').find('#id').val(dataApi.id);
 				$('#modal-data').find('#username').val(dataApi.username);
-				$('#modal-data').find('#roleId').val(dataApi.roleId);
+				$('#modal-data').find('#password').val(dataApi.password);
 				$('#modal-data').find('#email').val(dataApi.email);
+				$('#modal-data').find('#roleId').val(dataApi.roleId);
+				$('#modal-data').find('#mobileFlag').val(dataApi.mobileFlag);
+				$('#modal-data').find('#mobileToken').val(dataApi.mobileToken);
 				$('#modal-data').find('#createdBy').val(dataApi.createdBy);
 				$('#modal-data').find('#createdOn').val(dataApi.createdOn);
+				$('#modal-data').find('#modifiedBy').val(dataApi.modifiedBy);
+				$('#modal-data').find('#modifiedOn').val(dataApi.modifiedOn);
+				$('#modal-data').find('#deletedBy').val(dataApi.deletedBy);
+				$('#modal-data').find('#deletedOn').val(dataApi.deletedOn);
 				$('#modal-data').find('#isDelete').val(dataApi.isDelete);
 				console.log(dataApi);
 			}
@@ -169,31 +176,28 @@
 			'click',
 			'#btn-edit',
 			function() {
-				var d = new Date($.now());
+				var vid = $(this).val();
 				$.ajax({
 					url : '${contextName}/user/edit',
 					type : 'get',
 					dataType : 'html',
 					success : function(result) {
 						//mengganti judul modal
-						$("#modal-title").html("Edit Data User");
+						$("#modal-title").html("EDIT DATA");
 						//mengisi content dengan variable result
 						$("#modal-data").html(result);
 						//menampilkan modal pop up
 						$("#modal-form").modal('show');
-						// panggil method getData
-						$('#modifiedOn').val(
-								d.getDate() + "-" + d.getMonth() + "-"
-										+ d.getFullYear() + " " + d.getHours()
-										+ ":" + d.getMinutes() + ":"
-										+ d.getSeconds());
+						//panggil Role
 						loadRole($("#modal-data"));
 
+						// panggil method getData
+						getData(vid);
 					}
 				});
 			});
 
-	// method untuk delete data
+	// method untuk edit data
 	function editData($form) {
 		// memangil method getFormData dari file
 		// resources/dist/js/map-form-objet.js
@@ -261,26 +265,38 @@
 		});
 	}
 
-	function search(){
-		var item = $('#search-box').val();
+	//ketika Reset Password di klik
+	$('#list-data').on('click', '#btn-reset', function(){
+		var vid=$(this).val();
 		$.ajax({
-			url: '${contextName}/api/role/search/' + item,
+			url: '${contextName}/user/reset',
 			type: 'get',
-			dataType: 'json',
+			dataType: 'html',
 			success: function(result){
-				$("#list-data").empty();
-				// looping data dengan jQuery
-				$.each(result, function(index, item){
-				var dataRow ='<tr>'+
-					'<td>'+ item.code+'</td>'+
-					'<td>'+ item.name+'</td>'+
-					'</td>'+
-					'</tr>';
-					$("#list-data").append(dataRow);
-					});
-				console.log(result);
+				$('#modal-title').html("RESET PASSWORD");
+				$('#modal-data').html(result);
+				$('#modal-form').modal('show');
+				getData(vid);
+			}
+			
+		});
+	});
+	
+	//method untuk Reset Password
+	function resetData($form){
+		var dataForm=getFormData($form);
+		$.ajax({
+			url: '${contextName}/api/user/reset/',
+			type: 'put',
+			dataType: 'json',
+			data: JSON.stringify(dataForm),
+			contentType: 'application/json',
+			success: function(result){
+				$("#modal-form").modal('hide');
+				loadData();
 			}
 		});
+		console.log(dataForm);
 	}
 	
 	function loadRole($form, $selected) {
@@ -311,4 +327,41 @@
 			}
 		});
 	}
+	
+	function search(){
+		var item = $('#search').val();
+		$.ajax({
+			url: '${contextName}/api/user/search/' + item,
+			type: 'get',
+			dataType: 'json',
+			success: function(result){
+				$("#list-data").empty();
+				// looping data dengan jQuery
+				$.each(result, function(index, item){
+					var dataRow = '<tr>'
+						+ '<td>'
+						+ item.username
+						+ '</td>'
+						+ '<td>'
+						+ item.roleId
+						+ '</td>'
+						+ '<td>'
+						+ item.email
+						+ '</td>'
+						+ '<td class="col-md-1">'
+						+ '<div class="dropdown">'
+						+ '<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'
+						+ '<ul class="dropdown-menu">'
+						+ '<li id="btn-edit" value="'+ item.id +'"><a>Edit</a></li> '
+						+ '<li id="btn-reset" value="'+ item.id +'"><a>Reset Password</a></li> '
+						+ '<li id="btn-delete" value="'+ item.id +'"><a>Delete</a></li> '
+						+ '</ul>' + '</div>'
+						+ '</td>' + '</tr>';
+					$("#list-data").append(dataRow);
+				});
+				console.log(result);
+			}
+		});
+	}
+	
 </script>

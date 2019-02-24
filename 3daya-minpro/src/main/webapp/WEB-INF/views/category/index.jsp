@@ -6,11 +6,11 @@
 	<div class="box-header">
 		<h3 class="box-title">CATEGORY</h3>
 </div>
-		<div class="box-header">
-			<input class="margin col-md-3" type="text"
-				placeholder="Search by username/email" required>
+		<div class="box-header col-md-12">
+			<input type="text" name="search" id="search"
+				placeholder="Search by code/name" />
 			<button class="margin col-md-0.5 btn btn-warning btn-xm"
-				type="button" id="btn-search">
+				onClick="search()">
 				<i class="fa fa-circle-o"></i>
 			</button>
 			<div class="box-tools col-md-1">
@@ -36,24 +36,6 @@
 			</table>
 		</div>
 	</div>
-<<<<<<< HEAD
-=======
-	<div class="box-body">
-		<input class="margin col-md-2" type="text" placeholder="Search by Name/Code" required>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>CODE</th>
-					<th>NAME</th>
-					<th>#</th>
-				</tr>
-			</thead>
-			<tbody id="list-data">
-			</tbody>
-		</table>		
-	</div>
-</div>
->>>>>>> e80a89a18a4c2f7a104724f49b32f01b43fde82d
 
 	<div class="modal" id="modal-form">
 		<div class="modal-dialog">
@@ -129,7 +111,7 @@
 				dataType : 'html',
 				success : function(result) {
 					//mengganti judul modal
-					$("#modal-title").html("Edit Data Category");
+					$("#modal-title").html("EDIT DATA");
 					//mengisi content dengan variable result
 					$("#modal-data").html(result);
 					//menampilkan modal pop up
@@ -250,4 +232,34 @@
 				}
 			});
 		}
+		function search(){
+			var item = $('#search').val();
+			$.ajax({
+				url: '${contextName}/api/category/search/' + item,
+				type: 'get',
+				dataType: 'json',
+				success: function(result){
+					$("#list-data").empty();
+					// looping data dengan jQuery
+					$.each(result, function(index, item){
+					var dataRow ='<tr>'+
+						'<td>'+ item.code+'</td>'+
+						'<td>'+ item.name+'</td>'+
+						'<td class="col-md-1">'+
+							'<div class="dropdown">'+
+						'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
+					   	 '<ul class="dropdown-menu">'+
+					   	'<li id="btn-edit" value="'+item.id+'"><a>Edit</a></li>'+
+				    	'<li id="btn-delete" value="'+item.id+'"><a>Delete</a></li>'+
+					    '</ul>'+
+					    '</div>'+
+						'</td>'+
+						'</tr>';
+						$("#list-data").append(dataRow);
+						});
+					console.log(result);
+				}
+			});
+		}
+		
 	</script>
