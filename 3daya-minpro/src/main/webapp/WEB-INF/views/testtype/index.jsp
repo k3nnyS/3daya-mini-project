@@ -1,13 +1,24 @@
 <% request.setAttribute("contextName", request.getServletContext().getContextPath()); %>
+
 <div class="box box-info">
 	<div class="box-header">
 		<h3 class="box-title">TEST TYPE</h3>
-		<div class="box-tools">
-			<button type="button" id="btn-add" class="btn btn-primary btn-sm">
-				<i class="fa fa-plus"></i>
-			</button>
-		</div>
 	</div>
+	
+	<div class="box-header col-md-12">
+			<input type="text" name="search" id="search"
+				placeholder="Search by username" />
+			<button class="margin col-md-0.5 btn btn-warning btn-xm"
+				onClick="search()">
+				<i class="fa fa-circle-o"></i>
+			</button>
+			<div class="box-tools col-md-1">
+				<button type="button" id="btn-add"
+					class="margin col-md-0.5 btn btn-warning btn-m">
+					<i class="fa fa-plus"></i>
+				</button>
+			</div>
+		</div>
 	<div class="box-body">
 		<table class="table">
 			<thead>
@@ -57,7 +68,7 @@ $("#btn-add").click(function(){
 			$("#modal-data").html(result);
 			//menampilkan modal pop up
 			$("#modal-form").modal('show');
-			$('#createdOn').val(d.getDate() + "-" + d.getMonth() + "-"
+			$('#createdOn').val(d.getDate() + "-" + (d.getMonth()+1) + "-"
 					+ d.getFullYear() + " " + d.getHours()
 					+ ":" + d.getMinutes() + ":"
 					+ d.getSeconds())
@@ -93,6 +104,36 @@ function loadData(){
 					$("#list-data").append(dataRow);
 				});
 				// menampilkan data ke console => F12
+				console.log(result);
+			}
+		});
+	}
+	
+	//fungsi search data dari name
+	function search(){
+		var item = $('#search').val();
+		$.ajax({
+			url : '${contextName}/api/testtype/search/' + item,
+			type : 'get',
+			dataType : 'json',
+			success : function(result) {
+				$("#list-data").empty();
+				// looping data dengan jQuery
+				$.each(result, function(index, item){
+					var dataRow ='<tr>'+
+						'<td>'+ item.name +'</td>'+
+						'<td>'+ item.createdBy+'</td>'+
+						'<td class="col-md-1">'+
+						'<div class="dropdown">'+
+					'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
+				   	 '<ul class="dropdown-menu">'+
+				   	'<li id="btn-edit" value="'+item.id+'"><a>Edit</a></li>'+
+			    	'<li id="btn-delete" value="'+item.id+'"><a>Delete</a></li>'+
+				    '</ul>'+
+				    '</div>'+						'</td>'+
+						'</tr>';
+					$("#list-data").append(dataRow);
+				});
 				console.log(result);
 			}
 		});
@@ -145,6 +186,8 @@ function loadData(){
 		});
 	}
 	
+	
+	// proses edit
 	$('#list-data').on('click', '#btn-edit', function() {
 		var vid = $(this).val();
 		$.ajax({
@@ -175,5 +218,37 @@ function loadData(){
 			});
 		console.log(dataForm);	
 	}
-
+	// akhir proses edit
+	
+	//proses delete
+	$('#list-data').on('click', '#btn-delete', function() {
+		var vid = $(this).val();
+		$.ajax({
+			url : '${contextName}/testtype/delete',
+			type : 'get',
+			dataType : 'html',
+			success : function(result) {
+				$('#modal-title').html('Delete');
+				$('#modal-data').html(result);
+				$('#modal-form').modal('show');
+				getData(vid);
+			}
+		});
+	});
+	
+	function deleteData($form) {
+		var vid = $form.find("#id").val();
+		
+		$.ajax({
+			url : '${contextName}/api/testtype/' + vid,
+			type : 'delete',
+			dataType : 'json',
+			success : function(result) {
+				$('#modal-form').modal('hide');
+				loadData();
+				console.log(result);
+			}
+		});
+	}
+	// akhir proses delete
 </script>
