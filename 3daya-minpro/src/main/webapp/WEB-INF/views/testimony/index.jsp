@@ -4,17 +4,15 @@
 <!-- Div bagian untuk membuat judul -->
 	<div class = "box-header">
 		<h3 class = "box-title">TESTIMONY</h3>
-		<div class = "box-tools">
-			<button type = "button" id = "btn-add" class = "btn btn-primary btn-sm">
-				<i class = "fa fa-plus"></i>
-			</button>
-		</div>	
 	</div>
 	<!-- Div bagian membuat kolom search -->
 	<div class ="box-tools col-md-12">
 		<input type = "text" name = "search" id = "search" placeholder="Search by Title" />
-		<button class = "btn btn-primary btn-sm" onClick = "search()">
+		<button class = "btn btn-warning btn-sm" onClick = "search()">
 			<i class = "fa fa-circle-o"></i>
+		</button>
+		<button type = "button" id = "btn-add" class = "btn btn-warning btn-sm pull-right">
+				<i class = "fa fa-plus"></i>
 		</button>
 	</div>
 	<!-- Div bagian tempat isi data -->
@@ -70,7 +68,7 @@
 						'<td>'+ item.title +'</td>'+
 						'<td class = "col-md-1">'+
 						'<div class = "dropdown">'+
-							'<button class = "btn btn-primary dropdown-toggle" type = "button" data-toggle = "dropdown"><i class = "fa fa-align-justify"></i><span class = "caret"></span></button>'+
+							'<button class = "btn btn-warning dropdown-toggle" type = "button" data-toggle = "dropdown"><i class = "fa fa-align-justify"></i><span class = "caret"></span></button>'+
 							'<ul class = "dropdown-menu">'+
 								'<li id = "btn-edit" value ="'+item.id+'"><a>Edit</a></li>'+
 								'<li id = "btn-delete" value ="'+item.id+'"><a>Delete</a></li>'+
@@ -101,7 +99,7 @@
 						'<td>'+item.title+'</td>'+
 						'<td class = "col-md-1">'+
 						'<div class = "dropdown">'+
-							'<button class = "btn btn-primary dropdown-toggle" type = "button" data-toggle = "dropdown"><i class = "fa fa-align-justify"></i><span class = "caret"></span></button>'+
+							'<button class = "btn btn-warning dropdown-toggle" type = "button" data-toggle = "dropdown"><i class = "fa fa-align-justify"></i><span class = "caret"></span></button>'+
 								'<ul class = "dropdown-menu">'+
 									'<li id = "btn-edit" value = "'+item.id+'"><a>Edit</a></li>'+
 									'<li id = "btn-delete" value = "'+item.id+'"><a>Delete</a></li>'+
