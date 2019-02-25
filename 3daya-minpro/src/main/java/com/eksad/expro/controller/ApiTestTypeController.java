@@ -22,7 +22,7 @@ public class ApiTestTypeController {
 	@Autowired
 	private TestTypeService service;
 	
-	@RequestMapping(value = "/api/testtype/", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/testtype", method = RequestMethod.GET)
 	public ResponseEntity<List<TestTypeModel>> list(){
 		ResponseEntity<List<TestTypeModel>> result = null;
 		try {
