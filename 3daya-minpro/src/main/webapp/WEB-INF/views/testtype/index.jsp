@@ -28,7 +28,7 @@
 	<div class="modal-dialog">
 		<div class="box box-success">
 			<div class="box-header with-border">
-				<h3 class="box-title" id="modal-title">Form Input</h3>
+				<h3 class="box-title" id="modal-title"></h3>
 			</div>
 			<div class="box-body" id="modal-data">
 				
@@ -69,7 +69,7 @@ $("#btn-add").click(function(){
 function loadData(){
 		$.ajax({
 			// url ke api/category/
-			url:'${contextName}/api/testtype/',
+			url:'${contextName}/api/testtype',
 			type:'get',
 			// data type berupa JSON
 			dataType:'json',
@@ -82,10 +82,13 @@ function loadData(){
 						'<td>'+ item.name +'</td>'+
 						'<td>'+ item.createdBy+'</td>'+
 						'<td class="col-md-1">'+
-							'<button type="button" class="btn btn-edit btn-warning btn-sm" value="'+ item.id +'"><i class="fa fa-edit"></i></button> '+
-							'<button type="button" class="btn btn-detail btn-success btn-sm" value="'+ item.id +'"><i class="fa fa-eye"></i></button> '+
-							'<button type="button" class="btn btn-delete btn-danger btn-sm" value="'+ item.id +'"><i class="fa fa-trash"></i></button> '+
-						'</td>'+
+						'<div class="dropdown">'+
+					'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
+				   	 '<ul class="dropdown-menu">'+
+				   	'<li id="btn-edit" value="'+item.id+'"><a>Edit</a></li>'+
+			    	'<li id="btn-delete" value="'+item.id+'"><a>Delete</a></li>'+
+				    '</ul>'+
+				    '</div>'+						'</td>'+
 						'</tr>';
 					$("#list-data").append(dataRow);
 				});
@@ -127,14 +130,50 @@ function loadData(){
 			success : function(dataApi){
 				$('#modal-data').find('#id').val(dataApi.id);
 				$('#modal-data').find('#name').val(dataApi.name);
+				$('#modal-data').find('#notes').val(dataApi.notes);
+				$('#modal-data').find('#typeOfAnswer').val(dataApi.typeOfAnswer);
 				$('#modal-data').find('#createdBy').val(dataApi.createdBy);
+				$('#modal-data').find('#createdOn').val(dataApi.createdOn);
+				$('#modal-data').find('#modifiedBy').val(dataApi.modifiedBy);
+				$('#modal-data').find('#modifiedOn').val(dataApi.modifiedOn);
+				$('#modal-data').find('#deletedBy').val(dataApi.deletedBy);
+				$('#modal-data').find('#deletedOn').val(dataApi.deletedOn);
+				$('#modal-data').find('#isDelete').val(dataApi.isDelete);
 				
 				console.log(dataApi);
 			}
 		});
 	}
 	
+	$('#list-data').on('click', '#btn-edit', function() {
+		var vid = $(this).val();
+		$.ajax({
+			url: '${contextName}/testtype/edit',
+			type: 'get',
+			dataType: 'html',
+			success : function(result) {
+				$('#modal-title').html("Edit Data Test Type");
+				$('#modal-data').html(result);
+				$('#modal-form').modal('show');
+				getData(vid);
+			}
+		});
+	});
 	
-	
+	function editData($form) {
+		var dataForm = getFormData($form);
+		$.ajax({
+			url : '${contextName}/api/testtype',
+			type : 'put',
+			dataType : 'json',
+			data : JSON.stringify(dataForm),
+			contentType : 'application/json',
+			success : function(result) {
+				$('#modal-form').modal('hide');
+				loadData();
+				}
+			});
+		console.log(dataForm);	
+	}
 
 </script>
