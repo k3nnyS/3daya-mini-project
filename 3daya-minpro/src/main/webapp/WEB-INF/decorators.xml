@@ -12,7 +12,11 @@
 		<pattern>/technology/*</pattern>
 		<pattern>/testimony/*</pattern>
 		<pattern>/bootcamptype/*</pattern>
+<<<<<<< HEAD
 		<pattern>/clazz/*</pattern>
+=======
+		<pattern>/batch/*</pattern>
+>>>>>>> b2b8ac726a53f092d8eb36fe658a29f6b6ed0208
 	</excludes>
 
 	<decorator name="main" page="main.jsp">

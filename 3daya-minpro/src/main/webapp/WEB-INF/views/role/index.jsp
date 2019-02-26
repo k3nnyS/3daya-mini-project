@@ -7,20 +7,23 @@
 		<h3 class="box-title">Role List</h3>
 		<!--  -->
 	</div>
-	<div class="box-body">
-		<div class="row">
-			<div class="box-tools col-md-4">
-					<span class="input-group-btn">
-					<input type="text" class="form-control"id="search-box" width="50px" />					
-						<button class="btn btn-info" onclick="search()">MyButton</button>
-					</span>
-			</div>
-			<div class="col-md-4">
-					<button type="button" id="btn-add" class="btn btn-success btn-sm pull-right">
-						<i class="fa fa-plus"></i>
-					</button>
+	
+	<div class="box-header col-md-12">
+			<input type="text" name="search" id="search"
+				placeholder="Search by username" />
+			<button class="margin col-md-0.5 btn btn-warning btn-xm"
+				onClick="search()">
+				<i class="fa fa-circle-o"></i>
+			</button>
+			<div class="box-tools col-md-1">
+				<button type="button" id="btn-add"
+					class="margin col-md-0.5 btn btn-warning btn-m">
+					<i class="fa fa-plus"></i>
+				</button>
 			</div>
 		</div>
+	<div class="box-body">
+		
 		<table class="table">
 			<thead>
 				<tr>
@@ -76,7 +79,7 @@
 			});
 	
 	function search(){
-		var item = $('#search-box').val();
+		var item = $('#search').val();
 		$.ajax({
 			url: '${contextName}/api/role/search/' + item,
 			type: 'get',
@@ -204,7 +207,6 @@
 		});
 	});
 
-	// method untuk delete data
 	function editData($form) {
 		var dataForm = getFormData($form);
 		$.ajax({
