@@ -27,8 +27,8 @@
 	</div>
 	
 	<div class="modal-footer">
-		<button type="button" class="btn btn-success pull-left" onClick="editData($('#form-edit'))">Update</button>
-		<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+		<button type="button" class="btn btn-success pull-left" onClick="editData($('#form-edit'))">UPDATE</button>
+		<button type="button" class="btn btn-warning" data-dismiss="modal">CLOSE</button>
 	</div>
 	
 	<input type="hidden" name="createdBy" id="createdBy" />

@@ -1,0 +1,35 @@
+package com.eksad.expro.controller;
+
+import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.eksad.expro.model.BiodataModel;
+import com.eksad.expro.service.BiodataService;
+
+@Controller
+public class ApiBiodataController {
+	private Log log = LogFactory.getLog(getClass());
+	@Autowired
+	private BiodataService service;
+	
+	@RequestMapping(value = "/api/biodata/list", method = RequestMethod.GET)
+	public ResponseEntity<List<BiodataModel>> list(){
+		ResponseEntity<List<BiodataModel>> result = null;
+		try {
+			List<BiodataModel> list = this.service.getList();
+			result = new ResponseEntity<List<BiodataModel>>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			log.debug(e.getMessage(), e);
+			result = new ResponseEntity<List<BiodataModel>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return result;
+	}
+}

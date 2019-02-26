@@ -9,63 +9,60 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.eksad.expro.dao.BatchDao;
-import com.eksad.expro.model.BatchModel;
-import com.eksad.expro.model.TrainerModel;
+import com.eksad.expro.dao.ClazzDao;
+import com.eksad.expro.model.ClazzModel;
 
 @Repository
-public class BatchDaoImpl implements BatchDao {
-	
+public class ClazzDaoImpl implements ClazzDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public List<BatchModel> getList() {
+	public List<ClazzModel> getList() {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select tr from BatchModel tr order by id";
+		String hql = "select t from ClazzModel t order by id";
 		Query query = session.createQuery(hql);
-		List<BatchModel> result = query.getResultList();
+		List<ClazzModel> result = query.getResultList();
 		return result;
 	}
 
 	@Override
-	public List<BatchModel> search(String key) {
+	public List<ClazzModel> search(String key) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select x from BatchModel x where x.name like :keySearch";
-		//or x.technologyId like :keySearch
+		String hql = "select t from ClazzModel t where t.batchId like :keySearch" ;
 		Query query = session.createQuery(hql);
 		query.setParameter("keySearch", "%"+key+"%");
 		return query.getResultList();
 	}
 
 	@Override
-	public BatchModel getById(Integer id) {
+	public ClazzModel getById(Integer id) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select bm from BatchModel bm where bm.id=:id";
+		String hql = "select t from ClazzModel t where t.id=:id";
 		Query query = session.createQuery(hql);
 		query.setParameter("id", id);
-		BatchModel result = (BatchModel)query.getSingleResult();
+		ClazzModel result = (ClazzModel)query.getSingleResult();
 		return result;
 	}
 
 	@Override
-	public void insert(BatchModel model) {
+	public void insert(ClazzModel model) {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(model);
 
 	}
 
 	@Override
-	public void update(BatchModel model) {
+	public void update(ClazzModel model) {
 		Session session = sessionFactory.getCurrentSession();
 		session.update(model);
-
 	}
 
 	@Override
-	public void delete(BatchModel model) {
+	public void delete(ClazzModel model) {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(model);
+
 	}
 
 }

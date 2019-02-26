@@ -28,13 +28,13 @@
 	</div>
 </div>
 <!-- Untuk memunculkan pop-up -->
-<div class = "modal" id = "modal-form">
-	<div class = modal-dialog>
+<div class = "modal" id = "modal-form-large">
+	<div class = "modal-dialog modal-lg">
 		<div class = "box box-success">
 			<div class = "box-header with-border">
-				<h3 class = "box-title" id = "modal-title"></h3>
+				<h3 class = "box-title" id = "modal-title-large"></h3>
 			</div>
-			<div class = "box-body" id = "modal-data">
+			<div class = "box-body" id = "modal-data-large">
 			</div>
 		</div>
 	</div>
@@ -111,6 +111,87 @@
 					'</tr>';
 				$("#list-data").append(dataRow);
 				});
+			}
+		});
+	}
+	
+	//loadTrainer
+	function loadTrainer($form, $selected){
+		$.ajax({
+			url : '${contextName}/api/trainer/',
+			type : 'get',
+			dataType : 'json',
+			success : function(result){
+				$form.find("#trainerId").empty();
+				$form.find("#trainerId").append('<option value = "">-Choose Trainer-</option>');
+				//looping data
+				$.each(result, function(index, item){
+					if ($selected == item.id){
+						$form.find("#trainerId").append('<option value ="'+item.id+'" selected="selected">'+item.name+'</option>');
+					}else{
+						$form.find("#trainerId").append('<option value = "'+item.id+'">'+item.name+'</option>');
+					}
+				});
+			}
+		});
+	}
+	
+	//loadBootcampType
+	function loadBootcampType($form, $selected){
+		$.ajax({
+			url : '${contextName}/api/bootcamptype/',
+			type : 'get',
+			dataType : 'json',
+			success : function(result){
+				$form.find("#bootcampTypeId").empty();
+				$form.find("#bootcampTypeId").append('<option value = "">-Choose Bootcamp Type-</option>');
+				//looping data
+				$.each(result, function(index, item){
+					if ($selected == item.id){
+						$form.find("#bootcampTypeId").append('<option value = "'+item.id+'" selected="selected">'+item.name+'</option>');
+					} else {
+						$form.find("#bootcampTypeId").append('<option value = "'+item.id+'">'+item.name+'</option');
+					}
+				});
+			}
+		});
+	}
+	
+	//ketika btn-add di klik
+	$("#btn-add").click(function(){
+		var d = new Date($.now());
+		$.ajax({
+			url : '${contextName}/batch/create',
+			type : 'get',
+			dataType : 'html',
+			success : function(result){
+				$('#modal-title-large').html("BATCH");
+				$('#modal-data-large').html(result);
+				$('#modal-form-large').modal('show');
+				$('#createdOn').val(
+						d.getDate() + "-" + d.getMonth() + "-"
+						+ d.getFullYear() + " " + d.getHours()
+						+ ":" + d.getMinutes() + ":"
+						+ d.getSeconds());
+				loadTrainer($("#modal-data-large"));
+				loadBootcampType($("#modal-data-large"));
+			}
+		});
+	});
+	
+	function addData($form){
+		// memangil method getFormData dari file
+		// resources/dist/js/map-form-objet.js
+		var dataForm = getFormData($form);
+		$.ajax({
+			url : '${contextName}/api/batch/',
+			type : 'post',
+			dataType : 'json',
+			data : JSON.stringify(dataForm),
+			contentType : 'application/json',
+			success : function(result){
+				$('#modal-form-large').modal('hide');
+				loadData();	
 			}
 		});
 	}

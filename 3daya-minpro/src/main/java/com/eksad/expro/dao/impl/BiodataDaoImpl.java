@@ -9,61 +9,57 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.eksad.expro.dao.BatchDao;
-import com.eksad.expro.model.BatchModel;
-import com.eksad.expro.model.TrainerModel;
+import com.eksad.expro.dao.BiodataDao;
+import com.eksad.expro.model.BiodataModel;
+
 
 @Repository
-public class BatchDaoImpl implements BatchDao {
-	
+public class BiodataDaoImpl implements BiodataDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public List<BatchModel> getList() {
+	public List<BiodataModel> getList() {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select tr from BatchModel tr order by id";
+		String hql = "select x from BiodataModel x order by id";
 		Query query = session.createQuery(hql);
-		List<BatchModel> result = query.getResultList();
+		List<BiodataModel> result = query.getResultList();
 		return result;
 	}
 
 	@Override
-	public List<BatchModel> search(String key) {
+	public List<BiodataModel> search(String key) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select x from BatchModel x where x.name like :keySearch";
-		//or x.technologyId like :keySearch
+		String hql = "select x from BiodataModel where x.name like :keySearch";
 		Query query = session.createQuery(hql);
 		query.setParameter("keySearch", "%"+key+"%");
 		return query.getResultList();
 	}
 
 	@Override
-	public BatchModel getById(Integer id) {
+	public BiodataModel getById(Integer id) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select bm from BatchModel bm where bm.id=:id";
+		String hql = "select x from BiodataModel x where x.id=:id";
 		Query query = session.createQuery(hql);
 		query.setParameter("id", id);
-		BatchModel result = (BatchModel)query.getSingleResult();
+		BiodataModel result = (BiodataModel)query.getSingleResult();
 		return result;
 	}
 
 	@Override
-	public void insert(BatchModel model) {
+	public void insert(BiodataModel model) {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(model);
-
 	}
 
 	@Override
-	public void update(BatchModel model) {
+	public void update(BiodataModel model) {
 		Session session = sessionFactory.getCurrentSession();
 		session.update(model);
-
 	}
 
 	@Override
-	public void delete(BatchModel model) {
+	public void delete(BiodataModel model) {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(model);
 	}
