@@ -31,7 +31,8 @@ public class BatchDaoImpl implements BatchDao {
 	@Override
 	public List<BatchModel> search(String key) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select x from BatchModel x where x.name like :keySearch or x.technologyId like :keySearch";
+		String hql = "select x from BatchModel x where x.name like :keySearch";
+		//or x.technologyId like :keySearch
 		Query query = session.createQuery(hql);
 		query.setParameter("keySearch", "%"+key+"%");
 		return query.getResultList();

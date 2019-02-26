@@ -109,7 +109,7 @@
 				$('#modal-data-large').html(result);
 				$('#modal-form-large').modal('show');
 				$('#createdOn').val(
-						d.getDate() + "-" + d.getMonth() + "-"
+								d.getDate() + "-" + d.getMonth() + "-"
 								+ d.getFullYear() + " " + d.getHours()
 								+ ":" + d.getMinutes() + ":"
 								+ d.getSeconds());

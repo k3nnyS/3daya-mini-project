@@ -1,5 +1,6 @@
 package com.eksad.expro.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -105,14 +106,28 @@ public class BatchModel {
 	public Date getPeriodFrom() {
 		return periodFrom;
 	}
-	public void setPeriodFrom(Date periodFrom) {
-		this.periodFrom = periodFrom;
+	public void setPeriodFrom(String periodFrom) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date periodFromNew = null;
+		try {
+			periodFromNew = format.parse(periodFrom);
+		} catch (Exception e) {
+			this.periodFrom = null;
+		}
+		this.periodFrom = periodFromNew;
 	}
 	public Date getPeriodTo() {
 		return periodTo;
 	}
-	public void setPeriodTo(Date periodTo) {
-		this.periodTo = periodTo;
+	public void setPeriodTo(String periodTo) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date periodToNew = null;
+		try {
+			periodToNew = format.parse(periodTo);
+		} catch (Exception e) {
+			this.periodTo = null;
+		}
+		this.periodTo = periodToNew;
 	}
 	public Integer getRoomId() {
 		return roomId;
@@ -141,8 +156,15 @@ public class BatchModel {
 	public Date getCreatedOn() {
 		return createdOn;
 	}
-	public void setCreatedOn(Date createdOn) {
-		this.createdOn = createdOn;
+	public void setCreatedOn(String createdOn) {
+		SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd");
+		Date createdOnNew = null;
+		try {
+			createdOnNew = format.parse(createdOn);
+		} catch (Exception e) {
+			this.createdOn = null;
+		}
+		this.createdOn = createdOnNew;
 	}
 	public Integer getModifiedBy() {
 		return modifiedBy;
