@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eksad.expro.dao.TechnologyDao;
+import com.eksad.expro.dao.TechTrainerDao;
+import com.eksad.expro.model.TechForm;
 import com.eksad.expro.model.TechnologyModel;
+import com.eksad.expro.model.TechTrainerModel;
 import com.eksad.expro.service.TechnologyService;
 
 @Service
@@ -16,6 +19,8 @@ public class TechnologyServiceImpl implements TechnologyService {
 	
 	@Autowired
 	private TechnologyDao dao;
+	@Autowired
+	private TechTrainerDao daoTt;
 
 	@Override
 	public List<TechnologyModel> getList() {
@@ -33,8 +38,18 @@ public class TechnologyServiceImpl implements TechnologyService {
 	}
 
 	@Override
-	public void insert(TechnologyModel model) {
-		this.dao.insert(model);		
+	public void insert(TechForm model) {
+		//input data ke tabel Technology
+		TechnologyModel tech = model.getTech();
+		this.dao.insert(model.getTech());
+				
+		// input ke tabel Technology Trainer
+		if (model.getTt() !=null) {
+			for (TechTrainerModel tt : model.getTt()) {
+				tt.setTechnologyId(tech.getId());
+				this.daoTt.insert(tt);	
+			}				
+		}
 	}
 
 	@Override

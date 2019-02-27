@@ -2,29 +2,34 @@
 <div class="box box-info">
 	<div class="box-header">
 		<h3 class="box-title">TRAINER</h3>
-		<div class="box-tools">
-			<button type="button" id="btn-add" class="btn btn-primary btn-sm">
-				<i class="fa fa-plus"></i>
-			</button>
-		</div>
 	</div>
-	<div class="box-tools col-md-12">
-			<input type="text" name="search" id="search" placeholder="Search by name"/>
-			<button class="btn btn-primary btn-sm" onclick="search()">
+	
+	<div class="box-header col-md-12">
+			<input type="text" name="search" id="search"
+				placeholder="Search by name" />
+			<button class="btn btn-warning btn-xm"
+				onClick="search()">
 				<i class="fa fa-circle-o"></i>
 			</button>
+			<div class="box-tools col-md-1">
+				<button type="button" id="btn-add"
+					class="margin col-md-0.5 btn btn-warning btn-m">
+					<i class="fa fa-plus"></i>
+				</button>
+			</div>
 		</div>
+		
 	<div class="box-body">
 		<table class="table">
 			<thead>
 				<tr>
 					<th>NAME</th>
-					<th>#</th>
+					<th class="col-md-1">#</th>
 				</tr>
 			</thead>
 			<tbody id="list-data">
 			</tbody>
-		</table>		
+		</table>
 	</div>
 </div>
 
@@ -108,7 +113,7 @@
 						'<td>'+ item.name+'</td>'+
 						'<td class="col-md-1">'+
 						'<div class="dropdown">'+
-						'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
+						'<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
 					    '<ul class="dropdown-menu">'+
 					    	'<li id="btn-edit" value="'+item.id+'"><a>Edit</a></li>'+
 					    	'<li id="btn-delete" value="'+item.id+'"><a>Delete</a></li>'+
@@ -160,7 +165,7 @@
 					'<td>'+ item.name+'</td>'+
 					'<td class="col-md-1">'+
 						'<div class="dropdown">'+
-					'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
+					'<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
 				   	 '<ul class="dropdown-menu">'+
 				   	'<li id="btn-edit" value="'+item.id+'"><a>Edit</a></li>'+
 			    	'<li id="btn-delete" value="'+item.id+'"><a>Delete</a></li>'+
