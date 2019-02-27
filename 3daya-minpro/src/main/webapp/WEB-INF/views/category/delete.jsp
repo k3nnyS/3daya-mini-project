@@ -12,7 +12,7 @@
 
 
 	<div class="modal-footer">
-		<button type="button" class="btn btn-success pull-left" data-dismiss="modal">No</button>
-		<button type="button" class="btn btn-danger" onClick="deleteData($('#form-delete'))">Yes</button>
+		<button type="button" class="btn btn-danger pull-left" data-dismiss="modal">NO</button>
+		<button type="button" class="btn btn-success" onClick="deleteData($('#form-delete'))">YES</button>
 	</div>
 </form>

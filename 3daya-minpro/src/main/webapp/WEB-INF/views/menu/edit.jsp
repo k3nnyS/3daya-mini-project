@@ -3,50 +3,52 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">
-				<label class="control-label col-md-2">Code</label>
+				<label class="control-label col-md-1"></label>
 				<div class="col-md-10">
 					<input type="text" class="form-control" name="code" id="code" readonly="readonly"/>
 				</div>
 			</div>
 		
 			<div class="form-group">
-				<label class="control-label col-md-2">Title</label>
+				<label class="control-label col-md-1"></label>
 				<div class="col-md-10">
 					<input type="text" class="form-control" name="title" id="title"/>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-md-2">Description</label>
+				<label class="control-label col-md-1"></label>
 				<div class="col-md-10">
-					<textarea class="form-control" rows="5" cols="35"  name="description" id="description"></textarea>
+					<textarea class="form-control" rows="5" name="description" id="description" style="resize:none"></textarea>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="form-group">
-				<label class="control-label col-md-2">Image URL</label>
+				<label class="control-label col-md-1"></label>
 				<div class="col-md-10">
 					<input type="text" class="form-control" name="imageUrl" id="imageUrl"/>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-md-2">Menu Order</label>
+				<label class="control-label col-md-1"></label>
 				<div class="col-md-10">
 					<input type="text" class="form-control" name="menuOrder" id="menuOrder"/>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-md-2">Menu Parent</label>
+				<label class="control-label col-md-1"></label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" name="menuParent" id="menuParent"/>
+					<select name="menuParent" id="menuParent" class = "form-control">
+							<option value = "" >-Choose Menu Parent-</option>
+					</select>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-md-2">Menu URL</label>
+				<label class="control-label col-md-1"></label>
 				<div class="col-md-10">
 					<input type="text" class="form-control" name="menuUrl" id="menuUrl"/>
 				</div>
@@ -55,7 +57,7 @@
 	</div>
 
 	<input type="hidden" class="form-control" name="id"id="id"/>
-	<input type="hidden" class="form-control" name="code"id="code" value="1" />
+	<input type="hidden" class="form-control" name="code" id="code"/>
 	<input type="hidden" class="form-control" name="createdBy" value="1" />
 	<input type="hidden" class="form-control" name="createdOn"id="createdOn" />
 	<input type="hidden" class="form-control" name="isDelete" value="false" />

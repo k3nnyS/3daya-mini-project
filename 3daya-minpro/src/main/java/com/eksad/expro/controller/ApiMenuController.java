@@ -88,8 +88,8 @@ public class ApiMenuController {
 		return result;
 	}
 	
-	@RequestMapping(value ="api/menu/{catId}", method = RequestMethod.DELETE)
-	public ResponseEntity<MenuModel> delApi(@PathVariable("catId") Integer vid){
+	@RequestMapping(value ="api/menu/{menuId}", method = RequestMethod.DELETE)
+	public ResponseEntity<MenuModel> delApi(@PathVariable("menuId") Integer vid){
 		ResponseEntity<MenuModel> result = null;
 		try {
 			MenuModel item = this.service.getById(vid);

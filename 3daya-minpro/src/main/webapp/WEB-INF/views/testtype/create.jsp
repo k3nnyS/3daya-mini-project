@@ -1,9 +1,9 @@
 <% request.setAttribute("contextName", request.getServletContext().getContextPath()); %>
 <form id="form-create" class="form-horizontal">
 	<div class="form-group">
-		<input type="hidden" class="form-control" name="id" id="id" value="1" />
+		<input type="hidden" class="form-control" name="id" id="id" />
 		<div class="col-md-10">
-			<input type="text" class="form-control" name="name" id="name" placeholder="Name"/>
+			<input type="text" class="form-control" name="name" id="name" placeholder="Name" />
 		</div>
 	</div>
 		

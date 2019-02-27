@@ -7,20 +7,23 @@
 		<h3 class="box-title">Role List</h3>
 		<!--  -->
 	</div>
-	<div class="box-body">
-		<div class="row">
-			<div class="box-tools col-md-4">
-					<span class="input-group-btn">
-					<input type="text" class="form-control"id="search-box" width="50px" />					
-						<button class="btn btn-info" onclick="search()">MyButton</button>
-					</span>
-			</div>
-			<div class="col-md-4">
-					<button type="button" id="btn-add" class="btn btn-success btn-sm pull-right">
-						<i class="fa fa-plus"></i>
-					</button>
+	
+	<div class="box-header col-md-12">
+			<input type="text" name="search" id="search"
+				placeholder="Search by username" />
+			<button class="margin col-md-0.5 btn btn-warning btn-xm"
+				onClick="search()">
+				<i class="fa fa-circle-o"></i>
+			</button>
+			<div class="box-tools col-md-1">
+				<button type="button" id="btn-add"
+					class="margin col-md-0.5 btn btn-warning btn-m">
+					<i class="fa fa-plus"></i>
+				</button>
 			</div>
 		</div>
+	<div class="box-body">
+		
 		<table class="table">
 			<thead>
 				<tr>
@@ -70,13 +73,14 @@
 								d.getDate() + "-" + d.getMonth() + "-"
 										+ d.getFullYear() + " " + d.getHours()
 										+ ":" + d.getMinutes() + ":"
-										+ d.getSeconds());
+										+ d.getSeconds()
+						);
 					}
 				});
 			});
 	
 	function search(){
-		var item = $('#search-box').val();
+		var item = $('#search').val();
 		$.ajax({
 			url: '${contextName}/api/role/search/' + item,
 			type: 'get',
@@ -116,20 +120,22 @@
 					//kosong data di table
 					$("#list-data").empty();
 					$.each(result, function(index, item){
-						var dataRow ='<tr>'+
-						'<td>'+ item.code+'</td>'+
-						'<td>'+ item.name+'</td>'+
-						'<td class="col-md-1">'+
-							'<div class="dropdown">'+
-								'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
-								    '<ul class="dropdown-menu">'+
-					    			'<li id="btn-edit" value="'+item.id+'"><a>Edit</a></li>'+
-				    		'<li id="btn-delete" value="'+item.id+'"><a>Delete</a></li>'+
-				    '</ul>'+
-				    '</div>'+
-					'</td>'+
-					'</tr>';
-					$("#list-data").append(dataRow);
+						if(item.isDelete == false){
+							var dataRow ='<tr>'+
+							'<td>'+ item.code+'</td>'+
+							'<td>'+ item.name+'</td>'+
+							'<td class="col-md-1">'+
+								'<div class="dropdown">'+
+									'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
+									    '<ul class="dropdown-menu">'+
+						    			'<li id="btn-edit" value="'+item.id+'"><a>Edit</a></li>'+
+					    		'<li id="btn-delete" value="'+item.id+'"><a>Delete</a></li>'+
+						    '</ul>'+
+						    '</div>'+
+							'</td>'+
+							'</tr>';
+							$("#list-data").append(dataRow);
+						}
 				});
 						console.log(result);
 					}
@@ -204,7 +210,6 @@
 		});
 	});
 
-	// method untuk delete data
 	function editData($form) {
 		var dataForm = getFormData($form);
 		$.ajax({
@@ -249,20 +254,26 @@
 
 	// method untuk delete data
 	function deleteData($form) {
-		// memangil method getFormData dari file
-		var vid = $form.find("#id").val();
+		$('#isDelete').val('true');
+		var dataForm = getFormData($form);
 		$.ajax({
-			url : '${contextName}/api/role/' + vid,
-			type : 'delete',
+			// url ke api/role/
+			url : '${contextName}/api/role/',
+			type : 'put',
+			// data type berupa JSON
 			dataType : 'json',
+			// mengirim parameter data
+			data : JSON.stringify(dataForm),
+			// mime type 
+			contentType : 'application/json',
 			success : function(result) {
 				//menutup modal
 				$("#modal-form").modal('hide');
 				// panggil method load data, untuk melihat data terbaru
 				loadData();
-				console.log(result);
 			}
 		});
+		console.log(dataForm);
 	}
 </script>
 
