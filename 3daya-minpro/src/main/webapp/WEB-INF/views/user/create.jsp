@@ -42,13 +42,15 @@
 	
 	<input type="hidden" class="form-control" name="isDelete" value="false"/>
 	
-	<input type="hidden" class="form-control" name="mobileFlag" value="false"/>
+	<input type="hidden" class="form-control" name="mobileFlag"/>
 	
 	<input type="hidden" class="form-control" name="modifiedBy" id="modifiedBy"/>
 	
 	<input type="hidden" class="form-control" name="modifiedOn" id="modifiedOn"/>
 	
 	<input type="hidden" class="form-control" name="deletedBy" id="deletedBy"/>
+	
+	<input type="hidden" class="form-control" name="deletedOn" id="deletedOn"/>
 	
 	
 	<div class="modal-footer">

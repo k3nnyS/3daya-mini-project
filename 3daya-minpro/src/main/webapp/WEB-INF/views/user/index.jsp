@@ -77,7 +77,7 @@
 						// menampilkan modal pop up
 						$("#modal-form").modal('show');
 						$('#createdOn').val(
-								d.getDate() + "-" + d.getMonth() + "-"
+								d.getDate() + "-" + (d.getMonth()+1) + "-"
 										+ d.getFullYear() + " " + d.getHours()
 										+ ":" + d.getMinutes() + ":"
 										+ d.getSeconds());
@@ -99,10 +99,7 @@
 						//kosong data di table
 						$("#list-data").empty();
 						// looping data dengan jQuery
-						$
-								.each(
-										result,
-										function(index, item) {
+						$.each(result,function(index, item) {
 											if(item.isDelete==false){
 												var dataRow = '<tr>'
 													+ '<td>'
@@ -154,7 +151,8 @@
 		console.log(dataForm);
 	}
 
-	function getData(dataId) {
+	function getDataEdit(dataId) {
+		var d = new Date($.now());
 		$.ajax({
 			url : '${contextName}/api/user/' + dataId,
 			type : 'get',
@@ -174,17 +172,50 @@
 				$('#modal-data').find('#deletedBy').val(dataApi.deletedBy);
 				$('#modal-data').find('#deletedOn').val(dataApi.deletedOn);
 				$('#modal-data').find('#isDelete').val(dataApi.isDelete);
-				console.log(dataApi);
+				$('#modifiedOn').val(
+						d.getDate() + "-" + (d.getMonth()+1) + "-"
+								+ d.getFullYear() + " " + d.getHours()
+								+ ":" + d.getMinutes() + ":"
+								+ d.getSeconds());
+				
+				
+			}
+		});
+	}
+	
+	function getDataDelete(dataId) {
+		var d = new Date($.now());
+		$.ajax({
+			url : '${contextName}/api/user/' + dataId,
+			type : 'get',
+			dataType : 'json',
+			success : function(dataApi) {
+				$('#modal-data').find('#id').val(dataApi.id);
+				$('#modal-data').find('#username').val(dataApi.username);
+				$('#modal-data').find('#password').val(dataApi.password);
+				$('#modal-data').find('#email').val(dataApi.email);
+				$('#modal-data').find('#roleId').val(dataApi.roleId);
+				$('#modal-data').find('#mobileFlag').val(dataApi.mobileFlag);
+				$('#modal-data').find('#mobileToken').val(dataApi.mobileToken);
+				$('#modal-data').find('#createdBy').val(dataApi.createdBy);
+				$('#modal-data').find('#createdOn').val(dataApi.createdOn);
+				$('#modal-data').find('#modifiedBy').val(dataApi.modifiedBy);
+				$('#modal-data').find('#modifiedOn').val(dataApi.modifiedOn);
+				$('#modal-data').find('#deletedBy').val(dataApi.deletedBy);
+				$('#modal-data').find('#deletedOn').val(dataApi.deletedOn);
+				$('#modal-data').find('#isDelete').val(dataApi.isDelete);
+		
+				$('#deletedOn').val(
+						d.getDate() + "-" + (d.getMonth()+1) + "-"
+								+ d.getFullYear() + " " + d.getHours()
+								+ ":" + d.getMinutes() + ":"
+								+ d.getSeconds());
 			}
 		});
 	}
 	// ketidak btn-edit di click
-	$('#list-data').on(
-			'click',
-			'#btn-edit',
-			function() {
+	$('#list-data').on('click', '#btn-edit', function() {
 				var vid = $(this).val();
-				var d = new Date($.now());
 				$.ajax({
 					url : '${contextName}/user/edit',
 					type : 'get',
@@ -196,19 +227,17 @@
 						$("#modal-data").html(result);
 						//menampilkan modal pop up
 						$("#modal-form").modal('show');
-						$('#modifiedOn').val(
-								d.getDate() + "-" + d.getMonth() + "-"
-										+ d.getFullYear() + " " + d.getHours()
-										+ ":" + d.getMinutes() + ":"
-										+ d.getSeconds());
+						
 						//panggil Role
 						loadRole($("#modal-data"));
 
 						// panggil method getData
-						getData(vid);
+						getDataEdit(vid);
 						
 					}
 				});
+				
+				console.log(dataApi);
 			});
 
 	// method untuk edit data
@@ -218,6 +247,7 @@
 		var dataForm = getFormData($form);
 		$.ajax({
 			// url ke api/user/
+			
 			url : '${contextName}/api/user/',
 			type : 'put',
 			// data type berupa JSON
@@ -270,7 +300,7 @@
 				$('#modal-title').html("RESET PASSWORD");
 				$('#modal-data').html(result);
 				$('#modal-form').modal('show');
-				getData(vid);
+				getDataDelete(vid);
 			}
 			
 		});

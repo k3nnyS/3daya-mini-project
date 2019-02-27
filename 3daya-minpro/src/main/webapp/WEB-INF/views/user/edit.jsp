@@ -31,9 +31,9 @@
 		<label class="control-label col-md-3">Mobile Flag</label>
 		<div class="col-md-7">
 			<label class="radio-inline"> 
-			<input type="radio" name="mobileFlag" id="mobileFlag" value="false">True</label>
+			<input type="radio" name="mobileFlag" id="mobileFlag" value="true">True</label>
 			<label class="radio-inline">
-			<input type="radio" name="mobileFlag" id="mobileFlag" value="true">False</label>
+			<input type="radio" name="mobileFlag" id="mobileFlag" value="false">False</label>
 		</div>
 	</div>
 
@@ -55,11 +55,11 @@
 	
 	<input type="hidden" class="form-control" name="modifiedBy" id="modifiedBy"/>
 	
-	<input type="hidden" class="form-control" name="modifiedOn" id="modifiedOn"/>
+	<input type="text" class="form-control" name="modifiedOn" id="modifiedOn"/>
 	
 	<input type="hidden" class="form-control" name="deletedBy" id="deletedBy"/>
 	
-	<input type="hidden" class="form-control" name="deletedOn" id="deletedOn"/>
+	<input type="text" class="form-control" name="deletedOn" id="deletedOn"/>
 	
 <div class="modal-footer">
 		<button type="button" class="btn btn-success pull-left" onClick="editData($('#form-edit'))">UPDATE</button>
