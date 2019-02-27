@@ -73,7 +73,8 @@
 								d.getDate() + "-" + d.getMonth() + "-"
 										+ d.getFullYear() + " " + d.getHours()
 										+ ":" + d.getMinutes() + ":"
-										+ d.getSeconds());
+										+ d.getSeconds()
+						);
 					}
 				});
 			});
@@ -119,20 +120,22 @@
 					//kosong data di table
 					$("#list-data").empty();
 					$.each(result, function(index, item){
-						var dataRow ='<tr>'+
-						'<td>'+ item.code+'</td>'+
-						'<td>'+ item.name+'</td>'+
-						'<td class="col-md-1">'+
-							'<div class="dropdown">'+
-								'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
-								    '<ul class="dropdown-menu">'+
-					    			'<li id="btn-edit" value="'+item.id+'"><a>Edit</a></li>'+
-				    		'<li id="btn-delete" value="'+item.id+'"><a>Delete</a></li>'+
-				    '</ul>'+
-				    '</div>'+
-					'</td>'+
-					'</tr>';
-					$("#list-data").append(dataRow);
+						if(item.isDelete == false){
+							var dataRow ='<tr>'+
+							'<td>'+ item.code+'</td>'+
+							'<td>'+ item.name+'</td>'+
+							'<td class="col-md-1">'+
+								'<div class="dropdown">'+
+									'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
+									    '<ul class="dropdown-menu">'+
+						    			'<li id="btn-edit" value="'+item.id+'"><a>Edit</a></li>'+
+					    		'<li id="btn-delete" value="'+item.id+'"><a>Delete</a></li>'+
+						    '</ul>'+
+						    '</div>'+
+							'</td>'+
+							'</tr>';
+							$("#list-data").append(dataRow);
+						}
 				});
 						console.log(result);
 					}
@@ -251,20 +254,26 @@
 
 	// method untuk delete data
 	function deleteData($form) {
-		// memangil method getFormData dari file
-		var vid = $form.find("#id").val();
+		$('#isDelete').val('true');
+		var dataForm = getFormData($form);
 		$.ajax({
-			url : '${contextName}/api/role/' + vid,
-			type : 'delete',
+			// url ke api/role/
+			url : '${contextName}/api/role/',
+			type : 'put',
+			// data type berupa JSON
 			dataType : 'json',
+			// mengirim parameter data
+			data : JSON.stringify(dataForm),
+			// mime type 
+			contentType : 'application/json',
 			success : function(result) {
 				//menutup modal
 				$("#modal-form").modal('hide');
 				// panggil method load data, untuk melihat data terbaru
 				loadData();
-				console.log(result);
 			}
 		});
+		console.log(dataForm);
 	}
 </script>
 

@@ -3,24 +3,28 @@
 	<div class = "box-body">
 		<div class = "row">
 			<div class = "col-md-6">
+			<!-- Name -->
 				<div class = "form-group">
 					<label class = "control-label col-md-1"></label>
 					<div class = "col-md-10">
 						<input type = "text" class = "form-control" name = "name" placeholder = "Name"/>
 					</div>
 				</div>
+				<!-- Technology -->
 				<div class = "form-group">
 					<label class = "control-label col-md-1"></label>
 					<div class = "col-md-10">
 						<input type = "text" class = "form-control" name = "technologyId" placeholder = "Technology"/>
 					</div>
 				</div>
+				<!-- Period To -->
 				<div class = "form-group">
 					<label class = "control-label col-md-1"></label>
 					<div class = "col-md-10">
 						<input type = "date" class = "form-control" name = "periodTo" placeholder = "Period To"/>
 					</div>
 				</div>
+				<!-- Bootcamp Type -->
 				<div class = "form-group">
 					<label class = "control-label col-md-1"></label>
 					<div class = "col-md-10">
@@ -32,12 +36,14 @@
 				</div>
 			</div>
 			<div class = "col-md-6">
+				<!-- Room -->
 				<div class = "form-group">
 					<label class = "control-label col-md-1"></label>
 					<div class = "col-md-10">
 						<input type = "text" class = "form-control" name = "roomId" placeholder = "Room"/>
 					</div>
 				</div>
+				<!-- Trainer -->
 				<div class = "form-group">
 					<label class = "control-label col-md-1"></label>
 					<div class = "col-md-10">
@@ -47,12 +53,14 @@
 						<!-- <input type = "text" class = "form-control" name = "trainerId" placeholder = "Trainer"/>-->
 					</div>
 				</div>
+				<!-- Period From -->
 				<div class = "form-group">
 					<label class = "control-label col-md-1"></label>
 					<div class = "col-md-10">
 						<input type = "date" class = "form-control" name = "periodFrom" placeholder = "Period From"/>
 					</div>
 				</div>
+				<!-- Note -->
 				<div class = "form-group">
 					<label class = "control-label col-md-1"></label>
 					<div class = "col-md-10">

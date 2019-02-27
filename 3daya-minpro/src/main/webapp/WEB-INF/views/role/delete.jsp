@@ -6,6 +6,7 @@
 	</center>
 	
 	<input type="hidden" name="id" id="id" />
+	<input type="hidden" name="code" id="code" />
 	<input type="hidden" name="name" id="name" />
 	<input type="hidden" name="description" id="description" />
 	<input type="hidden" name="createdBy" id="createdBy" />

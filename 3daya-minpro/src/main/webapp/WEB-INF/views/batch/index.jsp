@@ -65,7 +65,7 @@
 					var dataRow ='<tr>'+
 					'<td>'+ item.technologyId +'</td>'+
 					'<td>'+ item.name+'</td>'+
-					'<td>'+ item.trainerId+'</td>'+
+					'<td>'+ item.trainer.name+'</td>'+
 					'<td class = "col-md-1">'+
 					'<div class = "dropdown">'+
 						'<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
@@ -97,7 +97,7 @@
 					var dataRow ='<tr>'+
 					'<td>'+ item.technologyId +'</td>'+
 					'<td>'+ item.name+'</td>'+
-					'<td>'+ item.trainerId+'</td>'+
+					'<td>'+ item.trainer.name+'</td>'+
 					'<td class = "col-md-1">'+
 					'<div class = "dropdown">'+
 						'<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
@@ -195,4 +195,42 @@
 			}
 		});
 	}
+	
+	function getData(dataId){
+		$.ajax({
+			url : '${contextName}/api/batch/'+dataId,
+			type : 'get',
+			dataType : 'json',
+			success : function(dataApi){
+				$('#modal-data').find('#id').val(dataApi.id);
+				$('#modal-data').find('#technologyId').val(dataApi.techologyId);
+				$('#modal-data').find('#trainerId').val(dataApi.trainerId);
+				$('#modal-data').find('#name').val(dataApi.name);
+				$('#modal-data').find('#periodFrom').val(dataApi.periodFrom);
+				$('#modal-data').find('#periodTo').val(dataApi.periodTo);
+				$('#modal-data').find('#roomId').val(dataApi.roomId);
+				$('#modal-data').find('#bootcampTypeId').val(dataApi.bootcampTypeId);
+				$('#modal-data').find('#notes').val(dataApi.notes);
+				$('#modal-data').find('#createdBy').val(dataApi.createdBy);
+				$('#modal-data').find('#createdOn').val(dataApi.createdOn);
+				$('#modal-data').find('#isDelete').val(dataApi.isDelete);
+			}
+		});
+	}
+	
+	//letika btn-edit di klik
+	$('#list-data').on('click', '#btn-edit', function() {
+		var vid = $(this).val();
+		$.ajax({
+			url : '${contextName}/batch/edit',
+			type : 'get',
+			dataType : 'html',
+			success : function(result) {
+				$("#modal-title").html("EDIT");
+				$("#modal-data").html(result);
+				$("#modal-form").modal('show');
+				getData(vid);
+			}
+		});
+	});
 </script>
