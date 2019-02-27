@@ -35,4 +35,14 @@ public class TechnologyController {
 	public String delete() {
 		return "/technology/delete";
 	}
+	
+	@RequestMapping(value="/technology/detail")
+	public String detail() {
+		return "/technology/detail";
+	}
+	
+	@RequestMapping(value="/technology/trainer")
+	public String addTt() {
+		return"/technology/trainer";
+	}
 }
