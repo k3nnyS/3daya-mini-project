@@ -87,7 +87,7 @@ public class ApiTechnologyController {
 	public ResponseEntity<TechForm> postInsert(@RequestBody TechForm item){
 		ResponseEntity<TechForm> result = null;
 		try {
-			this.service.insert(item);
+			this.service.insert(item,1);
 			result = new ResponseEntity<TechForm>(item, HttpStatus.CREATED);
 		} catch (Exception e) {
 			log.debug(e.getMessage(),e);

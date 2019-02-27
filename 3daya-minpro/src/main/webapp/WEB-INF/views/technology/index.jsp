@@ -19,7 +19,6 @@
 			</div>
 	</div>
 	
-		
 	<div class="box-body">
 		<table class="table">
 			<thead>
@@ -70,7 +69,7 @@
 	//method loadData
 	function loadData(){
 		$.ajax({
-			// url ke api/category/
+			// url ke api/technology/
 			url:'${contextName}/api/technology/',
 			type:'get',
 			// data type berupa JSON
@@ -80,6 +79,7 @@
 				$("#list-data").empty();
 				// looping data dengan jQuery
 				$.each(result, function(index, item){
+					if (item.isDelete == false) {
 					var dataRow ='<tr>'+
 						'<td>'+ item.name+'</td>'+
 						'<td>'+ item.createdBy+'</td>'+
@@ -94,6 +94,7 @@
 						'</td>'+
 						'</tr>';
 					$("#list-data").append(dataRow);
+					}
 				});
 				// menampilkan data ke console => F12
 				console.log(result);
@@ -144,7 +145,6 @@
 	//ketika button add di click maka muncul pop up form add
 	//ajax di dalem jquery
 	$("#btn-add").click(function(){
-		var d = new Date($.now());
 		$.ajax({
 			url:'${contextName}/technology/create',
 			type:'get',
@@ -156,7 +156,6 @@
 				$("#modal-datech").html(result);
 				//menampilkan modal pop up
 				$("#modal-technology").modal('show');
-				$('#createdOn').val(d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds());
 			}
 		});
 	});
@@ -286,23 +285,27 @@
 	
 	// method untuk delete data
 	function deleteData($form){
+		$('#isDelete').val('true');
 		// memangil method getFormData dari file
-		var vid = $form.find("#id").val();
+		// resources/dist/js/map-dagang-objet.js
+		var dataForm = getFormData($form);
 		$.ajax({
 			// url ke api/technology/
-			url:'${contextName}/api/technology/'+vid,
-			// method http di controller
-			type:'delete',
+			url:'${contextName}/api/technology/',
+			type:'put',
 			// data type berupa JSON
 			dataType:'json',
-			// jika sukses
+			// mengirim parameter data
+			data:JSON.stringify(dataForm),
+			// mime type 
+			contentType: 'application/json',
 			success : function(result){
 				//menutup modal
 				$("#modal-technology").modal('hide');
 				// panggil method load data, untuk melihat data terbaru
 				loadData();
-				console.log(result);
 			}
 		});
+		console.log(dataForm);
 	}
 	</script>

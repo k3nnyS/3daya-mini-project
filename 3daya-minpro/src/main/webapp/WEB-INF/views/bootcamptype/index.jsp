@@ -110,6 +110,7 @@
 				$("#list-data").empty();
 				// looping data dengan jQuery
 				$.each(result, function(index, item){
+					if(item.isDelete ==  false) {
 					var dataRow ='<tr>'+
 						'<td>'+ item.name+'</td>'+
 						'<td>'+ item.createdBy+'</td>'+
@@ -124,6 +125,7 @@
 						'</td>'+
 						'</tr>';
 					$("#list-data").append(dataRow);
+					}
 				});
 				// menampilkan data ke console => F12
 				console.log(result);
@@ -250,23 +252,25 @@
 	
 	// method untuk delete data
 	function deleteData($form){
-		// memangil method getFormData dari file
-		var vid = $form.find("#id").val();
+		$('#isDelete').val('true');
+		var dataForm = getFormData($form);
 		$.ajax({
-			// url ke api/bootcamptype/
-			url:'${contextName}/api/bootcamptype/'+vid,
-			// method http di controller
-			type:'delete',
+			// url ke api/trainer/
+			url:'${contextName}/api/bootcamptype/',
+			type:'put',
 			// data type berupa JSON
 			dataType:'json',
-			// jika sukses
+			// mengirim parameter data
+			data:JSON.stringify(dataForm),
+			// mime type 
+			contentType: 'application/json',
 			success : function(result){
 				//menutup modal
 				$("#modal-bt").modal('hide');
 				// panggil method load data, untuk melihat data terbaru
 				loadData();
-				console.log(result);
 			}
 		});
+		console.log(dataForm);
 	}
 	</script>

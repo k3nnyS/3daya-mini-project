@@ -9,11 +9,6 @@
 				</select>
 			</div>
 	</div>
-			
-		<input type="hidden" class="form-control" name="createdBy" value="1" id="createdBy"/>
-	
-		<input type="hidden" class="form-control" name="createdOn" value="" id="createdOn"/>
-	
 	
 	<div class="modal-footer">
 		<button type="button" class="btn btn-warning" style ="position: relative; right: 160px;" data-dismiss="modal">CANCEL</button>

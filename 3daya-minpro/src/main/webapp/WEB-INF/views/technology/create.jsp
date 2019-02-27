@@ -1,6 +1,4 @@
-<%
-	request.setAttribute("contextName", request.getServletContext().getContextPath());
-%>
+<%request.setAttribute("contextName", request.getServletContext().getContextPath());%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- form mulai -->
 <form id="form-create" class="form-horizontal">
@@ -19,22 +17,16 @@
 				style="resize: none" />
 		</div>
 	</div>
-		 
-		<input type="hidden" class="form-control" name="tech[createdBy]" value="1" id="createdBy" /> 
-		<input type="hidden" class="form-control" name="tech[createdOn]" value="2019-11-2" id="createdOn" />
-		<input type="hidden" class="form-control" name="tech[isDelete]" value="false" id="isDelete" />
 
 	<br>
-
-
-	<hr width="80%" color="red">
 
 	<br>
 	<button type="button" class="btn btn-warning"
 		style="position: relative; left: 435px;" onClick="addTrainer()" id="btn-trainer">+TRAINER</button>
 
 	<div class="box-body">
-		<table class="table">
+		<table class="control-table col-md-10" border="1">
+		<div class="col-md-1">
 			<thead>
 				<tr>
 					<th>NAME</th>
@@ -42,6 +34,7 @@
 				</tr>
 			</thead>
 			<tbody id="list-train">
+			
 			</tbody>
 		</table>
 	</div>
@@ -59,7 +52,6 @@
 
 <script>
 	$("#btn-trainer").click(function() {
-		var d = new Date($.now());
 		$.ajax({
 			url : '${contextName}/technology/trainer',
 			type : 'get',
@@ -72,9 +64,6 @@
 				//menampilkan modal pop up
 				$("#modal-tech").modal('show');
 				loadTrainer($("#modal-datrain"), 0);
-				$('#createdOn').val(d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds());
-
-
 			}
 		});
 	});
@@ -94,6 +83,7 @@
 						'<option value="">-Choose Trainer-</option>');
 				// looping data
 				$.each(result, function(index, item) {
+					if (item.isDelete == false) {
 					if ($selected == item.id) {
 						$form.find("#trainerId").append(
 								'<option value="'+ item.id +'" selected="selected">'
@@ -103,45 +93,31 @@
 								'<option value="'+ item.id +'"> ' + item.name
 										+ '</option>');
 					}
+					}
 				});
 			}
 		});
 	}
 
+	//menyimpan trainer ke table
 	function addTrainer($tech) {
-		var d = new Date($.now());
-		var dataTrainer = $tech.serializeJSON();
+		var id = $tech.find('#trainerId').val();
+		var name = $tech.find('#trainerId option:selected').text();
 		var dataRow = '<tr>'
 				+ '<td>'
-				+ '<input type="hidden" name="tt[][trainerId]" value="'+dataTrainer.trainerId+'" class="form-control trainerId"/>'
-				+ '<input type="text" name="tt[][name]" value="'+ dataTrainer.name +'" class="form-control name"/>'
-				+ '<input type="hidden" name="tt[][createdBy]" value="'+dataTrainer.createdBy+'" class="form-control createdBy"/>'
-				+ '<input type="hidden" name="tt[][createdOn]" id="createdOn" value="'+d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+'" class="form-control createdOn"/>'
-
-				+ '<td><button type="button" class="btn btn-remove btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>'
+				+ '<input type="hidden" name="tt[][trainerId]" value="'+ id +'" class="form-control trainerId"/>'
+				+ '<input type="text" name="tt[][trainerName]" value="'+ name +'" class="form-control name"/>'
+				+ '<td><button type="button" class="btn btn-remove btn-sm btn-danger" ><i class="fa fa-trash"></i></button></td>'
 		'</td>' + '</tr>';
 		// add data to list-detail
 		$('#list-train').append(dataRow);
 		// hide modal
+		
 		$("#modal-tech").modal('hide');
-
 	}
 
 	//remove button
-	$('#list-datrain').on('click', '.btn-remove', function() {
+	$('#list-train').on('click', '.btn-remove', function() {
 		$(this).closest('tr').remove();
 	});
-
-	//ketika kita meng-klik combo-box product
-	function getTrainerById(pId) {
-		$.ajax({
-			url : '${contextName}/api/trainer/' + pId,
-			type : 'get',
-			dataType : 'json',
-			success : function(result) {
-				$('#modal-train').find('#trainerId').val(result.trainerId);
-				$('#modal-train').find('#trainerName').val(result.trainerName);
-			}
-		});
-	}
 </script>

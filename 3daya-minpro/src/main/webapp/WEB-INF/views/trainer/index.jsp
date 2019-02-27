@@ -11,6 +11,7 @@
 				onClick="search()">
 				<i class="fa fa-circle-o"></i>
 			</button>
+			
 			<div class="box-tools col-md-1">
 				<button type="button" id="btn-add"
 					class="margin col-md-0.5 btn btn-warning btn-m">
@@ -109,6 +110,7 @@
 				$("#list-data").empty();
 				// looping data dengan jQuery
 				$.each(result, function(index, item){
+					if(item.isDelete == false) {
 					var dataRow ='<tr>'+
 						'<td>'+ item.name+'</td>'+
 						'<td class="col-md-1">'+
@@ -122,6 +124,7 @@
 						'</td>'+
 						'</tr>';
 					$("#list-data").append(dataRow);
+					}
 				});
 				// menampilkan data ke console => F12
 				console.log(result);
@@ -247,23 +250,25 @@
 	
 	// method untuk delete data
 	function deleteData($form){
-		// memangil method getFormData dari file
-		var vid = $form.find("#id").val();
+		$('#isDelete').val('true');
+		var dataForm = getFormData($form);
 		$.ajax({
 			// url ke api/trainer/
-			url:'${contextName}/api/trainer/'+vid,
-			// method http di controller
-			type:'delete',
+			url:'${contextName}/api/trainer/',
+			type:'put',
 			// data type berupa JSON
 			dataType:'json',
-			// jika sukses
+			// mengirim parameter data
+			data:JSON.stringify(dataForm),
+			// mime type 
+			contentType: 'application/json',
 			success : function(result){
 				//menutup modal
 				$("#modal-trainer").modal('hide');
 				// panggil method load data, untuk melihat data terbaru
 				loadData();
-				console.log(result);
 			}
 		});
+		console.log(dataForm);
 	}
 	</script>

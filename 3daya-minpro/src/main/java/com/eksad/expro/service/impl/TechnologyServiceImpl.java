@@ -1,5 +1,7 @@
 package com.eksad.expro.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,15 +40,23 @@ public class TechnologyServiceImpl implements TechnologyService {
 	}
 
 	@Override
-	public void insert(TechForm model) {
+	public void insert(TechForm model, Integer userid) {
+		SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+		Date now = new Date();
+		String strDate = date.format(now);
 		//input data ke tabel Technology
 		TechnologyModel tech = model.getTech();
+		tech.setCreatedBy(userid);
+		tech.setCreatedOn(strDate);
+		tech.setIsDelete(false);
 		this.dao.insert(model.getTech());
 				
 		// input ke tabel Technology Trainer
 		if (model.getTt() !=null) {
 			for (TechTrainerModel tt : model.getTt()) {
 				tt.setTechnologyId(tech.getId());
+				tt.setCreatedBy(userid);
+				tt.setCreatedOn(strDate);
 				this.daoTt.insert(tt);	
 			}				
 		}
