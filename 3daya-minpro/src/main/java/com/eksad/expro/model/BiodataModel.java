@@ -42,8 +42,8 @@ public class BiodataModel {
 	@Column(name = "gpa")
 	private String gpa;
 	
-	@Column(name = "bootcamp_type_test")
-	private Integer bootcampTypeTest;
+	@Column(name = "bootcamp_test_type")
+	private Integer bootcampTestType;
 	
 	@Column(name = "iq")
 	private Integer iq;
@@ -157,12 +157,12 @@ public class BiodataModel {
 		this.gpa = gpa;
 	}
 
-	public Integer getBootcampTypeTest() {
-		return bootcampTypeTest;
+	public Integer getBootcampTestType() {
+		return bootcampTestType;
 	}
 
-	public void setBootcampTypeTest(Integer bootcampTypeTest) {
-		this.bootcampTypeTest = bootcampTypeTest;
+	public void setBootcampTestType(Integer bootcampTypeTest) {
+		this.bootcampTestType = bootcampTypeTest;
 	}
 
 	public Integer getIq() {

@@ -15,7 +15,7 @@
 	<input type="hidden" class="form-control" name="modifiedOn" id="modifiedOn"/>
 	<input type="hidden" class="form-control" name="deletedBy" id="deletedBy"/>
 	<input type="hidden" class="form-control" name="deletedOn" id="deletedOn"/>
-	<input type="hidden" class="form-control" name="isDelete" value="true" id="isDelete"/>
+	<input type="hidden" class="form-control" name="isDelete" id="isDelete"/>
 	
 	<div class="modal-footer">
 		<button type="button" class="btn btn-danger pull-left" data-dismiss="modal">No</button>
