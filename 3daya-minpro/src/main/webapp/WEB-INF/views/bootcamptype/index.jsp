@@ -2,30 +2,35 @@
 <div class="box box-info">
 	<div class="box-header">
 		<h3 class="box-title">BOOTCAMP TYPE</h3>
-		<div class="box-tools">
-			<button type="button" id="btn-add" class="btn btn-primary btn-sm">
-				<i class="fa fa-plus"></i>
-			</button>
-		</div>
 	</div>
-	<div class="box-tools col-md-12">
-			<input type="text" name="search" id="search" placeholder="Search by name"/>
-			<button class="btn btn-primary btn-sm" onclick="search()">
+	
+	<div class="box-header col-md-12">
+			<input type="text" name="search" id="search"
+				placeholder="Search by name" />
+			<button class="btn btn-warning btn-xm"
+				onClick="search()">
 				<i class="fa fa-circle-o"></i>
 			</button>
-		</div>
+			<div class="box-tools col-md-1">
+				<button type="button" id="btn-add"
+					class="margin col-md-0.5 btn btn-warning btn-m">
+					<i class="fa fa-plus"></i>
+				</button>
+			</div>
+	</div>
+		
 	<div class="box-body">
 		<table class="table">
 			<thead>
 				<tr>
 					<th>NAME</th>
 					<th>CREATED BY</th>
-					<th>#</th>
+					<th class="col-md-1">#</th>
 				</tr>
 			</thead>
 			<tbody id="list-data">
 			</tbody>
-		</table>		
+		</table>
 	</div>
 </div>
 
@@ -105,12 +110,13 @@
 				$("#list-data").empty();
 				// looping data dengan jQuery
 				$.each(result, function(index, item){
+					if(item.isDelete ==  false) {
 					var dataRow ='<tr>'+
 						'<td>'+ item.name+'</td>'+
 						'<td>'+ item.createdBy+'</td>'+
 						'<td class="col-md-1">'+
 						'<div class="dropdown">'+
-						'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
+						'<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
 					    '<ul class="dropdown-menu">'+
 					    	'<li id="btn-edit" value="'+item.id+'"><a>Edit</a></li>'+
 					    	'<li id="btn-delete" value="'+item.id+'"><a>Delete</a></li>'+
@@ -119,6 +125,7 @@
 						'</td>'+
 						'</tr>';
 					$("#list-data").append(dataRow);
+					}
 				});
 				// menampilkan data ke console => F12
 				console.log(result);
@@ -163,7 +170,7 @@
 					'<td>'+ item.createdBy+'</td>'+
 					'<td class="col-md-1">'+
 						'<div class="dropdown">'+
-					'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
+					'<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
 				   	 '<ul class="dropdown-menu">'+
 				   	'<li id="btn-edit" value="'+item.id+'"><a>Edit</a></li>'+
 			    	'<li id="btn-delete" value="'+item.id+'"><a>Delete</a></li>'+
@@ -245,23 +252,25 @@
 	
 	// method untuk delete data
 	function deleteData($form){
-		// memangil method getFormData dari file
-		var vid = $form.find("#id").val();
+		$('#isDelete').val('true');
+		var dataForm = getFormData($form);
 		$.ajax({
-			// url ke api/bootcamptype/
-			url:'${contextName}/api/bootcamptype/'+vid,
-			// method http di controller
-			type:'delete',
+			// url ke api/trainer/
+			url:'${contextName}/api/bootcamptype/',
+			type:'put',
 			// data type berupa JSON
 			dataType:'json',
-			// jika sukses
+			// mengirim parameter data
+			data:JSON.stringify(dataForm),
+			// mime type 
+			contentType: 'application/json',
 			success : function(result){
 				//menutup modal
 				$("#modal-bt").modal('hide');
 				// panggil method load data, untuk melihat data terbaru
 				loadData();
-				console.log(result);
 			}
 		});
+		console.log(dataForm);
 	}
 	</script>

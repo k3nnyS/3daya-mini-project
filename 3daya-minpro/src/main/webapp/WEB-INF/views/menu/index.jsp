@@ -75,7 +75,8 @@
 				$("#list-data").empty();
 				// looping data dengan jQuery
 				$.each(result, function(index, item){
-					var dataRow ='<tr>'+
+					if(item.isDelete == false){
+						var dataRow ='<tr>'+
 						'<td>'+ item.code +'</td>'+
 						'<td>'+ item.title+'</td>'+
 						'<td>'+ item.menuParent+'</td>'+
@@ -90,6 +91,7 @@
 						'</td>' +
 						'</tr>';
 					$("#list-data").append(dataRow);
+					}
 				});
 				// menampilkan data ke console => F12
 				console.log(result);
@@ -331,23 +333,25 @@
 	
 	// method untuk delete data
 	function deleteData($form){
-		// memangil method getFormData dari file
-		var vid = $form.find("#id").val();
+		$('#isDelete').val('true');
+		var dataForm = getFormData($form);
 		$.ajax({
-			// url ke api/trainer/
-			url:'${contextName}/api/menu/'+vid,
-			// method http di controller
-			type:'delete',
+			// url ke api/role/
+			url : '${contextName}/api/menu/',
+			type : 'put',
 			// data type berupa JSON
-			dataType:'json',
-			// jika sukses
-			success : function(result){
+			dataType : 'json',
+			// mengirim parameter data
+			data : JSON.stringify(dataForm),
+			// mime type 
+			contentType : 'application/json',
+			success : function(result) {
 				//menutup modal
 				$("#modal-form-small").modal('hide');
 				// panggil method load data, untuk melihat data terbaru
 				loadData();
-				console.log(result);
 			}
 		});
+		console.log(dataForm);
 	}
 </script>

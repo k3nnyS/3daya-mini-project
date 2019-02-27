@@ -64,6 +64,7 @@
 				$("#list-data").empty();
 				//looping data dengan JQuery
 				$.each(result, function(index, item){
+					if(item.isDelete == false){
 					var dataRow = '<tr>'+
 						'<td>'+ item.title +'</td>'+
 						'<td class = "col-md-1">'+
@@ -77,6 +78,7 @@
 						'</td>'+
 					'</tr>';
 				$("#list-data").append(dataRow);
+					}
 				});
 				//menampilkan data ke console => F12
 				console.log(result);
@@ -198,17 +200,21 @@
 	
 	//function untuk mendelete data
 	function deleteData($form){
-		var vid = $form.find("#id").val();
+		$('#isDelete').val('true');
+		var dataForm = getFormData($form);
 		$.ajax({
-			url : '${contextName}/api/testimony/'+vid,
-			type : 'delete',
-			dataType : 'json',
+			url:'${contextName}/api/testimony/',
+			type:'put',
+			dataType:'json',
+			data:JSON.stringify(dataForm),
+			contentType: 'application/json',
 			success : function(result){
-				$('#modal-form').modal('hide');
+				$("#modal-form").modal('hide');
+				// panggil method load data, untuk melihat data terbaru
 				loadData();
-				console.log(result);
 			}
 		});
+		console.log(dataForm);
 	}
 	
 	// ketika btn-delete di klik

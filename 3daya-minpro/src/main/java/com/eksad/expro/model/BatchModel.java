@@ -8,17 +8,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
 
 @Entity
 @Table(name ="t_batch")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class BatchModel {
 	
 	@Id
@@ -78,6 +79,10 @@ public class BatchModel {
 	
 	@Column(name = "is_delete")
 	private Boolean isDelete;
+	
+	@ManyToOne
+	@JoinColumn(name = "trainer_id", updatable = false, insertable = false)
+	private TrainerModel trainer;
 	
 	public Integer getId() {
 		return id;
@@ -196,7 +201,12 @@ public class BatchModel {
 	public void setIsDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
 	}
-	
+	public TrainerModel getTrainer() {
+		return trainer;
+	}
+	public void setTrainer(TrainerModel trainer) {
+		this.trainer = trainer;
+	}
 	
 	
 }
