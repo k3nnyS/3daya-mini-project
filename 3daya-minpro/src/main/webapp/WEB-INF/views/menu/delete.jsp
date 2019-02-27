@@ -12,6 +12,9 @@
 	<input type="hidden" name="menuOrder" id="menuOrder"/>
 	<input type="hidden" name="menuParent" id="menuParent" />
 	<input type="hidden" name="menuUrl" id="menuUrl"/>
+	<input type="hidden" name="createdBy" id="createdBy" />
+	<input type="hidden" name="createdOn" id="createdOn" />
+	<input type="hidden" name="isDelete" id="isDelete" />
 	
 	<div class="modal-footer">
 		<button type="button" class="btn btn-danger pull-left" data-dismiss="modal">No</button>
