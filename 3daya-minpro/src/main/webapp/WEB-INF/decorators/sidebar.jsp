@@ -49,6 +49,8 @@
 					<li><a href="${contextName}/testimony"><i class="fa fa-circle-o"></i>Testimony</a></li>
 					<li><a href="${contextName}/biodata"><i class="fa fa-circle-o"></i>Biodata</a></li>
 					<li><a href="${contextName}/batch"><i class="fa fa-circle-o"></i>Batch</a></li>
+					<li><a href="${contextName}/logout"><i class="fa fa-circle-o"></i>Logout</a></li>
+				
 				</ul>
 			</li>		
 		</ul>
