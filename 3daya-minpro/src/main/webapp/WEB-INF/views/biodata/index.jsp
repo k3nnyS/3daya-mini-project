@@ -2,7 +2,7 @@
 
 <div class="box box-info">
 	<div class="box-header">
-		<h3 class="box-title">Role List</h3>
+		<h3 class="box-title">List Biodata</h3>
 		<!--  -->
 	</div>
 	
@@ -41,7 +41,7 @@
 	<div class="modal-dialog">
 		<div class="box box-success">
 			<div class="box-header with-border">
-				<h3 class="box-title" id="modal-title"></h3>
+				<h3 class="box-title" id="modal-title">Tambah Biodata</h3>
 			</div>
 			<div class="box-body" id="modal-data"></div>
 		</div>
@@ -72,7 +72,7 @@ $('#btn-add').click(function() {
 		}
 	});
 });
-
+// fungsi load semua data
 function loadData() {
 	$.ajax({
 		url : '${contextName}/api/biodata/list',
@@ -81,6 +81,7 @@ function loadData() {
 		success : function(result) {
 			$('#list-data').empty();
 			$.each(result, function(index, item){
+				if(item.isDelete == false){
 				var dataRow = '<tr>'+
 				'<td>'+ item.name+'</td>'+
 				'<td>'+ item.majors+'</td>'+
@@ -103,9 +104,64 @@ function loadData() {
 				'</tr>';
 				
 				$('#list-data').append(dataRow);
+				}
 			});
 			console.log(result);
 		}
 	});
+}
+
+function search(){
+	var item = $('#search').val();
+	$.ajax({
+		url : '${contextName}/api/biodata/search/'+ item,
+		type : 'get',
+		dataType : 'json',
+		success : function(result) {
+			$('#list-data').empty();
+			$.each(result, function(index, item){
+				if(item.isDelete == false){
+				var dataRow = '<tr>'+
+				'<td>'+ item.name+'</td>'+
+				'<td>'+ item.majors+'</td>'+
+				'<td>'+ item.gpa+'</td>'+
+				'<td class="col-md-1">'+ 
+					'<div class="dropdown">'+
+						'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">'+
+							'<i class="fa fa-align-justify"></i>'+
+							'<span class="caret"></span>'+'</button>'
+							'<ul class="dropdown-menu">'+
+								'<li id="btn-edit" value="'+item.id+'">'+
+									'<a>Edit</a>'+
+								'</li>'+
+								'<li id="btn-edit" value="'+item.id+'">'+
+									'<a>Edit</a>'+
+								'</li>'+
+							'</ul>'+
+						'</div>'+
+				'</td>'+
+				'</tr>';
+				
+				$('#list-data').append(dataRow);
+				}
+			});
+			console.log(result);
+		}
+	});
+}
+function addData($bio){
+	var dataForm = getFormData($bio);
+	$.ajax({
+		url : '${contextName}/api/biodata/',
+		type : 'post',
+		dataType : 'json',
+		data : JSON.stringify(dataForm),
+		contentType : 'application/json',
+		success : function(result){
+			$('#modal-form').modal('hide');
+			loadData();
+		}
+	});
+	console.log(dataForm);
 }
 </script>

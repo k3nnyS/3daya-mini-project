@@ -30,7 +30,7 @@ public class BiodataDaoImpl implements BiodataDao {
 	@Override
 	public List<BiodataModel> search(String key) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select x from BiodataModel where x.name like :keySearch";
+		String hql = "select x from BiodataModel x where x.name like :keySearch";
 		Query query = session.createQuery(hql);
 		query.setParameter("keySearch", "%"+key+"%");
 		return query.getResultList();
