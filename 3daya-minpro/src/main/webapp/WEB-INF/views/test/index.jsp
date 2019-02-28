@@ -3,15 +3,18 @@
 	<div class="box-header with-border">
 		<h3 class="box-title">Test</h3>
 		<div class="box-tools">
-			<button type="button" class="btn btn-primary btn-sm" id="btn-add">
+			<button type="button" class="btn btn-warning btn-sm" id="btn-add">
 				<i class="fa fa-plus"></i>
 			</button>
 		</div>
 	</div>
+	<div class="box-tools col-md-12">
+			<input type="text" name="search" id="search" placeholder="Search by name"/>
+			<button class="btn btn-warning btn-sm" onclick="search()">
+				<i class="fa fa-circle-o"></i>
+			</button>
+		</div>
 	
-	<form>
-		<input class="margin col-md-2" type="text" placeholder="Search by Name" required>	
-	</form>
 	<div class="box-body">
 		<table class="table">
 			<thead>
@@ -78,15 +81,22 @@
 						$("#list-data").empty();
 						// looping data dengan jQuery
 						$.each(result,function(index, item) {
+							if(item.isDelete==false){
 							var dataRow = '<tr>'+ 
 							'<td>'+ item.name+ '</td>'+ 
 							'<td>'+ item.createdBy+ '</td>'+ 
 							'<td class="col-md-1">'+
-							'<button type="button" class="btn btn-edit btn-warning btn-xs" value="'+ item.id +'"><i class="fa fa-edit"></i></button> '+
-							'<button type="button" class="btn btn-delete btn-danger btn-xs" value="'+ item.id +'"><i class="fa fa-trash"></i></button> '+
+							'<div class="dropdown">'+
+							'<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
+						    '<ul class="dropdown-menu">'+
+						    	'<li id="btn-edit" value="'+item.id+'"><a>Edit</a></li>'+
+						    	'<li id="btn-delete" value="'+item.id+'"><a>Delete</a></li>'+
+						    '</ul>'+
+						    '</div>'+
 						'</td>'+
 						'</tr>';
 								$("#list-data").append(dataRow);
+							}
 						});
 						// menampilkan data ke console => F12
 						console.log(result);
@@ -125,14 +135,52 @@
 				$('#modal-data').find('#id').val(dataApi.id);
 				$('#modal-data').find('#name').val(dataApi.name);
 				$('#modal-data').find('#createdBy').val(dataApi.createdBy);
+				$('#modal-data').find('#createdOn').val(dataApi.createdOn);
+				$('#modal-data').find('#isBootcampTest').val(dataApi.isBootcampTest);
+				$('#modal-data').find('#notes').val(dataApi.notes);
+				$('#modal-data').find('#modifiedBy').val(dataApi.modifiedBy);
+				$('#modal-data').find('#modifiedOn').val(dataApi.modifiedOn);
+				$('#modal-data').find('#deletedBy').val(dataApi.deletedBy);
+				$('#modal-data').find('#deletedOn').val(dataApi.deletedOn);
+				$('#modal-data').find('#isDelete').val(dataApi.isDelete);
 
 				console.log(dataApi);
 			}
 		});
 	}
 	
+	function search(){
+		var item = $('#search').val();
+		$.ajax({
+			url: '${contextName}/api/test/search/' + item,
+			type: 'get',
+			dataType: 'json',
+			success: function(result){
+				$("#list-data").empty();
+				// looping data dengan jQuery
+				$.each(result, function(index, item){
+				var dataRow ='<tr>'+
+					'<td>'+ item.name+'</td>'+
+					'<td>'+ item.createdBy+ '</td>'+ 
+					'<td class="col-md-1">'+
+						'<div class="dropdown">'+
+					'<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
+				   	 '<ul class="dropdown-menu">'+
+				   	'<li id="btn-edit" value="'+item.id+'"><a>Edit</a></li>'+
+			    	'<li id="btn-delete" value="'+item.id+'"><a>Delete</a></li>'+
+				    '</ul>'+
+				    '</div>'+
+					'</td>'+
+					'</tr>';
+					$("#list-data").append(dataRow);
+					});
+				console.log(result);
+			}
+		});
+	}
+	
 	// ketidak btn-delete di click
-	$('#list-data').on('click','.btn-delete', function(){
+	$('#list-data').on('click','#btn-delete', function(){
 		var vid = $(this).val();
 		$.ajax({
 			url:'${contextName}/test/delete',
@@ -152,29 +200,31 @@
 	});
 	
 	// method untuk delete data
-	function deleteData($form){
-		// memangil method getFormData dari file
-		var vid = $form.find("#id").val();
+	function deleteData($form) {
+		$('#isDelete').val('true');
+		var dataForm = getFormData($form);
 		$.ajax({
-			// url ke api/category/
-			url:'${contextName}/api/test/'+vid,
-			// method http di controller
-			type:'delete',
+			// url ke api/role/
+			url : '${contextName}/api/test/',
+			type : 'put',
 			// data type berupa JSON
-			dataType:'json',
-			// jika sukses
-			success : function(result){
+			dataType : 'json',
+			// mengirim parameter data
+			data : JSON.stringify(dataForm),
+			// mime type 
+			contentType : 'application/json',
+			success : function(result) {
 				//menutup modal
 				$("#modal-form").modal('hide');
 				// panggil method load data, untuk melihat data terbaru
 				loadData();
-				console.log(result);
 			}
 		});
+		console.log(dataForm);
 	}
 
 	// ketidak btn-edit di click
-	$('#list-data').on('click','.btn-edit', function(){
+	$('#list-data').on('click','#btn-edit', function(){
 		var vid = $(this).val();
 		var d = new Date($.now());
 		$.ajax({
@@ -188,6 +238,7 @@
 				$("#modal-data").html(result);
 				//menampilkan modal pop up
 				$("#modal-form").modal('show');
+				$('#modifiedOn').val(d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds());
 				
 				// panggil method getData
 				getData(vid);
@@ -196,6 +247,8 @@
 								+ d.getFullYear() + " " + d.getHours()
 								+ ":" + d.getMinutes() + ":"
 								+ d.getSeconds());
+				
+				
 			}
 		});
 	});
@@ -224,5 +277,7 @@
 		});
 		console.log(dataForm);
 	}
+	
+	
 	
 </script>

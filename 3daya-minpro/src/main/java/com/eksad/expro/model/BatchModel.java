@@ -84,6 +84,10 @@ public class BatchModel {
 	@JoinColumn(name = "trainer_id", updatable = false, insertable = false)
 	private TrainerModel trainer;
 	
+	@ManyToOne
+	@JoinColumn(name = "technology_id", updatable = false, insertable = false)
+	private TechnologyModel technology;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -206,6 +210,12 @@ public class BatchModel {
 	}
 	public void setTrainer(TrainerModel trainer) {
 		this.trainer = trainer;
+	}
+	public TechnologyModel getTechnology() {
+		return technology;
+	}
+	public void setTechnology(TechnologyModel technology) {
+		this.technology = technology;
 	}
 	
 	
