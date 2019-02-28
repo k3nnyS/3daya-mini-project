@@ -64,9 +64,9 @@ public class TrainerModel {
 	private Boolean isDelete;
 	
 	
-	@JsonIgnore
-	@OneToMany()
-	private List<BatchModel> listBatch;
+	//@JsonIgnore
+	//@OneToMany()
+	//private List<BatchModel> listBatch;
 
 	public Integer getId() {
 		return id;
@@ -169,13 +169,13 @@ public class TrainerModel {
 		this.isDelete = isDelete;
 	}
 
-	public List<BatchModel> getListBatch() {
-		return listBatch;
-	}
+	//public List<BatchModel> getListBatch() {
+		//return listBatch;
+	//}
 
-	public void setListBatch(List<BatchModel> listBatch) {
-		this.listBatch = listBatch;
-	}
+	//public void setListBatch(List<BatchModel> listBatch) {
+		//this.listBatch = listBatch;
+	//}
 	
 	
 

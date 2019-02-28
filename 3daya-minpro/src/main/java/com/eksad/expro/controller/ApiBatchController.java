@@ -62,7 +62,7 @@ public class ApiBatchController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/api/batch", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/batch/", method = RequestMethod.POST)
 	public ResponseEntity<BatchModel> postInsert(@RequestBody BatchModel item){
 		ResponseEntity<BatchModel> result = null;
 		try {

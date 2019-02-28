@@ -44,7 +44,26 @@ public class MenuDaoImpl implements MenuDao {
 		MenuModel result = (MenuModel)query.getSingleResult();
 		return result;
 	}
-
+	
+	@Override
+	public String getNewCode() {
+		Session session = sessionFactory.getCurrentSession();
+		String hql="select cd from MenuModel cd where cd.code=(select max(code) from MenuModel)";
+		Query query = session.createQuery(hql);
+		String kodeBaru = "";
+		if(query.getResultList().size()>0) {
+			MenuModel jt = (MenuModel) query.getSingleResult();
+			kodeBaru=jt.getCode();
+			int mCode = Integer.parseInt(kodeBaru.substring(1,5));
+			mCode++;
+			kodeBaru="M" + String.format("%04d", mCode);
+		} else {
+			kodeBaru="M0001";
+		}
+		
+		return kodeBaru;
+}
+	
 	@Override
 	public void insert(MenuModel model) {
 		Session session = sessionFactory.getCurrentSession();
@@ -65,5 +84,7 @@ public class MenuDaoImpl implements MenuDao {
 		session.delete(model);
 
 	}
+
+	
 
 }

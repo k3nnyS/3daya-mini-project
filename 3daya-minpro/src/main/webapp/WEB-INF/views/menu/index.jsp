@@ -244,14 +244,14 @@
 				$('#modal-data-large').html(result);
 				// menampilkan modal pop-up
 				$('#modal-form-large').modal('show');
-				//panggil method getDataSmall
-				getDataLarge(vid);
 				$('#createdOn').val(
 						d.getDate() + "-" + d.getMonth() + "-"
 								+ d.getFullYear() + " " + d.getHours()
 								+ ":" + d.getMinutes() + ":"
 								+ d.getSeconds());
 				loadMenu($("#modal-data-large"));
+				//panggil method getDataSmall
+				getDataLarge(vid);
 			}
 		});
 	});

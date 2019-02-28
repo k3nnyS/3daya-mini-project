@@ -13,6 +13,8 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
 <!-- Bootstrap 3.3.7 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+
 <link rel="stylesheet" href="${contextName}/resources/bootstrap/dist/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="${contextName}/resources/font-awesome/css/font-awesome.min.css">
@@ -97,5 +99,12 @@
 	<script src="${contextName}/resources/fastclick/lib/fastclick.js"></script>
 	<!-- AdminLTE App -->
 	<script src="${contextName}/resources/dist/js/adminlte.min.js"></script>
+
+	
+		
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 </body>
 </html>

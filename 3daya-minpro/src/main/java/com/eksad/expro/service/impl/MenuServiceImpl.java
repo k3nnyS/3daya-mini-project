@@ -32,6 +32,11 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
+	public String getNewCode() {
+		return this.dao.getNewCode();
+	}
+	
+	@Override
 	public void insert(MenuModel model) {
 		this.dao.insert(model);
 

@@ -63,7 +63,7 @@
 				// looping data dengan JQuery
 				$.each(result, function(index, item){
 					var dataRow ='<tr>'+
-					'<td>'+ item.technologyId +'</td>'+
+					'<td>'+ item.technology.name +'</td>'+
 					'<td>'+ item.name+'</td>'+
 					'<td>'+ item.trainer.name+'</td>'+
 					'<td class = "col-md-1">'+
@@ -95,7 +95,7 @@
 				$('#list-data').empty();
 				$.each(result, function(index, item){
 					var dataRow ='<tr>'+
-					'<td>'+ item.technologyId +'</td>'+
+					'<td>'+ item.technology.name +'</td>'+
 					'<td>'+ item.name+'</td>'+
 					'<td>'+ item.trainer.name+'</td>'+
 					'<td class = "col-md-1">'+
@@ -110,6 +110,26 @@
 					'</td>' +
 					'</tr>';
 				$("#list-data").append(dataRow);
+				});
+			}
+		});
+	}
+	// loadTechnology
+	function loadTechnology($form, $selected){
+		$.ajax({
+			url : '${contextName}/api/technology/',
+			type : 'get',
+			dataType : 'json',
+			success : function(result){
+				$form.find("#technologyId").empty();
+				$form.find("#technologyId").append('<option value = "">-Choose Trainer-</option>');
+				//looping data
+				$.each(result, function(index, item){
+					if ($selected == item.id){
+						$form.find("#technologyId").append('<option value ="'+item.id+'" selected="selected">'+item.name+'</option>');
+					}else{
+						$form.find("#technologyId").append('<option value = "'+item.id+'">'+item.name+'</option>');
+					}
 				});
 			}
 		});
@@ -173,6 +193,7 @@
 						+ d.getFullYear() + " " + d.getHours()
 						+ ":" + d.getMinutes() + ":"
 						+ d.getSeconds());
+				loadTechnology($("#modal-data-large"));
 				loadTrainer($("#modal-data-large"));
 				loadBootcampType($("#modal-data-large"));
 			}
