@@ -2,10 +2,10 @@ package com.eksad.expro.dao.impl;
 
 import java.util.List;
 
-import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -46,6 +46,25 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 
 	@Override
+	public String getNewCode() {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "select xx from CategoryModel xx where xx.code=(select max(code) from CategoryModel)";
+		Query query = session.createQuery(hql);
+		String kodeBaru = "";
+		if (query.getResultList().size()>0) {
+			CategoryModel xx = (CategoryModel)query.getSingleResult();
+			kodeBaru=xx.getCode();
+			int xCode = Integer.parseInt(kodeBaru.substring(1, 5));// value di mulai 1 dan panjang nya 3
+			xCode++;
+			kodeBaru = "C" + String.format("%04d", xCode);
+		} else {
+			kodeBaru = "C0001";
+		}
+
+		return kodeBaru;
+	}
+	
+	@Override
 	public void insert(CategoryModel model) {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(model);
@@ -65,4 +84,5 @@ public class CategoryDaoImpl implements CategoryDao {
 
 	}
 
+	
 }
