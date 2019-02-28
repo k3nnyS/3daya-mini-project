@@ -80,13 +80,13 @@ public class BatchModel {
 	@Column(name = "is_delete")
 	private Boolean isDelete;
 	
-	// @ManyToOne
-	// @JoinColumn(name = "trainer_id", updatable = false, insertable = false)
-	//private TrainerModel trainer;
+	@ManyToOne
+	@JoinColumn(name = "trainer_id", updatable = false, insertable = false)
+	private TrainerModel trainer;
 	
-	// @ManyToOne
-	// @JoinColumn(name = "technology_id", updatable = false, insertable = false)
-	// private TechnologyModel technology;
+	@ManyToOne
+	@JoinColumn(name = "technology_id", updatable = false, insertable = false)
+	private TechnologyModel technology;
 	
 	public Integer getId() {
 		return id;
@@ -205,18 +205,18 @@ public class BatchModel {
 	public void setIsDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
 	}
-	//public TrainerModel getTrainer() {
-		//return trainer;
-	//}
-	//public void setTrainer(TrainerModel trainer) {
-		//this.trainer = trainer;
-	//}
-	//public TechnologyModel getTechnology() {
-		//return technology;
-	//}
-	//public void setTechnology(TechnologyModel technology) {
-		//this.technology = technology;
-	//}
+	public TrainerModel getTrainer() {
+		return trainer;
+	}
+	public void setTrainer(TrainerModel trainer) {
+		this.trainer = trainer;
+	}
+	public TechnologyModel getTechnology() {
+		return technology;
+	}
+	public void setTechnology(TechnologyModel technology) {
+		this.technology = technology;
+	}
 	
 	
 }
