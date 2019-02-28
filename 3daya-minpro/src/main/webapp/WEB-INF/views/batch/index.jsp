@@ -114,7 +114,8 @@
 			}
 		});
 	}
-	// loadTechnology
+	
+	//loadTechnology
 	function loadTechnology($form, $selected){
 		$.ajax({
 			url : '${contextName}/api/technology/',
@@ -122,7 +123,7 @@
 			dataType : 'json',
 			success : function(result){
 				$form.find("#technologyId").empty();
-				$form.find("#technologyId").append('<option value = "">-Choose Trainer-</option>');
+				$form.find("#technologyId").append('<option value = "">-Choose Technology-</option>');
 				//looping data
 				$.each(result, function(index, item){
 					if ($selected == item.id){
@@ -223,18 +224,18 @@
 			type : 'get',
 			dataType : 'json',
 			success : function(dataApi){
-				$('#modal-data').find('#id').val(dataApi.id);
-				$('#modal-data').find('#technologyId').val(dataApi.techologyId);
-				$('#modal-data').find('#trainerId').val(dataApi.trainerId);
-				$('#modal-data').find('#name').val(dataApi.name);
-				$('#modal-data').find('#periodFrom').val(dataApi.periodFrom);
-				$('#modal-data').find('#periodTo').val(dataApi.periodTo);
-				$('#modal-data').find('#roomId').val(dataApi.roomId);
-				$('#modal-data').find('#bootcampTypeId').val(dataApi.bootcampTypeId);
-				$('#modal-data').find('#notes').val(dataApi.notes);
-				$('#modal-data').find('#createdBy').val(dataApi.createdBy);
-				$('#modal-data').find('#createdOn').val(dataApi.createdOn);
-				$('#modal-data').find('#isDelete').val(dataApi.isDelete);
+				$('#modal-data-large').find('#id').val(dataApi.id);
+				$('#modal-data-large').find('#technologyId').val(dataApi.technologyId);
+				$('#modal-data-large').find('#trainerId').val(dataApi.trainerId);
+				$('#modal-data-large').find('#name').val(dataApi.name);
+				$('#modal-data-large').find('#periodFrom').val(dataApi.periodFrom);
+				$('#modal-data-large').find('#periodTo').val(dataApi.periodTo);
+				$('#modal-data-large').find('#roomId').val(dataApi.roomId);
+				$('#modal-data-large').find('#bootcampTypeId').val(dataApi.bootcampTypeId);
+				$('#modal-data-large').find('#notes').val(dataApi.notes);
+				$('#modal-data-large').find('#createdBy').val(dataApi.createdBy);
+				$('#modal-data-large').find('#createdOn').val(dataApi.createdOn);
+				$('#modal-data-large').find('#isDelete').val(dataApi.isDelete);
 			}
 		});
 	}
@@ -247,9 +248,12 @@
 			type : 'get',
 			dataType : 'html',
 			success : function(result) {
-				$("#modal-title").html("EDIT");
-				$("#modal-data").html(result);
-				$("#modal-form").modal('show');
+				$("#modal-title-large").html("EDIT");
+				$("#modal-data-large").html(result);
+				$("#modal-form-large").modal('show');
+				loadTechnology($("#modal-data-large"));
+				loadTrainer($("#modal-data-large"));
+				loadBootcampType($("#modal-data-large"));
 				getData(vid);
 			}
 		});

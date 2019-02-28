@@ -62,9 +62,9 @@ public class TechnologyModel {
 	@Column(name="is_delete")
 	private Boolean isDelete;
 	
-	//@JsonIgnore
-	//@OneToMany()
-	//private List<BatchModel> listBatch2;
+	@JsonIgnore
+	@OneToMany()
+	private List<BatchModel> listBatch;
 
 	public Integer getId() {
 		return id;
@@ -166,14 +166,7 @@ public class TechnologyModel {
 	public void setIsDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
 	}
-
-	//public List<BatchModel> getListBatch2() {
-		//return listBatch2;
-	//}
-
-	//public void setListBatch2(List<BatchModel> listBatch2) {
-		//this.listBatch2 = listBatch2;
-	//}
+	
 	
 
 }

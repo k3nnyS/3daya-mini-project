@@ -14,8 +14,8 @@
 				<div class = "form-group">
 					<label class = "control-label col-md-1"></label>
 					<div class = "col-md-10">
-						<select name = technologyId id = "technologyId" class = "form-control">
-							<option value = "">-Choose Technology-</option>
+						<select name = "technologyId" id = "technologyId" class = "form-control">
+							<option value = "">-Choose Technology</option>
 						</select>
 						<!-- <input type = "text" class = "form-control" name = "technologyId" placeholder = "Technology"/> -->
 					</div>

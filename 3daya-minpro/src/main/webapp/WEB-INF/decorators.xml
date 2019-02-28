@@ -14,8 +14,11 @@
 		<pattern>/testimony/*</pattern>
 		<pattern>/bootcamptype/*</pattern>
 		<pattern>/bootcamptesttype/*</pattern>
+<<<<<<< HEAD
 		<pattern>/test/*</pattern>
 		
+=======
+>>>>>>> 863f14072b7c3e4393dfe99c2378921750f280bd
 		<pattern>/clazz/*</pattern>
 		<pattern>/biodata/*</pattern>
 		<pattern>/batch/*</pattern>
