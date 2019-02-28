@@ -33,7 +33,11 @@
 <script src="${contextName}/resources/dist/js/map-form-object.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="${contextName}/resources/jquery-ui/jquery-ui.min.js"></script>
-
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="${contextName}/resources/jquery/jquery.validate.js"></script>
+<script src="${contextName}/resources/jquery/localization/messages_es.js"></script>
+<script src="${contextName}/resources/dist/css/screen.css"></script>
+<script src="${contextName}/resources/dist/css/style.css"></script>
 
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <decorator:head />
