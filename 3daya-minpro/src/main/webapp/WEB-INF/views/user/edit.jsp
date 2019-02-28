@@ -62,7 +62,7 @@
 	<input type="text" class="form-control" name="deletedOn" id="deletedOn"/>
 	
 <div class="modal-footer">
-		<button type="button" class="btn btn-success pull-left" onClick="editData($('#form-edit'))">UPDATE</button>
+		<button type="button" class="btn btn-warning pull-left" onClick="editData($('#form-edit'))">UPDATE</button>
 		<button type="button" class="btn btn-warning" data-dismiss="modal">CLOSE</button>		
 </div>
 </form>
