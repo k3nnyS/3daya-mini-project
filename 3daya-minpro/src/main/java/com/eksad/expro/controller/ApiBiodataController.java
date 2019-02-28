@@ -61,4 +61,32 @@ public class ApiBiodataController {
 		}
 		return result;
 	}
+	
+	//untuk delete dan update
+	@RequestMapping(value="/api/biodata/", method=RequestMethod.PUT)
+	public ResponseEntity<BiodataModel> put (@RequestBody BiodataModel item){
+		ResponseEntity<BiodataModel> result = null;
+		try {
+			this.service.update(item);
+			result = new ResponseEntity<BiodataModel>(item, HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			log.debug(e.getMessage(), e);
+			result = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return result;
+	}
+	
+	//search by id
+	@RequestMapping(value="/api/biodata/{itemId}", method = RequestMethod.GET)
+	public ResponseEntity<BiodataModel> getById(@PathVariable("itemId") int vId) {
+		ResponseEntity<BiodataModel> result = null;
+		try {
+			BiodataModel bio = this.service.getById(vId);
+			result = new ResponseEntity<BiodataModel>(bio, HttpStatus.OK);
+		} catch (Exception e) {
+			log.debug(e.getMessage(), e);
+			result = new ResponseEntity<BiodataModel>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return result;
+	}
 }
