@@ -13,11 +13,7 @@
 		<pattern>/testimony/*</pattern>
 		<pattern>/bootcamptype/*</pattern>
 		<pattern>/clazz/*</pattern>
-<<<<<<< HEAD
 		<pattern>/biodata/*</pattern>
-
-=======
->>>>>>> 853e09c437cc1ca4e2e48b8ada34d816a4aef0b0
 		<pattern>/batch/*</pattern>
 	</excludes>
 
