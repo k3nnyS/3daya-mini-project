@@ -9,60 +9,58 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.eksad.expro.dao.BatchDao;
-import com.eksad.expro.model.BatchModel;
-import com.eksad.expro.model.TrainerModel;
+import com.eksad.expro.dao.IdleNewsDao;
+import com.eksad.expro.model.IdleNewsModel;
 
 @Repository
-public class BatchDaoImpl implements BatchDao {
-	
+public class IdleNewsDaoImpl implements IdleNewsDao {
+
 	@Autowired
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public List<BatchModel> getList() {
+	public List<IdleNewsModel> getList() {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select tr from BatchModel tr order by id";
+		String hql = "select in from IdleNewsModel in order by id";
 		Query query = session.createQuery(hql);
-		List<BatchModel> result = query.getResultList();
+		List<IdleNewsModel> result = query.getResultList();
 		return result;
 	}
 
 	@Override
-	public List<BatchModel> search(String key) {
+	public List<IdleNewsModel> search(String key) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select x from BatchModel x where x.name like :keySearch or x.technology.name like :keySearch";
+		String hql = "select x from IdleNewsModel x where x.title like :keySearch";
 		Query query = session.createQuery(hql);
 		query.setParameter("keySearch", "%"+key+"%");
 		return query.getResultList();
 	}
 
 	@Override
-	public BatchModel getById(Integer id) {
+	public IdleNewsModel getById(Integer id) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select bm from BatchModel bm where bm.id=:id";
+		String hql = "select in from IdleNewsModel in where in.id=:id";
 		Query query = session.createQuery(hql);
 		query.setParameter("id", id);
-		BatchModel result = (BatchModel)query.getSingleResult();
+		IdleNewsModel result = (IdleNewsModel)query.getSingleResult();
 		return result;
 	}
 
 	@Override
-	public void insert(BatchModel model) {
+	public void insert(IdleNewsModel model) {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(model);
 
 	}
 
 	@Override
-	public void update(BatchModel model) {
+	public void update(IdleNewsModel model) {
 		Session session = sessionFactory.getCurrentSession();
 		session.update(model);
-
 	}
 
 	@Override
-	public void delete(BatchModel model) {
+	public void delete(IdleNewsModel model) {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(model);
 	}

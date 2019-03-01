@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.eksad.expro.model.BatchModel;
+import com.eksad.expro.model.MenuModel;
 import com.eksad.expro.service.BatchService;
 
 @Controller
@@ -75,7 +76,7 @@ public class ApiBatchController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/api/batch/", method = RequestMethod.PUT)
+	@RequestMapping(value ="/api/batch/", method = RequestMethod.PUT)
 	public ResponseEntity<BatchModel> putUpdate(@RequestBody BatchModel item){
 		ResponseEntity<BatchModel> result = null;
 		try {

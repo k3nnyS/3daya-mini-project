@@ -7,7 +7,7 @@
 				<div class = "form-group">
 					<label class = "control-label col-md-1"></label>
 					<div class = "col-md-10">
-						<input type = "text" class = "form-control" name = "name" id = "name" placeholder = "Name"/>
+						<input type = "text" class = "form-control" name = "name" id = "name"/>
 					</div>
 				</div>
 				<!-- Technology -->
@@ -24,7 +24,7 @@
 				<div class = "form-group">
 					<label class = "control-label col-md-1"></label>
 					<div class = "col-md-10">
-						<input type = "date" class = "form-control" name = "periodTo" id = "periodTo" placeholder = "Period To"/>
+						<input type = "date" class = "form-control" name = "periodTo" id = "periodTo"/>
 					</div>
 				</div>
 				<!-- Bootcamp Type -->
@@ -43,7 +43,7 @@
 				<div class = "form-group">
 					<label class = "control-label col-md-1"></label>
 					<div class = "col-md-10">
-						<input type = "text" class = "form-control" name = "roomId" id = "roomId" placeholder = "Room"/>
+						<input type = "text" class = "form-control" name = "roomId" id = "roomId"/>
 					</div>
 				</div>
 				<!-- Trainer -->
@@ -60,23 +60,24 @@
 				<div class = "form-group">
 					<label class = "control-label col-md-1"></label>
 					<div class = "col-md-10">
-						<input type = "date" class = "form-control" name = "periodFrom" id = "periodFrom" placeholder = "Period From"/>
+						<input type = "date" class = "form-control" name = "periodFrom" id = "periodFrom"/>
 					</div>
 				</div>
 				<!-- Note -->
 				<div class = "form-group">
 					<label class = "control-label col-md-1"></label>
 					<div class = "col-md-10">
-						<textarea rows="2" class = "form-control" name = "notes" placeholder = "Notes" id = "notes" style="resize:none"></textarea>
+						<textarea rows="2" class = "form-control" name = "notes" id = "notes" style="resize:none"></textarea>
 					</div>
 				</div>
 			</div>
 		</div>		
 	</div>
-		
+		<input type="hidden" class="form-control" name = "id" id="id"/>
 		<input type="hidden" class="form-control" name = "createdBy" value = "1"/>
 		<input type="hidden" class="form-control" name = "createdOn" id = "createdOn"/>
 		<input type="hidden" class="form-control" name = "isDelete" value = "false"/>
+	
 	<div class = "modal-footer">
 		<button type = "button" onClick = "editData($('#form-edit'))" class="btn btn-primary">Save</button>
 		<button type = "button" class = "btn btn-warning" data-dismiss="modal">Cancel</button>

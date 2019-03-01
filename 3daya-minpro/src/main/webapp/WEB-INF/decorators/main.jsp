@@ -33,7 +33,6 @@
 <script src="${contextName}/resources/dist/js/map-form-object.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="${contextName}/resources/jquery-ui/jquery-ui.min.js"></script>
-<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="${contextName}/resources/jquery/jquery.validate.js"></script>
 <script src="${contextName}/resources/jquery/localization/messages_es.js"></script>
 <script src="${contextName}/resources/dist/css/screen.css"></script>
@@ -103,12 +102,6 @@
 	<script src="${contextName}/resources/fastclick/lib/fastclick.js"></script>
 	<!-- AdminLTE App -->
 	<script src="${contextName}/resources/dist/js/adminlte.min.js"></script>
-
-	
-		
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 </body>
 </html>

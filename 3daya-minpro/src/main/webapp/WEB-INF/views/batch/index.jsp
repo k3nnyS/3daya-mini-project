@@ -111,6 +111,7 @@
 					'</tr>';
 				$("#list-data").append(dataRow);
 				});
+				console.log(result);
 			}
 		});
 	}
@@ -258,4 +259,28 @@
 			}
 		});
 	});
+	
+	//function editData
+	function editData($form){
+		var dataForm = getFormData($form);
+		$.ajax({
+			// url ke api/batch/
+			url : '${contextName}/api/batch/',
+			// dengan request put
+			type : 'put',
+			// data type berupa json
+			dataType : 'json',
+			// mengirim parameter data
+			data : JSON.stringify(dataForm),
+			// mime type
+			contentType : 'application/json',
+			success : function(result){
+				// menutup modal
+				$('#modal-form-large').modal('hide');
+				// panggil method loadData, untuk melihat data baru
+				loadData();
+			}
+		});
+		
+	}
 </script>

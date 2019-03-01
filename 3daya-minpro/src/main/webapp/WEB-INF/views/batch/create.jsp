@@ -24,7 +24,7 @@
 				<div class = "form-group">
 					<label class = "control-label col-md-1"></label>
 					<div class = "col-md-10">
-						<input type = "date" class = "form-control" name = "periodTo" placeholder = "Period To"/>
+						<input type = "date" class = "form-control" name = "periodTo" id ="periodTo"placeholder = "Period To"/>
 					</div>
 				</div>
 				<!-- Bootcamp Type -->
@@ -60,7 +60,7 @@
 				<div class = "form-group">
 					<label class = "control-label col-md-1"></label>
 					<div class = "col-md-10">
-						<input type = "date" class = "form-control" name = "periodFrom" placeholder = "Period From"/>
+						<input type = "date" class = "form-control" name = "periodFrom"id = "periodFrom"placeholder = "Period From"/>
 					</div>
 				</div>
 				<!-- Note -->

@@ -65,7 +65,7 @@ public class TrainerModel {
 	
 	
 	@JsonIgnore
-	@OneToMany()
+	@OneToMany(mappedBy = "trainer", fetch = FetchType.EAGER, orphanRemoval=true)
 	private List<BatchModel> listBatch;
 
 	public Integer getId() {

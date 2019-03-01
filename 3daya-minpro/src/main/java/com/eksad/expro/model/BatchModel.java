@@ -40,11 +40,11 @@ public class BatchModel {
 	private String name;
 	
 	@Column(name ="period_from")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date periodFrom;
 	
 	@Column(name = "period_to")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date periodTo;
 	
 	@Column(name = "room_id")
