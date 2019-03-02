@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -17,7 +19,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="t_technology_trainer")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class TechTrainerModel {
 	
 	@Id
@@ -40,6 +42,10 @@ public class TechTrainerModel {
 	@Column(name="created_on")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
 	private Date createdOn;
+	
+	@ManyToOne
+	@JoinColumn(name="trainer_id", updatable=false, insertable=false)
+	private TrainerModel techno;
 
 	public Integer getId() {
 		return id;
@@ -86,6 +92,14 @@ public class TechTrainerModel {
 			this.createdOn = null;
 		}
 		this.createdOn = createdOnNew;
+	}
+
+	public TrainerModel getTechno() {
+		return techno;
+	}
+
+	public void setTechno(TrainerModel techno) {
+		this.techno = techno;
 	}
 	
 }

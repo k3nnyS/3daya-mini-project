@@ -135,13 +135,20 @@
 			url:'${contextName}/api/techtrainer/'+dataId,
 			type:'get',
 			dataType:'json',
-			success:function(dataApi){
-				$('#modal-datrain').find('#id').val(dataApi.id);
-				$('#modal-datrain').find('#technologyId').val(dataApi.technologyId);
-				$('#modal-datrain').find('#trainerId').val(dataApi.trainerId);
-				$('#modal-datrain').find('#createdBy').val(dataApi.createdBy);
-				$('#modal-datrain').find('#createdOn').val(dataApi.createdOn);
-				
+			success:function(dataApi, item){
+				$("#list-train").empty();
+				var dataRow ='<tr>'+
+					'<td> '+dataApi.techno.name+'<td>'+
+					'<div class="dropdown">'+
+					'<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
+				    '<ul class="dropdown-menu">'+
+				    	'<li id="btn-deltrain" value="'+item.id+'"><a>Delete</a></li>'+
+				    '</ul>'+
+				    '</div>'+
+					'</td>'+
+					'</tr>';
+				$('#list-train').append(dataRow);
+				//$('#modal-datrain').find('#name').val(dataApi.name);
 				console.log(dataApi);
 			}
 		});
@@ -202,7 +209,6 @@
 				$("#list-data").empty();
 				// looping data dengan jQuery
 				$.each(result, function(index, item){
-				if (item.isDelete == false) {
 				var dataRow ='<tr>'+
 					'<td>'+ item.name+'</td>'+
 					'<td>'+ item.createdBy+'</td>'+
@@ -217,7 +223,6 @@
 					'</td>'+
 					'</tr>';
 					$("#list-data").append(dataRow);
-				}
 					});
 				console.log(result);
 			}

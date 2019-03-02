@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -63,6 +62,9 @@ public class TrainerModel {
 	@Column(name="is_delete")
 	private Boolean isDelete;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy="techno")
+	private List<TechTrainerModel> listech;
 	
 	@JsonIgnore
 	@OneToMany()
@@ -176,7 +178,14 @@ public class TrainerModel {
 	public void setListBatch(List<BatchModel> listBatch) {
 		this.listBatch = listBatch;
 	}
-	
+
+	public List<TechTrainerModel> getListech() {
+		return listech;
+	}
+
+	public void setListech(List<TechTrainerModel> listech) {
+		this.listech = listech;
+	}
 	
 
 }

@@ -29,7 +29,7 @@
 		<div class="col-md-1">
 			<thead>
 				<tr>
-					<th>NAME</th>
+					<th style="position: relative; left: 17px;"> NAME</th>
 					<th class="col-md-1">#</th>
 				</tr>
 			</thead>
@@ -51,6 +51,7 @@
 <!-- Form Selesai -->
 
 <script>
+	//mengklik button trainer
 	$("#btn-trainer").click(function() {
 		$.ajax({
 			url : '${contextName}/technology/trainer',
@@ -112,7 +113,6 @@
 		// add data to list-detail
 		$('#list-train').append(dataRow);
 		// hide modal
-		
 		$("#modal-tech").modal('hide');
 	}
 
