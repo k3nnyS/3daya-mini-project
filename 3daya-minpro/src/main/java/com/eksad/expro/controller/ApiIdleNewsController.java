@@ -25,7 +25,7 @@ public class ApiIdleNewsController {
 	private IdleNewsService service;
 	
 	@RequestMapping(value = "/api/idlenews/", method = RequestMethod.GET)
-	public ResponseEntity<List<IdleNewsModel>> list() {
+	public ResponseEntity<List<IdleNewsModel>> list(){
 		ResponseEntity<List<IdleNewsModel>> result = null;
 		try {
 			List<IdleNewsModel> list = this.service.getList();

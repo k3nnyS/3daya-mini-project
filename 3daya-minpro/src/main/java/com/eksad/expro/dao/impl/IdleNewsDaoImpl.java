@@ -21,7 +21,7 @@ public class IdleNewsDaoImpl implements IdleNewsDao {
 	@Override
 	public List<IdleNewsModel> getList() {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select in from IdleNewsModel in order by id";
+		String hql = "select jt from IdleNewsModel jt order by id";
 		Query query = session.createQuery(hql);
 		List<IdleNewsModel> result = query.getResultList();
 		return result;
@@ -39,7 +39,7 @@ public class IdleNewsDaoImpl implements IdleNewsDao {
 	@Override
 	public IdleNewsModel getById(Integer id) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select in from IdleNewsModel in where in.id=:id";
+		String hql = "select jt from IdleNewsModel jt where jt.id=:id";
 		Query query = session.createQuery(hql);
 		query.setParameter("id", id);
 		IdleNewsModel result = (IdleNewsModel)query.getSingleResult();

@@ -2,17 +2,25 @@ package com.eksad.expro.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -71,6 +79,14 @@ public class MenuModel {
 	
 	@Column(name = "is_delete")
 	private Boolean isDelete;
+	
+	@ManyToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "menu_parent",  updatable = false, insertable = false)
+	private MenuModel parents;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "parents")
+	private Set<MenuModel> child = new HashSet<MenuModel>();
 	
 	public Integer getId() {
 		return id;
@@ -162,5 +178,16 @@ public class MenuModel {
 	public void setIsDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
 	}
-	
+	public MenuModel getParents() {
+		return parents;
+	}
+	public void setParents(MenuModel parents) {
+		this.parents = parents;
+	}
+	public Set<MenuModel> getChild() {
+		return child;
+	}
+	public void setChild(Set<MenuModel> child) {
+		this.child = child;
+	}
 }

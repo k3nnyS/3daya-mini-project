@@ -3,6 +3,7 @@ package com.eksad.expro.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.eksad.expro.service.MenuService;
@@ -15,6 +16,7 @@ public class MenuController {
 
 	@RequestMapping(value = "/menu")
 	public String index() {
+		
 		return "menu/index";
 	}
 	
@@ -33,5 +35,11 @@ public class MenuController {
 	@RequestMapping(value = "/menu/delete")
 	public String delete() {
 		return "menu/delete";
+	}
+	
+	@RequestMapping(value = "/model/index/{mid}")
+	public String parents(@PathVariable("mid") Integer pid, Model model) {
+		model.addAttribute("mp", this.service.getById(pid));
+		return "menu/index";
 	}
 }
