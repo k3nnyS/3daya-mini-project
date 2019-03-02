@@ -39,7 +39,7 @@ public class IdleNewsDaoImpl implements IdleNewsDao {
 	@Override
 	public IdleNewsModel getById(Integer id) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select jt from IdleNewsModel jt where jt.id=:id";
+		String hql = "select bm from IdleNewsModel bm where bm.id=:id";
 		Query query = session.createQuery(hql);
 		query.setParameter("id", id);
 		IdleNewsModel result = (IdleNewsModel)query.getSingleResult();

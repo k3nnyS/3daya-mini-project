@@ -70,7 +70,7 @@
 				$.each(result, function(index, item){
 					var dataRow = '<tr>'+
 						'<td>'+item.title+'</td>'+
-						'<td>'+item.categoryId+'</td>'+
+						'<td>'+item.category.name+'</td>'+
 						'<td class = "col-md-1">'+
 						'<div class = "dropdown">'+
 							'<button class = "btn btn-warning dropdown-toggle" type = "button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class = "caret"></span></button>'+
@@ -101,7 +101,7 @@
 				$.each(result, function(index, item){
 				var dataRow ='<tr>'+
 					'<td>'+ item.title +'</td>'+
-					'<td>'+ item.categoryId+'</td>'+
+					'<td>'+ item.category.name+'</td>'+
 					'<td class = "col-md-1">'+
 					'<div class = "dropdown">'+
 						'<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
@@ -119,5 +119,157 @@
 			}
 		});
 	}
+	// function untuk memanggil category
+	function loadCategory($form, $selected){
+		$.ajax({
+			url : '${contextName}/api/category/',
+			type : 'get',
+			dataType : 'json',
+			success : function(result){
+				$form.find("#categoryId").empty();
+				$form.find("#categoryId").append('<option value = "">-Choose Category-</option>');
+				//looping data
+				$.each(result, function(index, item){
+					if ($selected == item.id){
+						$form.find("#categoryId").append('<option value ="'+item.id+'" selected="selected">'+item.name+'</option>');
+					}else{
+						$form.find("#categoryId").append('<option value = "'+item.id+'">'+item.name+'</option>');
+					}
+				});
+			}
+		});
+	}
 	
+	// ketika btn-add di klik
+	$("#btn-add").click(function(){
+		var d = new Date($.now());
+		$.ajax({
+			url : '${contextName}/idlenews/create',
+			type : 'get',
+			dataType : 'html',
+			success : function(result){
+				$('#modal-title').html("IDLE NEWS");
+				$('#modal-data').html(result);
+				$('#modal-form').modal('show');
+				$('#createdOn').val(
+						d.getDate() + "-" + d.getMonth() + "-"
+						+ d.getFullYear() + " " + d.getHours()
+						+ ":" + d.getMinutes() + ":"
+						+ d.getSeconds());
+				loadCategory($("#modal-data"));
+			}
+		});
+	});
+	
+	// fungsi untuk menambah data
+	function addData($form){
+		// memangil method getFormData dari file
+		// resources/dist/js/map-form-objet.js
+		var dataForm = getFormData($form);
+		$.ajax({
+			url : '${contextName}/api/idlenews/',
+			type : 'post',
+			dataType : 'json',
+			data : JSON.stringify(dataForm),
+			contentType : 'application/json',
+			success : function(result){
+				$('#modal-form').modal('hide');
+				loadData();	
+			}
+		});
+	}
+	
+	// memberikan fungsi untuk mengambil data
+	function getData(dataId){
+		$.ajax({
+			url : '${contextName}/api/idlenews/'+dataId,
+			type : 'get',
+			dataType : 'json',
+			success : function(dataApi){
+				$('#modal-data').find('#id').val(dataApi.id);
+				$('#modal-data').find('#categoryId').val(dataApi.categoryId);
+				$('#modal-data').find('#title').val(dataApi.title);
+				$('#modal-data').find('#content').val(dataApi.content);
+				$('#modal-data').find('#isPublish').val(dataApi.isPublish);
+				$('#modal-data').find('#createdBy').val(dataApi.createdBy);
+				$('#modal-data').find('#createdOn').val(dataApi.createdOn);
+				$('#modal-data').find('#modifiedBy').val(dataApi.modfiedBy);
+				$('#modal-data').find('#modifiedOn').val(dataApi.modifiedOn);
+				$('#modal-data').find('#deletedBy').val(dataApi.deletedBy);
+				$('#modal-data').find('#deletedOn').val(dataApi.deletedOn);
+				$('#modal-data').find('#isDelete').val(dataApi.isDelete);
+				console.log(dataApi);
+			}
+		});
+	}
+	
+	// ketika btn-delete di klik
+	$('#list-data').on('click', '#btn-delete', function(){
+		var vid = $(this).val();
+		$.ajax({
+			url : '${contextName}/idlenews/delete',
+			type : 'get',
+			dataType : 'html',
+			success : function(result){
+				$('#modal-title').html("IDLE NEWS");
+				$('#modal-data').html(result);
+				$('#modal-form').modal('show');
+				loadCategory($("#modal-data"));
+				getData(vid);
+			}
+		});
+	});
+	
+	// fungsi untuk delete data
+	function deleteData($form){
+		$('#isDelete').val('true');
+		var dataForm = getFormData($form);
+		$.ajax({
+			url:'${contextName}/api/idlenews/',
+			type:'put',
+			dataType:'json',
+			data:JSON.stringify(dataForm),
+			contentType: 'application/json',
+			success : function(result){
+				$("#modal-form").modal('hide');
+				loadData();
+			}
+		});
+		console.log(dataForm);
+	}
+	
+	// ketika btn-edit di klik
+	$('#list-data').on('click', '#btn-edit', function(){
+		var vid = $(this).val();
+		$.ajax({
+			url : '${contextName}/idlenews/edit',
+			type : 'get',
+			dataType : 'html',
+			success : function(result){
+				$('#modal-title').html("IDLE NEWS");
+				$('#modal-data').html(result);
+				$('#modal-form').modal('show');
+				loadCategory($("#modal-data"));
+				getData(vid);
+			}
+		});
+	});
+	
+	function editData($form){
+		// memangil method getFormData dari file
+		// resources/dist/js/map-dagang-objet.js
+		var dataForm = getFormData($form);
+		$.ajax({
+			url:'${contextName}/api/idlenews/',
+			type:'put',
+			dataType:'json',
+			data:JSON.stringify(dataForm),
+			contentType: 'application/json',
+			success : function(result){
+				$("#modal-form").modal('hide');
+				loadData();
+			}
+		});
+		console.log(dataForm);
+	}
 </script>

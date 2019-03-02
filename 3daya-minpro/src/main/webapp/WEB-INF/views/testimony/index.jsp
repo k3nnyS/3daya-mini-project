@@ -221,14 +221,13 @@
 			contentType: 'application/json',
 			success : function(result){
 				$("#modal-form").modal('hide');
-				// panggil method load data, untuk melihat data terbaru
 				loadData();
 			}
 		});
 		console.log(dataForm);
 	}
 	
-	// ketika btn-delete di klik
+	// ketika btn-edit di klik
 	$('#list-data').on('click', '#btn-edit', function(){
 		var vid = $(this).val();
 		$.ajax({
@@ -257,7 +256,6 @@
 			contentType: 'application/json',
 			success : function(result){
 				$("#modal-form").modal('hide');
-				// panggil method load data, untuk melihat data terbaru
 				loadData();
 			}
 		});

@@ -51,11 +51,11 @@ public class ApiIdleNewsController {
 	}
 	
 	@RequestMapping(value = "/api/idlenews/{itemId}", method = RequestMethod.GET)
-	public ResponseEntity<IdleNewsModel> getById(@PathVariable("itemId") int vid){
+	public ResponseEntity<IdleNewsModel> getById(@PathVariable("itemId") int vId) {
 		ResponseEntity<IdleNewsModel> result = null;
 		try {
-			IdleNewsModel cat = this.service.getById(vid);
-			result = new ResponseEntity<IdleNewsModel>(cat, HttpStatus.OK);
+			IdleNewsModel IdleNews = this.service.getById(vId);
+			result = new ResponseEntity<IdleNewsModel>(IdleNews, HttpStatus.OK);
 		} catch (Exception e) {
 			log.debug(e.getMessage(), e);
 			result = new ResponseEntity<IdleNewsModel>(HttpStatus.INTERNAL_SERVER_ERROR);

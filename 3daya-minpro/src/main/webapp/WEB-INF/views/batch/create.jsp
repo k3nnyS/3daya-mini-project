@@ -77,9 +77,13 @@
 		<input type="hidden" class="form-control" name = "createdBy" value = "1"/>
 		<input type="hidden" class="form-control" name = "createdOn" id = "createdOn"/>
 		<input type="hidden" class="form-control" name = "isDelete" value = "false"/>
-	<div class = "modal-footer">
-		<button type = "button" onClick = "addData($('#form-create'))" class="btn btn-primary">Save</button>
-		<button type = "button" class = "btn btn-warning" data-dismiss="modal">Cancel</button>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-warning" 
+			style = "position:relative;right:160px;top:2px;" 
+			data-dismiss="modal">CANCEL</button>
+		<button type="button" onClick="addData($('#form-create'))"
+			style = "position:relative;right:35px;top:2px;"
+			class="btn btn-warning">SAVE</button>
 	</div>
 </form>
 <!-- Form Selesai -->

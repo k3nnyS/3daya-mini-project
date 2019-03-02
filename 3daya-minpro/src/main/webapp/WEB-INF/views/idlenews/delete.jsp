@@ -6,13 +6,10 @@
 	</center>
 	
 	<input type="hidden" name="id" id="id" />
-	<input type="hidden" name="code" id="code" />
+	<input type="hidden" name="categoryId" id="categoryId" />
 	<input type="hidden" name="title" id="title" />
-	<input type="hidden" name="description" id="description" />
-	<input type="hidden" name="imageUrl" id="imageUrl"/>
-	<input type="hidden" name="menuOrder" id="menuOrder"/>
-	<input type="hidden" name="menuParent" id="menuParent" />
-	<input type="hidden" name="menuUrl" id="menuUrl"/>
+	<input type="hidden" name="content" id="content"/>
+	<input type="hidden" name="isPublish" id="isPublish" />
 	<input type="hidden" name="createdBy" id="createdBy" />
 	<input type="hidden" name="createdOn" id="createdOn" />
 	<input type="hidden" name="isDelete" id="isDelete" />
