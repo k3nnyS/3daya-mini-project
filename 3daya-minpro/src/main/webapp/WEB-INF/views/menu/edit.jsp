@@ -56,7 +56,7 @@
 		</div>
 	</div>
 
-	<input type="hidden" class="form-control" name="id"id="id"/>
+	<input type="hidden" class="form-control" name="id" id="id"/>
 	<input type="hidden" class="form-control" name="code" id="code"/>
 	<input type="hidden" class="form-control" name="createdBy" value="1" />
 	<input type="hidden" class="form-control" name="createdOn"id="createdOn" />

@@ -1,30 +1,43 @@
 <% request.setAttribute("contextName", request.getServletContext().getContextPath()); %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="box box-info">
 	<div class="box-header">
 		<h3 class="box-title">MENU</h3>
 	</div>
-	<div class="box-body col-md-12">
-		<input type="text" name = "search" id = "search" placeholder="Search by Title" required>
-		<button type ="button" class="btn btn-warning btn-sm" onclick="search()">
-			<i class = "fa fa-circle-o"></i>
-		</button>
-		<button type="button" id="btn-add" class="btn btn-success btn-warning btn-sm pull-right">
+		
+	<div class="box-body">
+	<div class="row">
+		<div class="col-md-11">
+			<div class="input-group col-md-5">
+				<input type="text" name="search" id="search" class="form-control" placeholder="Search by Title" /> 
+				<span class="input-group-btn">
+					<button class="btn btn-warning btn-xm "
+						onClick="search()">
+						<i class="fa fa-circle-o"></i>
+					</button>
+				</span>
+			</div>
+		</div>
+		<div class="box-tools">
+			<button type="button" id="btn-add"
+				class="btn btn-warning btn-xm">
 				<i class="fa fa-plus"></i>
-		</button>
+			</button>
+		</div>
 	</div>
-	<div class = "box-body">
+	<br>
 		<table class="table">
 			<thead>
 				<tr>
 					<th>CODE</th>
 					<th>TITLE</th>
 					<th>MENU PARENT</th>
-					<th>#</th>
+					<th class="col-md-1">#</th>
 				</tr>
 			</thead>
 			<tbody id="list-data">
 			</tbody>
-		</table>		
+		</table>
 	</div>
 </div>
 <!-- Untuk memunculkan pop-up -->
@@ -79,7 +92,7 @@
 						var dataRow ='<tr>'+
 						'<td>'+ item.code +'</td>'+
 						'<td>'+ item.title+'</td>'+
-						'<td>'+ item.menuParent+'</td>'+
+						'<td>'+ ${mp.parents.menuParent	}+'</td>'+
 						'<td class = "col-md-1">'+
 						'<div class = "dropdown">'+
 							'<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class="caret"></span></button>'+
@@ -191,7 +204,7 @@
 					} else {
 						$form.find("#menuParent").append('<option value="'+ item.id +'">'+ item.title +'</option>');
 					}
-					
+				
 				});
 			}
 		});
@@ -244,14 +257,14 @@
 				$('#modal-data-large').html(result);
 				// menampilkan modal pop-up
 				$('#modal-form-large').modal('show');
-				//panggil method getDataSmall
-				getDataLarge(vid);
 				$('#createdOn').val(
 						d.getDate() + "-" + d.getMonth() + "-"
 								+ d.getFullYear() + " " + d.getHours()
 								+ ":" + d.getMinutes() + ":"
 								+ d.getSeconds());
 				loadMenu($("#modal-data-large"));
+				//panggil method getDataSmall
+				getDataLarge(vid);
 			}
 		});
 	});

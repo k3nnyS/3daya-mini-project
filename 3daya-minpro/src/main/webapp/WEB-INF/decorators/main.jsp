@@ -13,6 +13,8 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
 <!-- Bootstrap 3.3.7 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+
 <link rel="stylesheet" href="${contextName}/resources/bootstrap/dist/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="${contextName}/resources/font-awesome/css/font-awesome.min.css">
@@ -31,7 +33,10 @@
 <script src="${contextName}/resources/dist/js/map-form-object.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="${contextName}/resources/jquery-ui/jquery-ui.min.js"></script>
-
+<script src="${contextName}/resources/jquery/jquery.validate.js"></script>
+<script src="${contextName}/resources/jquery/localization/messages_es.js"></script>
+<script src="${contextName}/resources/dist/css/screen.css"></script>
+<script src="${contextName}/resources/dist/css/style.css"></script>
 
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <decorator:head />
@@ -97,5 +102,6 @@
 	<script src="${contextName}/resources/fastclick/lib/fastclick.js"></script>
 	<!-- AdminLTE App -->
 	<script src="${contextName}/resources/dist/js/adminlte.min.js"></script>
+
 </body>
 </html>

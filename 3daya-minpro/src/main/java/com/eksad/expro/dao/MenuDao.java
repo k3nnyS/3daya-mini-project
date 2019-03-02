@@ -9,6 +9,8 @@ public interface MenuDao {
 	public List<MenuModel> getList();
 	public List<MenuModel> search(String key);
 	public MenuModel getById(Integer id);
+	// untuk auto increment
+	public String getNewCode();
 	public void insert(MenuModel model);
 	public void update(MenuModel model);
 	public void delete(MenuModel model);

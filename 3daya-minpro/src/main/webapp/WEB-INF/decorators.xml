@@ -14,11 +14,9 @@
 		<pattern>/testimony/*</pattern>
 		<pattern>/bootcamptype/*</pattern>
 		<pattern>/bootcamptesttype/*</pattern>
-		
+		<pattern>/test/*</pattern>
 		<pattern>/clazz/*</pattern>
 		<pattern>/biodata/*</pattern>
-
-
 		<pattern>/batch/*</pattern>
 	</excludes>
 

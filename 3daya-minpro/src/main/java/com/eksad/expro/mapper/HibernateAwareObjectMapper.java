@@ -13,4 +13,6 @@ public class HibernateAwareObjectMapper extends ObjectMapper {
     	hbm.enable(Feature.SERIALIZE_IDENTIFIER_FOR_LAZY_NOT_LOADED_OBJECTS);
         registerModule(hbm);
     }
+
 }
+

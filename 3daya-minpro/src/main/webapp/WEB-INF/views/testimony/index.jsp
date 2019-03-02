@@ -1,30 +1,41 @@
 <% request.setAttribute("contextName", request.getServletContext().getContextPath()); %>
-<!-- Div bagian utama tampilan -->
-<div class = "box box-info">
-<!-- Div bagian untuk membuat judul -->
-	<div class = "box-header">
-		<h3 class = "box-title">TESTIMONY</h3>
+<!-- Div bagian utama halaman -->
+<div class="box box-info">
+	<div class="box-header">
+		<h3 class="box-title">TESTIMONY</h3>
+	</div>	
+	<!-- Div bagian search -->
+	<div class="box-body">
+	<div class="row">
+		<div class="col-md-11">
+			<div class="input-group col-md-5">
+				<input type="text" name="search" id="search" class="form-control" placeholder="Search by Name" /> 
+				<span class="input-group-btn">
+					<button class="btn btn-warning btn-xm "
+						onClick="search()">
+						<i class="fa fa-circle-o"></i>
+					</button>
+				</span>
+			</div>
+		</div>
+		<!-- div bagian add -->
+		<div class="box-tools">
+			<button type="button" id="btn-add"
+				class="btn btn-warning btn-xm">
+				<i class="fa fa-plus"></i>
+			</button>
+		</div>
 	</div>
-	<!-- Div bagian membuat kolom search -->
-	<div class ="box-tools col-md-12">
-		<input type = "text" name = "search" id = "search" placeholder="Search by Title" />
-		<button class = "btn btn-warning btn-sm" onClick = "search()">
-			<i class = "fa fa-circle-o"></i>
-		</button>
-		<button type = "button" id = "btn-add" class = "btn btn-warning btn-sm pull-right">
-				<i class = "fa fa-plus"></i>
-		</button>
-	</div>
-	<!-- Div bagian tempat isi data -->
-	<div class = "box-body">
-		<table class = "table">
+	<!-- Bagian Table -->
+	<br>
+		<table class="table">
 			<thead>
 				<tr>
-					<th>TITLE</th>
-					<th>#</th>
+					<th>NAME</th>
+					<th class="col-md-1">#</th>
 				</tr>
 			</thead>
-			<tbody id = "list-data">
+			<tbody id="list-data">
 			</tbody>
 		</table>
 	</div>

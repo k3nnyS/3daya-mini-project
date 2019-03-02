@@ -3,6 +3,14 @@
 	<div class="box-body">
 		<div class="row">
 			<div class="col-md-6">
+				<!-- <div class="form-group">
+					<label class="control-label col-md-2">Code</label>
+					<div class="col-md-10">
+						<input type="text" class="form-control" name="code" value="${KodeBaru}"  />
+					</div>  
+				</div> -->
+				<!-- Code generate -->
+				<input type="hidden" class="form-control" name="code" id="code" value="${KodeBaru }"/>  
 				<div class="form-group">
 					<label class="control-label col-md-1"></label>
 					<div class="col-md-10">
@@ -47,8 +55,7 @@
 			</div>
 		</div>
 	</div>
-	
-	<input type="hidden" class ="form-control" name = "code" value = "1"/>	
+		
 	<input type="hidden" class="form-control" name="createdBy" value="1"/>
 	<input type="hidden" class="form-control" name="createdOn" id="createdOn"/>
 	<input type="hidden" class="form-control" name="isDelete" value="false"/>

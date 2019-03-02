@@ -40,11 +40,11 @@ public class BatchModel {
 	private String name;
 	
 	@Column(name ="period_from")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date periodFrom;
 	
 	@Column(name = "period_to")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date periodTo;
 	
 	@Column(name = "room_id")
@@ -83,6 +83,10 @@ public class BatchModel {
 	@ManyToOne
 	@JoinColumn(name = "trainer_id", updatable = false, insertable = false)
 	private TrainerModel trainer;
+	
+	@ManyToOne
+	@JoinColumn(name = "technology_id", updatable = false, insertable = false)
+	private TechnologyModel technology;
 	
 	public Integer getId() {
 		return id;
@@ -206,6 +210,12 @@ public class BatchModel {
 	}
 	public void setTrainer(TrainerModel trainer) {
 		this.trainer = trainer;
+	}
+	public TechnologyModel getTechnology() {
+		return technology;
+	}
+	public void setTechnology(TechnologyModel technology) {
+		this.technology = technology;
 	}
 	
 	

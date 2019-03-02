@@ -1,23 +1,27 @@
 package com.eksad.expro.model;
 
 import java.util.Date;
+import java.util.List;
 import java.text.SimpleDateFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="t_technology")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class TechnologyModel {
 	
 
@@ -58,6 +62,10 @@ public class TechnologyModel {
 	
 	@Column(name="is_delete")
 	private Boolean isDelete;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "technology", fetch=FetchType.EAGER, orphanRemoval=true)
+	private List<BatchModel> listBatch;
 
 	public Integer getId() {
 		return id;
