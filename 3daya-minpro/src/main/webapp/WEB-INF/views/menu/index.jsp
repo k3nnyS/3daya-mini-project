@@ -114,6 +114,7 @@
 	
 	// ketika btn-add di klik
 	$("#btn-add").click(function(){
+		// instasiasi variable d sebagai Date
 		var d = new Date($.now());
 		$.ajax({
 			url : '${contextName}/menu/create',
@@ -135,6 +136,31 @@
 	
 	// method untuk add data
 	function addData($form){
+		var title = $('#modal-data-large').find('#title').val();
+		var description = $('#modal-data-large').find('#description').val();
+		var imageUrl = $('#modal-data-large').find('#imageUrl').val();
+		var menuOrder = $('#modal-data-large').find('#menuOrder').val();
+		var menuParent = $('#modal-data-large').find('#menuParent').val();
+		var menuUrl = $('#modal-data-large').find('#menuUrl').val();
+		var len = title.length;
+		var len2 = description.length;
+		var len3 = imageUrl.length;
+		var len4 = menuOrder.length;
+		var len5 = menuParent.length;
+		var len6 = menuUrl.length;
+		if (len<1){
+			alert("Data Harus di Isi");
+		} else if(len2<1) {
+			alert("Data Harus di Isi");
+		} else if (len3<1) {
+			alert('Dalam bentuk "https://"');
+		} else if (len4<1) {
+			alert('Data Harus di Isi');
+		} else if (len5<1) {
+			alert('Pilih Menu Parent');
+		} else if (len6<1) {
+			alert("Data Harus di Isi");
+		} else {
 		// memangil method getFormData dari file
 		// resources/dist/js/map-form-objet.js
 		var dataForm = getFormData($form);
@@ -150,6 +176,7 @@
 			}
 		});
 		console.log(dataForm);
+		}
 	}
 	
 	// function search
@@ -199,12 +226,13 @@
 				$form.find("#menuParent").append('<option value="">-Choose Menu Parent-</option>');
 				// looping data
 				$.each(result, function(index, item){
+				if(item.isDelete == false){
 					if ($selected==item.id) {
 						$form.find("#menuParent").append('<option value="'+ item.id +'" selected="selected">'+ item.title +'</option>');
 					} else {
 						$form.find("#menuParent").append('<option value="'+ item.id +'">'+ item.title +'</option>');
 					}
-				
+				}
 				});
 			}
 		});

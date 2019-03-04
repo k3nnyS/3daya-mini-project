@@ -1,16 +1,17 @@
 <%
 	request.setAttribute("contextName", request.getServletContext().getContextPath());
 %>
+<!-- Div bagian utama halaman -->
 <div class="box box-info">
 	<div class="box-header">
-		<h3 class="box-title">IDLE NEWS</h3>
-	</div>
-		
+		<h3 class="box-title">TESTIMONY</h3>
+	</div>	
+	<!-- Div bagian search -->
 	<div class="box-body">
 	<div class="row">
 		<div class="col-md-11">
 			<div class="input-group col-md-5">
-				<input type="text" name="search" id="search" class="form-control" placeholder="Search by Title" /> 
+				<input type="text" name="search" id="search" class="form-control" placeholder="Search by Name" /> 
 				<span class="input-group-btn">
 					<button class="btn btn-warning btn-xm "
 						onClick="search()">
@@ -19,6 +20,7 @@
 				</span>
 			</div>
 		</div>
+		<!-- div bagian add -->
 		<div class="box-tools">
 			<button type="button" id="btn-add"
 				class="btn btn-warning btn-xm">
@@ -26,13 +28,14 @@
 			</button>
 		</div>
 	</div>
+	<!-- Bagian Table -->
 	<br>
 		<table class="table">
 			<thead>
 				<tr>
 					<th>TITLE</th>
 					<th>CATEGORY</th>
-					<th class="col-md-1">#</th>
+					<th class = "col-md-1">#</th>
 				</tr>
 			</thead>
 			<tbody id="list-data">
@@ -74,14 +77,14 @@
 						'<td>'+item.category.name+'</td>'+
 						'<td class = "col-md-1">'+
 						'<div class = "dropdown">'+
-							'<button class = "btn btn-warning dropdown-toggle" type = "button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class = "caret"></span></button>'+
-							'<ul class="dropdown-menu">'+
-								'<li id = "btn-edit" value = "'+item.id+'"><a>Edit</a></li>'+
-								'<li id = "btn-delete" value = "'+item.id+'"><a>Delete</a></li>'+
+							'<button class = "btn btn-warning dropdown-toggle" type = "button" data-toggle = "dropdown"><i class = "fa fa-align-justify"></i><span class = "caret"></span></button>'+
+							'<ul class = "dropdown-menu">'+
+								'<li id = "btn-edit" value ="'+item.id+'"><a>Edit</a></li>'+
+								'<li id = "btn-delete" value ="'+item.id+'"><a>Delete</a></li>'+
 							'</ul>'+
 						'</div>'+
-						'<td>'+
-					'<tr>';
+						'</td>'+
+					'</tr>';
 				$("#list-data").append(dataRow);
 					}
 				});
@@ -166,10 +169,14 @@
 	// fungsi untuk menambah data
 	function addData($form){
 		var title = $('#modal-data').find('#title').val();
+		var category = $('#modal-data').find('#categoryId').val();
 		var len = title.length;
+		var len2 = category.length;
 		if (len<1){
 			alert("Data Harus di Isi");
-		} else{
+		} else if (len2<1){
+			alert("Pilih Category");
+		} else {	
 		// memangil method getFormData dari file
 		// resources/dist/js/map-form-objet.js
 		var dataForm = getFormData($form);
