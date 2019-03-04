@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -41,7 +43,7 @@ public class IdleNewsModel {
 	
 	@Column(name = "created_on")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-	private Date CreatedOn;
+	private Date createdOn;
 	
 	@Column(name = "modified_by")
 	private Integer modifiedBy;
@@ -59,6 +61,10 @@ public class IdleNewsModel {
 	
 	@Column(name = "is_delete")
 	private Boolean isDelete;
+	
+	@ManyToOne
+	@JoinColumn(name = "category_id", updatable = false, insertable = false)
+	private CategoryModel category;
 	
 	public Integer getId() {
 		return id;
@@ -97,10 +103,10 @@ public class IdleNewsModel {
 		this.createdBy = createdBy;
 	}
 	public Date getCreatedOn() {
-		return CreatedOn;
+		return createdOn;
 	}
 	public void setCreatedOn(Date createdOn) {
-		CreatedOn = createdOn;
+		this.createdOn = createdOn;
 	}
 	public Integer getModifiedBy() {
 		return modifiedBy;
@@ -131,6 +137,12 @@ public class IdleNewsModel {
 	}
 	public void setIsDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
+	}
+	public CategoryModel getCategory() {
+		return category;
+	}
+	public void setCategory(CategoryModel category) {
+		this.category = category;
 	}
 	
 }

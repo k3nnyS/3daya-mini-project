@@ -214,6 +214,7 @@
 		});
 	});
 	
+	// fungsi untuk menambahkan data
 	function addData($form){
 		// memangil method getFormData dari file
 		// resources/dist/js/map-form-objet.js
@@ -248,6 +249,10 @@
 				$('#modal-data-large').find('#notes').val(dataApi.notes);
 				$('#modal-data-large').find('#createdBy').val(dataApi.createdBy);
 				$('#modal-data-large').find('#createdOn').val(dataApi.createdOn);
+				$('#modal-data-large').find('#modifiedBy').val(dataApi.modfiedBy);
+				$('#modal-data-large').find('#modifiedOn').val(dataApi.modifiedOn);
+				$('#modal-data-large').find('#deletedBy').val(dataApi.deletedBy);
+				$('#modal-data-large').find('#deletedOn').val(dataApi.deletedOn);
 				$('#modal-data-large').find('#isDelete').val(dataApi.isDelete);
 			}
 		});

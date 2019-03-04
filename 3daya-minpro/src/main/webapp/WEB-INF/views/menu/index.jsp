@@ -177,10 +177,10 @@
 						'</div>' +
 						'</td>' +
 					'</tr>';
-				$("#list-data").append(dataRow);
-			});
-			// menampilkan data ke console => F12
-			console.log(result);
+					$("#list-data").append(dataRow);
+					});
+					// menampilkan data ke console => F12
+					console.log(result);
 				}
 			});
 	}
@@ -349,7 +349,7 @@
 		$('#isDelete').val('true');
 		var dataForm = getFormData($form);
 		$.ajax({
-			// url ke api/role/
+			// url ke api/menu/
 			url : '${contextName}/api/menu/',
 			type : 'put',
 			// data type berupa JSON

@@ -18,6 +18,8 @@
 		<pattern>/clazz/*</pattern>
 		<pattern>/biodata/*</pattern>
 		<pattern>/batch/*</pattern>
+		<pattern>/idlenews/*</pattern>
+		
 	</excludes>
 
 	<decorator name="main" page="main.jsp">
