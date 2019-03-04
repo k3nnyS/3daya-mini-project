@@ -79,6 +79,11 @@
 	
 	// method untuk add data
 	function addData($form){
+		var name = $('#modal-data').find("#name").val();
+		var len = name.length;
+		if(len<1) {
+			alert('"Name" tidak boleh kosong');
+		} else {
 		// memangil method getFormData dari file
 		// resources/dist/js/map-form-objet.js
 		var dataForm = getFormData($form);
@@ -100,6 +105,7 @@
 			}
 		});
 		console.log(dataForm);
+	}
 	}
 
 	//method loadData
@@ -212,6 +218,11 @@
 	
 	// method untuk edit data
 	function editData($form){
+		var name = $('#modal-data').find("#name").val();
+		var len = name.length;
+		if(len<1) {
+			alert('"Name" tidak boleh kosong');
+		} else {
 		// memangil method getFormData dari file
 		// resources/dist/js/map-dagang-objet.js
 		var dataForm = getFormData($form);
@@ -233,6 +244,7 @@
 			}
 		});
 		console.log(dataForm);
+	}
 	}
 	
 	//btn-delete di click
