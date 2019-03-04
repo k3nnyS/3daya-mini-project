@@ -153,6 +153,11 @@
 	
 	//method untuk add data
 	function addData($form){
+		var title = $('#modal-data').find("#title").val();
+		var len = title.length;
+		if(len<1){
+			alert("Data harus di isi");
+		} else {
 		// memangil method getFormData dari file
 		// resources/dist/js/map-form-objet.js
 		var dataForm = getFormData($form);
@@ -168,6 +173,7 @@
 			}
 		});
 		console.log(dataForm);
+		}
 	}
 	
 	//memberikan function mengambil data
@@ -245,6 +251,11 @@
 	
 	// method untuk edit data
 	function editData($form){
+		var title = $('#modal-data').find('#title').val();
+		var len = title.length;
+		if (len<1){
+			alert("Data Tidak Boleh Kosong")
+		} else {
 		// memangil method getFormData dari file
 		// resources/dist/js/map-dagang-objet.js
 		var dataForm = getFormData($form);
@@ -260,6 +271,6 @@
 			}
 		});
 		console.log(dataForm);
+		}
 	}
 </script>
-

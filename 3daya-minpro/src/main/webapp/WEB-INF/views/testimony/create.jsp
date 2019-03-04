@@ -4,14 +4,14 @@
 	<div class="form-group">
 		<label class="control-label col-md-1"></label>
 		<div class="col-md-10">
-			<input type="text" class="form-control" name="title" placeholder="Title"/>
+			<input type="text" class="form-control" name="title" id ="title" placeholder="Name"/>
 		</div>
 	</div>
 	<!-- Content -->
 	<div class="form-group">
 		<label class="control-label col-md-1"></label>
 		<div class="col-md-10">
-			<textarea   rows ="20" class="form-control" name="content" placeholder="Content" style="resize:none"/>
+			<textarea  rows="20" class="form-control" name="content" placeholder="Content" style="resize:none"/>
 		</div>
 	</div>
 	

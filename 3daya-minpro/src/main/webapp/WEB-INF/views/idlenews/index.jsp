@@ -3,7 +3,7 @@
 %>
 <div class="box box-info">
 	<div class="box-header">
-		<h3 class="box-title">Idle News</h3>
+		<h3 class="box-title">IDLE NEWS</h3>
 	</div>
 		
 	<div class="box-body">
@@ -68,6 +68,7 @@
 			success : function(result){
 				$("#list-data").empty();
 				$.each(result, function(index, item){
+					if(item.isDelete == false){
 					var dataRow = '<tr>'+
 						'<td>'+item.title+'</td>'+
 						'<td>'+item.category.name+'</td>'+
@@ -76,12 +77,13 @@
 							'<button class = "btn btn-warning dropdown-toggle" type = "button" data-toggle="dropdown"><i class="fa fa-align-justify"></i><span class = "caret"></span></button>'+
 							'<ul class="dropdown-menu">'+
 								'<li id = "btn-edit" value = "'+item.id+'"><a>Edit</a></li>'+
-								'<li id = "btn-delete" valiue = "'+item.id+'"><a>Delete</a></li>'+
+								'<li id = "btn-delete" value = "'+item.id+'"><a>Delete</a></li>'+
 							'</ul>'+
 						'</div>'+
 						'<td>'+
 					'<tr>';
 				$("#list-data").append(dataRow);
+					}
 				});
 				console.log(result);
 			}
@@ -131,9 +133,9 @@
 				//looping data
 				$.each(result, function(index, item){
 					if ($selected == item.id){
-						$form.find("#categoryId").append('<option value ="'+item.id+'" selected="selected">'+item.name+'</option>');
-					}else{
-						$form.find("#categoryId").append('<option value = "'+item.id+'">'+item.name+'</option>');
+						$form.find("#categoryId").append('<option value = "'+item.id+'" selected="selected">'+item.name+'</option>');
+					} else {
+						$form.find("#categoryId").append('<option value = "'+item.id+'">'+item.name+'</option');
 					}
 				});
 			}
@@ -163,6 +165,11 @@
 	
 	// fungsi untuk menambah data
 	function addData($form){
+		var title = $('#modal-data').find('#title').val();
+		var len = title.length;
+		if (len<1){
+			alert("Data Harus di Isi");
+		} else{
 		// memangil method getFormData dari file
 		// resources/dist/js/map-form-objet.js
 		var dataForm = getFormData($form);
@@ -177,6 +184,8 @@
 				loadData();	
 			}
 		});
+		console.log(dataForm);
+		}
 	}
 	
 	// memberikan fungsi untuk mengambil data
@@ -214,7 +223,6 @@
 				$('#modal-title').html("IDLE NEWS");
 				$('#modal-data').html(result);
 				$('#modal-form').modal('show');
-				loadCategory($("#modal-data"));
 				getData(vid);
 			}
 		});
@@ -256,6 +264,11 @@
 	});
 	
 	function editData($form){
+		var title = $('#modal-data').find('#title').val();
+		var len = title.length;
+		if (len<1){
+			alert("Data Tidak Boleh Kosong")
+		} else {
 		// memangil method getFormData dari file
 		// resources/dist/js/map-dagang-objet.js
 		var dataForm = getFormData($form);
@@ -271,5 +284,6 @@
 			}
 		});
 		console.log(dataForm);
+		}
 	}
 </script>

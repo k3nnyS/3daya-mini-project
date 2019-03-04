@@ -4,7 +4,7 @@
 	<div class="form-group">
 		<label class="control-label col-md-1"></label>
 		<div class="col-md-10">
-			<input type="text" class="form-control" name="title" placeholder="Title"/>
+			<input type="text" class="form-control" name="title" id="title" placeholder="Title"/>
 		</div>
 	</div>
 	<!-- Category -->

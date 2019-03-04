@@ -23,6 +23,6 @@ public class IdleNewsController {
 	
 	@RequestMapping(value = "/idlenews/delete")
 	public String delete() {
-		return "/idlenews/delete";
+		return "idlenews/delete";
 	}
 }
